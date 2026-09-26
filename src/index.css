@@ -1,0 +1,339 @@
+@import "tailwindcss";
+
+@theme {
+  --font-display: 'Syne', sans-serif;
+  --font-sans: 'Plus Jakarta Sans', sans-serif;
+  --font-mono: 'JetBrains Mono', monospace;
+  --font-grotesk: 'Space Grotesk', sans-serif;
+  --font-outfit: 'Outfit', sans-serif;
+  --color-cinema-bg: #09090b;
+  --color-cinema-surface: #121216;
+  --color-cinema-border: rgba(255, 255, 255, 0.08);
+  --color-cinema-accent: #f59e0b;
+}
+
+.font-grotesk {
+  font-family: 'Space Grotesk', 'Plus Jakarta Sans', sans-serif;
+}
+
+.font-outfit {
+  font-family: 'Outfit', 'Plus Jakarta Sans', sans-serif;
+}
+
+.font-display {
+  font-family: 'Syne', sans-serif;
+}
+
+.font-sans {
+  font-family: 'Plus Jakarta Sans', sans-serif;
+}
+
+.font-mono {
+  font-family: 'JetBrains Mono', monospace;
+}
+
+:root {
+  color-scheme: dark;
+  --bg-cinema: #09090b;
+  --bg-surface: #121217;
+  --text-main: #f4f4f5;
+}
+
+html {
+  scroll-behavior: smooth;
+  -webkit-overflow-scrolling: touch;
+}
+
+body {
+  font-family: var(--font-sans);
+  background-color: #09090b;
+  color: #f4f4f5;
+  overflow-x: hidden;
+  transition: background-color 0.25s cubic-bezier(0.4, 0, 0.2, 1), color 0.25s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+/* ==========================================================================
+   THEME: NIGHT (OLED CINEMA PITCH BLACK)
+   ========================================================================== */
+html[data-theme="night"],
+html.theme-night {
+  color-scheme: dark;
+}
+
+html[data-theme="night"] body,
+html.theme-night body {
+  background-color: #000000 !important;
+  color: #ffffff !important;
+}
+
+html[data-theme="night"] .bg-\[\#09090b\] {
+  background-color: #000000 !important;
+}
+
+html[data-theme="night"] .bg-\[\#0c0c0f\],
+html[data-theme="night"] .bg-\[\#0c0c10\] {
+  background-color: #050508 !important;
+}
+
+html[data-theme="night"] .bg-\[\#121217\],
+html[data-theme="night"] .bg-\[\#121216\] {
+  background-color: #0a0a0d !important;
+  border-color: rgba(245, 158, 11, 0.15) !important;
+  box-shadow: 0 4px 20px -2px rgba(0, 0, 0, 0.8) !important;
+}
+
+html[data-theme="night"] .bg-\[\#050507\],
+html[data-theme="night"] .bg-\[\#0f0f14\] {
+  background-color: #020203 !important;
+}
+
+/* ==========================================================================
+   THEME: LIGHT (DAYLIGHT EDITORIAL STUDIO)
+   ========================================================================== */
+html[data-theme="light"],
+html.theme-light {
+  color-scheme: light;
+}
+
+html[data-theme="light"] body {
+  background-color: #f8fafc !important;
+  color: #0f172a !important;
+}
+
+html[data-theme="light"] .bg-\[\#09090b\] {
+  background-color: #f8fafc !important;
+}
+
+html[data-theme="light"] .bg-\[\#0c0c0f\],
+html[data-theme="light"] .bg-\[\#0c0c10\] {
+  background-color: #f1f5f9 !important;
+}
+
+html[data-theme="light"] .bg-\[\#121217\],
+html[data-theme="light"] .bg-\[\#121216\],
+html[data-theme="light"] .bg-\[\#141419\],
+html[data-theme="light"] .bg-\[\#14141a\] {
+  background-color: #ffffff !important;
+  border-color: rgba(15, 23, 42, 0.08) !important;
+  box-shadow: 0 4px 12px -2px rgba(15, 23, 42, 0.05) !important;
+}
+
+html[data-theme="light"] .bg-\[\#18181f\],
+html[data-theme="light"] .bg-\[\#181820\],
+html[data-theme="light"] .bg-\[\#181822\] {
+  background-color: #f8fafc !important;
+  border-color: rgba(15, 23, 42, 0.08) !important;
+}
+
+html[data-theme="light"] .bg-\[\#050507\] {
+  background-color: #e2e8f0 !important;
+}
+
+html[data-theme="light"] .bg-\[\#0f0f14\] {
+  background-color: #ffffff !important;
+  border-color: rgba(15, 23, 42, 0.1) !important;
+}
+
+html[data-theme="light"] header.bg-\[\#09090b\]\/92,
+html[data-theme="light"] header.bg-\[\#0f0f14\]\/95 {
+  background-color: rgba(255, 255, 255, 0.94) !important;
+  border-bottom-color: rgba(15, 23, 42, 0.08) !important;
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.04) !important;
+}
+
+html[data-theme="light"] .from-\[\#09090b\]\/90 {
+  --tw-gradient-from: rgba(255, 255, 255, 0.92) var(--tw-gradient-from-position) !important;
+}
+
+/* Text overrides in Light Theme (excluding video player and hero banner) */
+html[data-theme="light"] :not(.cinema-force-dark):not(.cinema-force-dark *) > .text-white {
+  color: #0f172a !important;
+}
+
+html[data-theme="light"] .text-white {
+  color: #0f172a !important;
+}
+
+/* Maintain crisp dark headers in light mode */
+html[data-theme="light"] h1.text-white,
+html[data-theme="light"] h2.text-white,
+html[data-theme="light"] h3.text-white {
+  color: #0f172a !important;
+}
+
+html[data-theme="light"] .text-zinc-200,
+html[data-theme="light"] .text-zinc-300 {
+  color: #334155 !important;
+}
+
+html[data-theme="light"] .text-zinc-400 {
+  color: #64748b !important;
+}
+
+html[data-theme="light"] .text-zinc-500 {
+  color: #94a3b8 !important;
+}
+
+/* Borders & subtle backgrounds in Light Theme */
+html[data-theme="light"] .border-white\/\[0\.08\],
+html[data-theme="light"] .border-white\/\[0\.06\],
+html[data-theme="light"] .border-white\/10,
+html[data-theme="light"] .border-white\/5 {
+  border-color: rgba(15, 23, 42, 0.08) !important;
+}
+
+html[data-theme="light"] .border-white\/20 {
+  border-color: rgba(15, 23, 42, 0.16) !important;
+}
+
+html[data-theme="light"] .bg-white\/5 {
+  background-color: rgba(15, 23, 42, 0.04) !important;
+}
+
+html[data-theme="light"] .bg-white\/10 {
+  background-color: rgba(15, 23, 42, 0.08) !important;
+}
+
+html[data-theme="light"] .bg-black\/40,
+html[data-theme="light"] .bg-black\/60,
+html[data-theme="light"] .bg-black\/80 {
+  background-color: rgba(241, 245, 249, 0.85) !important;
+  color: #0f172a !important;
+}
+
+/* Ensure Video Lightbox and Project Modal remain pure cinema black for video screening */
+#video-lightbox,
+.cinema-force-dark,
+.cinema-force-dark * {
+  color-scheme: dark !important;
+}
+
+html[data-theme="light"] #video-lightbox .text-white,
+html[data-theme="light"] .cinema-force-dark .text-white {
+  color: #ffffff !important;
+}
+
+html[data-theme="light"] #video-lightbox .bg-black\/95,
+html[data-theme="light"] .cinema-force-dark .bg-black {
+  background-color: rgba(0, 0, 0, 0.95) !important;
+}
+
+h1, h2, h3, .font-display {
+  font-family: var(--font-display);
+}
+
+/* Subtle cinematic film grain overlay (SVG based, GPU light) */
+.film-grain {
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.8' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)' opacity='0.035'/%3E%3C/svg%3E");
+}
+
+/* ==========================================================================
+   AESTHETIC BACKGROUND ANIMATIONS & MESH PATTERNS
+   ========================================================================== */
+@keyframes floatOrb1 {
+  0%, 100% {
+    transform: translate(0px, 0px) scale(1);
+  }
+  33% {
+    transform: translate(70px, -60px) scale(1.18);
+  }
+  66% {
+    transform: translate(-50px, 40px) scale(0.92);
+  }
+}
+
+@keyframes floatOrb2 {
+  0%, 100% {
+    transform: translate(0px, 0px) scale(1);
+  }
+  33% {
+    transform: translate(-80px, 50px) scale(1.12);
+  }
+  66% {
+    transform: translate(60px, -50px) scale(0.95);
+  }
+}
+
+@keyframes floatOrb3 {
+  0%, 100% {
+    transform: translate(0px, 0px) scale(1);
+  }
+  50% {
+    transform: translate(90px, 50px) scale(1.22);
+  }
+}
+
+.animate-float-orb1 {
+  animation: floatOrb1 18s ease-in-out infinite;
+}
+
+.animate-float-orb2 {
+  animation: floatOrb2 22s ease-in-out infinite;
+}
+
+.animate-float-orb3 {
+  animation: floatOrb3 25s ease-in-out infinite;
+}
+
+.bg-grid-pattern {
+  background-size: 40px 40px;
+  background-image: 
+    linear-gradient(to right, rgba(255, 255, 255, 0.04) 1px, transparent 1px),
+    linear-gradient(to bottom, rgba(255, 255, 255, 0.04) 1px, transparent 1px);
+}
+
+.bg-dots-pattern {
+  background-size: 24px 24px;
+  background-image: radial-gradient(circle, rgba(255, 255, 255, 0.09) 1.2px, transparent 1.2px);
+}
+
+.bg-radial-vignette {
+  background: radial-gradient(circle at 50% 50%, transparent 20%, rgba(9, 9, 11, 0.75) 100%);
+}
+
+/* Theme canvas background adaptors */
+html[data-theme="aurora"] .dark-canvas-theme {
+  background-color: #0b0914 !important;
+}
+
+html[data-theme="emerald"] .dark-canvas-theme {
+  background-color: #06110d !important;
+}
+
+html[data-theme="sunset"] .dark-canvas-theme {
+  background-color: #12090e !important;
+}
+
+html[data-theme="night"] .dark-canvas-theme {
+  background-color: #050507 !important;
+}
+
+html[data-theme="light"] .dark-canvas-theme {
+  background-color: #f8fafc !important;
+}
+
+/* Smooth custom scrollbar */
+::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
+}
+
+::-webkit-scrollbar-track {
+  background: #09090b;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #27272a;
+  border-radius: 9999px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #3f3f46;
+}
+
+/* Accessible focus visible rings */
+:focus-visible {
+  outline: 2px solid #f59e0b;
+  outline-offset: 2px;
+}
+

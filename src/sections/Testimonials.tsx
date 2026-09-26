@@ -1,0 +1,127 @@
+import React from 'react';
+import { MessageSquareQuote, ArrowUpRight, Sparkles } from 'lucide-react';
+import { motion } from 'motion/react';
+import { Testimonial } from '../types';
+
+interface TestimonialsProps {
+  testimonials: Testimonial[];
+  onContact: () => void;
+}
+
+export const Testimonials: React.FC<TestimonialsProps> = ({ testimonials, onContact }) => {
+  return (
+    <section id="testimonials" className="py-20 sm:py-28 bg-[#0c0c0f] relative border-t border-white/[0.06] overflow-hidden">
+      {/* Subtle ambient light glow */}
+      <div className="absolute top-1/2 right-10 w-80 h-80 rounded-full bg-amber-500/5 blur-3xl pointer-events-none" />
+
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+        {/* Section Header with scroll reveal */}
+        <motion.div
+          initial={{ opacity: 0, y: 28 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true, amount: 0.2 }}
+          transition={{ duration: 0.6, ease: [0.16, 1, 0.3, 1] }}
+          className="max-w-3xl mb-12 sm:mb-16"
+        >
+          <div className="flex items-center gap-2 text-xs font-mono uppercase tracking-widest text-amber-400 mb-3">
+            <MessageSquareQuote className="w-3.5 h-3.5" />
+            <span>Client Feedback</span>
+          </div>
+          <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold font-display tracking-tight text-white leading-tight">
+            Words from the people I've worked with.
+          </h2>
+          <p className="mt-3 text-xs sm:text-base text-zinc-400 max-w-2xl leading-relaxed">
+            Direct feedback from creators, agencies, and brand founders. (Demo placeholders can be managed via the Admin CMS).
+          </p>
+        </motion.div>
+
+        {/* Carousel / Grid on Mobile & Desktop with staggered cards */}
+        <motion.div
+          initial="hidden"
+          whileInView="show"
+          viewport={{ once: true, amount: 0.15 }}
+          variants={{
+            hidden: { opacity: 0 },
+            show: {
+              opacity: 1,
+              transition: {
+                staggerChildren: 0.1,
+              },
+            },
+          }}
+          className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-8"
+        >
+          {testimonials.map((test) => (
+            <motion.div
+              key={test.id}
+              variants={{
+                hidden: { opacity: 0, y: 28 },
+                show: { opacity: 1, y: 0, transition: { duration: 0.5, ease: [0.16, 1, 0.3, 1] } },
+              }}
+              whileHover={{ y: -6 }}
+              className="bg-[#121216] border border-white/[0.08] hover:border-amber-500/40 rounded-xl p-6 flex flex-col justify-between transition-all shadow-lg shadow-black/40"
+            >
+              <div>
+                {/* Demo Marker */}
+                {test.isDemo && (
+                  <div className="flex items-center justify-between text-[10px] font-mono uppercase tracking-wider text-amber-500/80 mb-4 pb-2 border-b border-white/[0.06]">
+                    <span>Sample Review Placeholder</span>
+                  </div>
+                )}
+
+                <p className="text-xs sm:text-sm text-zinc-300 italic leading-relaxed mb-6 font-normal">
+                  "{test.feedback}"
+                </p>
+              </div>
+
+              <div className="pt-4 border-t border-white/[0.06]">
+                <div className="font-display font-bold text-sm text-white">
+                  {test.clientName}
+                </div>
+                <div className="text-xs text-zinc-400 mt-0.5 flex items-center gap-1.5 flex-wrap">
+                  <span>{test.role}</span>
+                  <span aria-hidden="true">·</span>
+                  <span className="text-amber-400 font-medium">{test.projectType}</span>
+                </div>
+                {test.company && (
+                  <div className="text-[11px] font-mono text-zinc-500 mt-1">
+                    {test.company}
+                  </div>
+                )}
+              </div>
+            </motion.div>
+          ))}
+
+          {/* "Your Edit Could Be Next" Card */}
+          <motion.div
+            variants={{
+              hidden: { opacity: 0, y: 28 },
+              show: { opacity: 1, y: 0, transition: { duration: 0.5, ease: [0.16, 1, 0.3, 1] } },
+            }}
+            whileHover={{ y: -6, scale: 1.01 }}
+            whileTap={{ scale: 0.98 }}
+            onClick={onContact}
+            className="group bg-gradient-to-br from-[#121216] to-[#181822] border border-dashed border-amber-500/30 hover:border-amber-400 rounded-xl p-6 flex flex-col justify-between cursor-pointer transition-all duration-300"
+          >
+            <div>
+              <span className="text-[10px] font-mono uppercase tracking-widest text-amber-400 block mb-2">
+                Next Collaboration
+              </span>
+              <h3 className="text-lg sm:text-xl font-bold font-display text-white mb-2 group-hover:text-amber-300 transition-colors">
+                Your edit could be next.
+              </h3>
+              <p className="text-xs text-zinc-400 leading-relaxed">
+                Have raw camera footage or phone clips waiting to be transformed into a viral Reel? Let's discuss audio direction, hook timing, and delivery.
+              </p>
+            </div>
+
+            <div className="mt-6 pt-4 border-t border-white/[0.06] flex items-center justify-between text-xs font-semibold uppercase tracking-wider text-amber-400">
+              <span>Start an edit inquiry</span>
+              <ArrowUpRight className="w-4 h-4 transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-transform" />
+            </div>
+          </motion.div>
+        </motion.div>
+      </div>
+    </section>
+  );
+};
