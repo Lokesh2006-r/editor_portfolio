@@ -9,7 +9,7 @@ import { KineticMarquee } from '../components/KineticMarquee';
 import { AestheticBackground } from '../components/AestheticBackground';
 import { Hero } from '../sections/Hero';
 import { Showreel } from '../sections/Showreel';
-import { FeaturedWork } from '../sections/FeaturedWork';
+import { VideoGallery } from '../sections/VideoGallery';
 import { Services } from '../sections/Services';
 import { About } from '../sections/About';
 import { Workflow } from '../sections/Workflow';
@@ -30,6 +30,9 @@ export const Home: React.FC<HomeProps> = ({ onNavigateToAdmin }) => {
   const [inquiries, setInquiries] = useState<Inquiry[]>([]);
   const [testimonials, setTestimonials] = useState<Testimonial[]>([]);
   const [services, setServices] = useState<Service[]>(storage.getServices());
+
+  // Autoplay setting (could be moved to config, default true for now)
+  const autoplayOnScroll = true;
 
   // Modals & Lightbox states
   const [selectedProject, setSelectedProject] = useState<Project | null>(null);
@@ -114,7 +117,7 @@ export const Home: React.FC<HomeProps> = ({ onNavigateToAdmin }) => {
     });
   };
 
-  // Launch project in vertical viewer
+  // Launch project in viewer
   const launchProjectVideo = (project: Project, e: React.MouseEvent<HTMLElement>) => {
     setSelectedProject(project);
   };
@@ -180,10 +183,11 @@ export const Home: React.FC<HomeProps> = ({ onNavigateToAdmin }) => {
 
         <Showreel config={config} onOpenLightbox={launchShowreel} />
 
-        <FeaturedWork
+        <VideoGallery
           projects={projects}
           onSelectProject={(project) => setSelectedProject(project)}
           onPlayDirect={launchProjectVideo}
+          autoplayOnScroll={autoplayOnScroll}
         />
 
         {/* Secondary Kinetic Movement Ribbon */}

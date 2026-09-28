@@ -42,6 +42,7 @@ import { auth, DEFAULT_ADMIN_CREDENTIALS } from '../../lib/auth';
 import { checkApiStatus, projectsApi, servicesApi, testimonialsApi, inquiriesApi, configApi, type ApiStatus } from '../../lib/api';
 import { AdminLogin } from './AdminLogin';
 import { NavFontPicker } from '../../components/NavFontPicker';
+import { MultiSelectTagInput } from '../../components/admin/MultiSelectTagInput';
 
 interface AdminPageProps {
   onNavigateToHome: () => void;
@@ -1174,13 +1175,31 @@ export const AdminPage: React.FC<AdminPageProps> = ({ onNavigateToHome }) => {
                     <label className="block text-xs font-mono uppercase tracking-wider text-zinc-300">
                       Thumbnail Image Path or URL
                     </label>
-                    <input
-                      id="project-thumbnail-input"
-                      name="thumbnail"
-                      defaultValue={editingProject?.thumbnail || AVAILABLE_ASSET_PRESETS[0].path}
-                      required
-                      className="w-full bg-[#181820] border border-white/10 rounded-xl px-3.5 py-2 text-xs text-white font-mono"
-                    />
+                    <div className="flex gap-2">
+                      <input
+                        id="project-thumbnail-input"
+                        name="thumbnail"
+                        defaultValue={editingProject?.thumbnail || AVAILABLE_ASSET_PRESETS[0].path}
+                        required
+                        className="flex-1 bg-[#181820] border border-white/10 rounded-xl px-3.5 py-2 text-xs text-white font-mono"
+                      />
+                      <label className="flex items-center justify-center px-4 py-2 bg-white/10 border border-white/10 hover:bg-white/20 hover:text-white rounded-xl text-xs font-medium text-zinc-300 cursor-pointer transition-colors">
+                        Upload
+                        <input 
+                          type="file" 
+                          accept="image/*" 
+                          className="hidden" 
+                          onChange={(e) => {
+                            const file = e.target.files?.[0];
+                            if (file) {
+                              const url = URL.createObjectURL(file);
+                              const input = document.getElementById('project-thumbnail-input') as HTMLInputElement;
+                              if (input) input.value = url;
+                            }
+                          }}
+                        />
+                      </label>
+                    </div>
 
                     {/* 1-Click Preset Asset Selector */}
                     <div>
@@ -1209,12 +1228,31 @@ export const AdminPage: React.FC<AdminPageProps> = ({ onNavigateToHome }) => {
                     <label className="block text-xs font-mono uppercase tracking-wider text-zinc-300 mb-1.5">
                       Video Stream or MP4 URL (Optional)
                     </label>
-                    <input
-                      name="videoUrl"
-                      defaultValue={editingProject?.videoUrl || 'https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/ForBiggerBlazes.mp4'}
-                      placeholder="https://... direct .mp4 or stream"
-                      className="w-full bg-[#181820] border border-white/10 rounded-xl px-3.5 py-2 text-xs text-white font-mono"
-                    />
+                    <div className="flex gap-2">
+                      <input
+                        id="project-video-input"
+                        name="videoUrl"
+                        defaultValue={editingProject?.videoUrl || 'https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/ForBiggerBlazes.mp4'}
+                        placeholder="https://... direct .mp4 or stream"
+                        className="flex-1 bg-[#181820] border border-white/10 rounded-xl px-3.5 py-2 text-xs text-white font-mono"
+                      />
+                      <label className="flex items-center justify-center px-4 py-2 bg-white/10 border border-white/10 hover:bg-white/20 hover:text-white rounded-xl text-xs font-medium text-zinc-300 cursor-pointer transition-colors">
+                        Upload
+                        <input 
+                          type="file" 
+                          accept="video/*" 
+                          className="hidden" 
+                          onChange={(e) => {
+                            const file = e.target.files?.[0];
+                            if (file) {
+                              const url = URL.createObjectURL(file);
+                              const input = document.getElementById('project-video-input') as HTMLInputElement;
+                              if (input) input.value = url;
+                            }
+                          }}
+                        />
+                      </label>
+                    </div>
                   </div>
 
                   <div>
@@ -1246,36 +1284,26 @@ export const AdminPage: React.FC<AdminPageProps> = ({ onNavigateToHome }) => {
                   </div>
 
                   <div className="grid grid-cols-1 sm:grid-cols-3 gap-4">
-                    <div>
-                      <label className="block text-xs font-mono uppercase tracking-wider text-zinc-300 mb-1.5">
-                        Editing Techniques (comma separated)
-                      </label>
-                      <input
-                        name="editingTechniques"
-                        defaultValue={editingProject?.editingTechniques?.join(', ') || 'Beat sync, Speed ramp, Film grain'}
-                        className="w-full bg-[#181820] border border-white/10 rounded-xl px-3.5 py-2 text-xs text-white"
-                      />
-                    </div>
-                    <div>
-                      <label className="block text-xs font-mono uppercase tracking-wider text-zinc-300 mb-1.5">
-                        Tools Used (comma separated)
-                      </label>
-                      <input
-                        name="toolsUsed"
-                        defaultValue={editingProject?.toolsUsed?.join(', ') || 'DaVinci Resolve, Premiere Pro, CapCut Pro'}
-                        className="w-full bg-[#181820] border border-white/10 rounded-xl px-3.5 py-2 text-xs text-white"
-                      />
-                    </div>
-                    <div>
-                      <label className="block text-xs font-mono uppercase tracking-wider text-zinc-300 mb-1.5">
-                        Deliverables (comma separated)
-                      </label>
-                      <input
-                        name="deliverables"
-                        defaultValue={editingProject?.deliverables?.join(', ') || '1080x1920 Master, 4K Master, Clean Feed'}
-                        className="w-full bg-[#181820] border border-white/10 rounded-xl px-3.5 py-2 text-xs text-white"
-                      />
-                    </div>
+                    <MultiSelectTagInput 
+                      name="editingTechniques"
+                      label="Editing Techniques"
+                      initialTags={editingProject?.editingTechniques || ['Beat sync', 'Speed ramp', 'Film grain']}
+                      suggestedTags={['Beat sync', 'Speed ramp', 'Sound design', 'Color grading', 'Anamorphic framing', 'Pacing sync', 'Motion graphics', 'VFX', 'Transitions', 'Film grain', 'Audio mixing']}
+                    />
+                    
+                    <MultiSelectTagInput 
+                      name="toolsUsed"
+                      label="Tools Used"
+                      initialTags={editingProject?.toolsUsed || ['DaVinci Resolve', 'Premiere Pro', 'CapCut Pro']}
+                      suggestedTags={['DaVinci Resolve', 'Premiere Pro', 'After Effects', 'Final Cut Pro', 'CapCut Pro', 'Avid Media Composer', 'Audition', 'Logic Pro']}
+                    />
+
+                    <MultiSelectTagInput 
+                      name="deliverables"
+                      label="Deliverables"
+                      initialTags={editingProject?.deliverables || ['1080x1920 Master', '4K Master', 'Clean Feed']}
+                      suggestedTags={['4K Master', '1080x1920 Master', 'Clean Feed', 'Social Cut', 'Web Export', 'ProRes HQ', 'H.264', 'H.265']}
+                    />
                   </div>
 
                   <div className="flex items-center gap-2 pt-1">

@@ -20,6 +20,7 @@ import { Project, Inquiry, SiteConfig, ProjectCategory } from '../../types';
 import { storage } from '../../lib/storage';
 import { getFirebaseStatus } from '../../lib/firebase';
 import { NavFontPicker } from '../../components/NavFontPicker';
+import { MultiSelectTagInput } from '../../components/admin/MultiSelectTagInput';
 
 interface AdminModalProps {
   isOpen: boolean;
@@ -589,21 +590,71 @@ export const AdminModal: React.FC<AdminModalProps> = ({
 
                   <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                     <div>
-                      <label className="block text-xs font-mono text-zinc-300 mb-1">Thumbnail Path or URL</label>
-                      <input
-                        name="thumbnail"
-                        defaultValue={editingProject?.thumbnail || '/src/assets/images/hero_cinematic_director_1790323945101.jpg'}
-                        required
-                        className="w-full bg-[#18181e] border border-white/10 rounded px-3 py-2 text-xs text-white"
-                      />
+                      <label className="block text-xs font-mono text-zinc-300 mb-1">Thumbnail Path, URL, or Upload</label>
+                      <div className="flex gap-2">
+                        <input
+                          name="thumbnail"
+                          id="thumbnail-input"
+                          defaultValue={editingProject?.thumbnail || '/src/assets/images/hero_cinematic_director_1790323945101.jpg'}
+                          required
+                          className="flex-1 bg-[#18181e] border border-white/10 rounded px-3 py-2 text-xs text-white"
+                        />
+                        <label className="flex items-center justify-center px-3 py-2 bg-white/10 border border-white/10 hover:bg-white/20 hover:text-white rounded text-xs text-zinc-300 cursor-pointer transition-colors">
+                          Upload
+                          <input 
+                            type="file" 
+                            accept="image/*" 
+                            className="hidden" 
+                            onChange={(e) => {
+                              const file = e.target.files?.[0];
+                              if (file) {
+                                const url = URL.createObjectURL(file);
+                                const input = document.getElementById('thumbnail-input') as HTMLInputElement;
+                                if (input) input.value = url;
+                              }
+                            }}
+                          />
+                        </label>
+                      </div>
                     </div>
                     <div>
-                      <label className="block text-xs font-mono text-zinc-300 mb-1">Video MP4 URL / Stream</label>
-                      <input
-                        name="videoUrl"
-                        defaultValue={editingProject?.videoUrl || 'https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/ForBiggerBlazes.mp4'}
+                      <label className="block text-xs font-mono text-zinc-300 mb-1">Video URL (YouTube, Vimeo, MP4) or Upload</label>
+                      <div className="flex gap-2">
+                        <input
+                          name="videoUrl"
+                          id="video-url-input"
+                          defaultValue={editingProject?.videoUrl || 'https://www.youtube.com/watch?v=aqz-KE-bpKQ'}
+                          className="flex-1 bg-[#18181e] border border-white/10 rounded px-3 py-2 text-xs text-white"
+                        />
+                        <label className="flex items-center justify-center px-3 py-2 bg-white/10 border border-white/10 hover:bg-white/20 hover:text-white rounded text-xs text-zinc-300 cursor-pointer transition-colors">
+                          Upload
+                          <input 
+                            type="file" 
+                            accept="video/*" 
+                            className="hidden" 
+                            onChange={(e) => {
+                              const file = e.target.files?.[0];
+                              if (file) {
+                                const url = URL.createObjectURL(file);
+                                const input = document.getElementById('video-url-input') as HTMLInputElement;
+                                if (input) input.value = url;
+                              }
+                            }}
+                          />
+                        </label>
+                      </div>
+                    </div>
+                    <div>
+                      <label className="block text-xs font-mono text-zinc-300 mb-1">Aspect Ratio</label>
+                      <select
+                        name="aspectRatio"
+                        defaultValue={editingProject?.aspectRatio || '16:9'}
                         className="w-full bg-[#18181e] border border-white/10 rounded px-3 py-2 text-xs text-white"
-                      />
+                      >
+                        <option value="16:9">Horizontal (16:9)</option>
+                        <option value="9:16">Vertical (9:16)</option>
+                        <option value="4:3">Classic (4:3)</option>
+                      </select>
                     </div>
                   </div>
 
@@ -630,36 +681,26 @@ export const AdminModal: React.FC<AdminModalProps> = ({
                   </div>
 
                   <div className="grid grid-cols-1 sm:grid-cols-3 gap-4">
-                    <div>
-                      <label className="block text-xs font-mono text-zinc-300 mb-1">
-                        Editing Techniques (comma separated)
-                      </label>
-                      <input
-                        name="editingTechniques"
-                        defaultValue={editingProject?.editingTechniques?.join(', ') || 'Anamorphic framing, Pacing sync'}
-                        className="w-full bg-[#18181e] border border-white/10 rounded px-3 py-2 text-xs text-white"
-                      />
-                    </div>
-                    <div>
-                      <label className="block text-xs font-mono text-zinc-300 mb-1">
-                        Tools Used (comma separated)
-                      </label>
-                      <input
-                        name="toolsUsed"
-                        defaultValue={editingProject?.toolsUsed?.join(', ') || 'DaVinci Resolve, Premiere Pro'}
-                        className="w-full bg-[#18181e] border border-white/10 rounded px-3 py-2 text-xs text-white"
-                      />
-                    </div>
-                    <div>
-                      <label className="block text-xs font-mono text-zinc-300 mb-1">
-                        Deliverables (comma separated)
-                      </label>
-                      <input
-                        name="deliverables"
-                        defaultValue={editingProject?.deliverables?.join(', ') || '4K Master, Web Export'}
-                        className="w-full bg-[#18181e] border border-white/10 rounded px-3 py-2 text-xs text-white"
-                      />
-                    </div>
+                    <MultiSelectTagInput 
+                      name="editingTechniques"
+                      label="Editing Techniques"
+                      initialTags={editingProject?.editingTechniques || ['Anamorphic framing', 'Pacing sync']}
+                      suggestedTags={['Beat sync', 'Speed ramp', 'Sound design', 'Color grading', 'Anamorphic framing', 'Pacing sync', 'Motion graphics', 'VFX', 'Transitions', 'Film grain', 'Audio mixing']}
+                    />
+                    
+                    <MultiSelectTagInput 
+                      name="toolsUsed"
+                      label="Tools Used"
+                      initialTags={editingProject?.toolsUsed || ['DaVinci Resolve', 'Premiere Pro']}
+                      suggestedTags={['DaVinci Resolve', 'Premiere Pro', 'After Effects', 'Final Cut Pro', 'CapCut Pro', 'Avid Media Composer', 'Audition', 'Logic Pro']}
+                    />
+
+                    <MultiSelectTagInput 
+                      name="deliverables"
+                      label="Deliverables"
+                      initialTags={editingProject?.deliverables || ['4K Master', 'Web Export']}
+                      suggestedTags={['4K Master', '1080x1920 Master', 'Clean Feed', 'Social Cut', 'Web Export', 'ProRes HQ', 'H.264', 'H.265']}
+                    />
                   </div>
 
                   <div className="flex items-center gap-2 pt-2">

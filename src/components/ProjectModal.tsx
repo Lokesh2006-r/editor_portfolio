@@ -166,24 +166,24 @@ export const ProjectModal: React.FC<ProjectModalProps> = ({
           </div>
         </div>
 
-        {/* Content Body: Vertical 9:16 Player + Details */}
+        {/* Content Body: Responsive Layout based on aspect ratio */}
         <div className="overflow-y-auto p-4 sm:p-6 lg:p-8">
-          <div className="grid grid-cols-1 lg:grid-cols-12 gap-6 lg:gap-10 items-start">
-            {/* Centerpiece 9:16 Vertical Video Frame */}
-            <div className="lg:col-span-6 flex justify-center">
-              <div className="w-full max-w-[320px] sm:max-w-[360px] bg-black rounded-2xl overflow-hidden border border-white/15 shadow-2xl ring-1 ring-white/5">
+          <div className={project.aspectRatio === '9:16' ? "grid grid-cols-1 lg:grid-cols-12 gap-6 lg:gap-10 items-start" : "flex flex-col gap-6 lg:gap-10"}>
+            {/* Centerpiece Video Frame */}
+            <div className={project.aspectRatio === '9:16' ? "lg:col-span-6 flex justify-center" : "w-full flex justify-center"}>
+              <div className={`w-full bg-black rounded-2xl overflow-hidden border border-white/15 shadow-2xl ring-1 ring-white/5 ${project.aspectRatio === '9:16' ? 'max-w-[320px] sm:max-w-[360px]' : 'max-w-4xl'}`}>
                 <VideoPlayer
                   videoUrl={project.videoUrl}
                   posterUrl={project.thumbnail}
                   title={project.title}
-                  aspectRatio="9:16"
+                  aspectRatio={project.aspectRatio || '16:9'}
                   autoPlay={true}
                 />
               </div>
             </div>
 
-            {/* Edit Breakdown & Narrative Specs (Right Column) */}
-            <div className="lg:col-span-6 space-y-6">
+            {/* Edit Breakdown & Narrative Specs */}
+            <div className={project.aspectRatio === '9:16' ? "lg:col-span-6 space-y-6" : "w-full max-w-4xl mx-auto space-y-6"}>
               {/* Category, Duration, Year */}
               <div className="space-y-2">
                 <div className="flex items-center gap-2 text-xs text-zinc-400 flex-wrap">
