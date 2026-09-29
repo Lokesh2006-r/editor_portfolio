@@ -7,9 +7,10 @@ import { VideoPlayer } from '../components/VideoPlayer';
 interface ShowreelProps {
   config: SiteConfig;
   onOpenLightbox: () => void;
+  onExploreWork?: () => void;
 }
 
-export const Showreel: React.FC<ShowreelProps> = ({ config, onOpenLightbox }) => {
+export const Showreel: React.FC<ShowreelProps> = ({ config, onOpenLightbox, onExploreWork }) => {
   const editingStyles = [
     { title: 'Beat-Matched Speed Ramps', desc: 'Accelerating camera momentum into musical beat drops' },
     { title: 'Sub-Bass Foley Sound Design', desc: 'Custom risers, swooshes, footsteps, and spatial bass' },
@@ -157,14 +158,21 @@ export const Showreel: React.FC<ShowreelProps> = ({ config, onOpenLightbox }) =>
                 <span>Play In Fullscreen Viewer</span>
               </motion.button>
 
-              <motion.a
+              <motion.button
                 whileHover={{ x: 2 }}
-                href="#edits"
-                className="px-5 py-3 text-xs font-medium text-zinc-300 hover:text-white bg-white/5 hover:bg-white/10 border border-white/10 rounded-lg transition-colors flex items-center justify-center gap-1.5 text-center"
+                whileTap={{ scale: 0.98 }}
+                onClick={() => {
+                  if (onExploreWork) {
+                    onExploreWork();
+                  } else {
+                    document.getElementById('edits')?.scrollIntoView({ behavior: 'smooth' });
+                  }
+                }}
+                className="px-5 py-3 text-xs font-medium text-zinc-300 hover:text-white bg-white/5 hover:bg-white/10 border border-white/10 rounded-lg transition-colors flex items-center justify-center gap-1.5 text-center cursor-pointer active:scale-95"
               >
                 <span>Browse All 8 Edits</span>
                 <ArrowUpRight className="w-3.5 h-3.5" />
-              </motion.a>
+              </motion.button>
             </div>
           </motion.div>
         </div>

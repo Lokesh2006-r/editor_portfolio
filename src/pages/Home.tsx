@@ -181,7 +181,11 @@ export const Home: React.FC<HomeProps> = ({ onNavigateToAdmin }) => {
         {/* Cinematic Kinetic Marquee Divider with infinite movement */}
         <KineticMarquee speed={30} direction="left" />
 
-        <Showreel config={config} onOpenLightbox={launchShowreel} />
+        <Showreel
+          config={config}
+          onOpenLightbox={launchShowreel}
+          onExploreWork={() => scrollToSection('edits')}
+        />
 
         <VideoGallery
           projects={projects}

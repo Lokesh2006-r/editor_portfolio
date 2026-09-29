@@ -43,7 +43,7 @@ export const About: React.FC<AboutProps> = ({ config, onContact }) => {
           >
             <div className="relative rounded-2xl overflow-hidden aspect-[4/5] bg-black border border-white/10 shadow-2xl group">
               <img
-                src="/src/assets/images/hero_cinematic_director_1790323945101.jpg"
+                src={config.heroPhoto || '/src/assets/images/hero_cinematic_director_1790323945101.jpg'}
                 alt={`${config.editorName} - Mobile Video Editor`}
                 referrerPolicy="no-referrer"
                 className="w-full h-full object-cover filter contrast-[1.05] brightness-[0.88] transition-transform duration-700 group-hover:scale-105"

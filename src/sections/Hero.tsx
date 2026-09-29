@@ -1,6 +1,6 @@
 import React, { useRef } from 'react';
 import { ArrowDown, ArrowUpRight, Play } from 'lucide-react';
-import { motion, useScroll, useTransform } from 'motion/react';
+import { motion, useScroll, useTransform, useMotionValueEvent } from 'motion/react';
 import { SiteConfig } from '../types';
 
 interface HeroProps {
@@ -17,6 +17,8 @@ export const Hero: React.FC<HeroProps> = ({
   onWatchReel,
 }) => {
   const containerRef = useRef<HTMLElement>(null);
+  const contentRef   = useRef<HTMLDivElement>(null);
+
   const { scrollYProgress } = useScroll({
     target: containerRef,
     offset: ['start start', 'end start'],
@@ -24,8 +26,15 @@ export const Hero: React.FC<HeroProps> = ({
 
   const bgY     = useTransform(scrollYProgress, [0, 1], ['0%', '18%']);
   const bgScale = useTransform(scrollYProgress, [0, 1], [1.0, 1.12]);
-  const textY   = useTransform(scrollYProgress, [0, 1], ['0%', '30%']);
-  const opacity = useTransform(scrollYProgress, [0, 0.75], [1, 0]);
+  const textY   = useTransform(scrollYProgress, [0, 0.6], ['0%', '25%']);
+  const opacity = useTransform(scrollYProgress, [0, 0.65], [1, 0]);
+
+  // Disable pointer-events on content layer when nearly invisible
+  useMotionValueEvent(opacity, 'change', (v) => {
+    if (contentRef.current) {
+      contentRef.current.style.pointerEvents = v < 0.1 ? 'none' : 'auto';
+    }
+  });
 
   const lines = (config.heroTagline ?? 'Every Frame,\nTells a Story.').split('\n');
 
@@ -34,11 +43,12 @@ export const Hero: React.FC<HeroProps> = ({
       ref={containerRef}
       id="hero"
       className="cinema-force-dark relative min-h-screen flex items-end overflow-hidden bg-[#080604]"
+      style={{ isolation: 'isolate' }}
     >
-      {/* ── FULL-BLEED PHOTO (right-side portrait, parallax) ── */}
+      {/* ── FULL-BLEED PHOTO (parallax, z-0) ── */}
       <motion.div
         style={{ y: bgY, scale: bgScale }}
-        className="absolute inset-0 z-0 will-change-transform"
+        className="absolute inset-0 z-0 will-change-transform pointer-events-none"
       >
         <img
           src={config.heroPhoto || '/src/assets/images/hero_cinematic_director_1790323945101.jpg'}
@@ -46,29 +56,29 @@ export const Hero: React.FC<HeroProps> = ({
           className="w-full h-full object-cover object-[70%_20%]"
         />
 
-        {/* ── LAYERED CINEMATIC SCRIMS ── */}
-        {/* Left vignette — darkens left so text is legible */}
-        <div className="absolute inset-0 bg-gradient-to-r from-[#080604] via-[#080604]/80 to-transparent" />
-        {/* Bottom fade to brand name area */}
-        <div className="absolute inset-0 bg-gradient-to-t from-[#080604] via-[#080604]/30 to-transparent" />
-        {/* Top fade for nav area */}
-        <div className="absolute inset-0 bg-gradient-to-b from-[#080604]/70 via-transparent to-transparent" />
+        {/* Left vignette — text legibility */}
+        <div className="absolute inset-0 bg-gradient-to-r from-[#080604] via-[#080604]/80 to-transparent pointer-events-none" />
+        {/* Bottom fade */}
+        <div className="absolute inset-0 bg-gradient-to-t from-[#080604] via-[#080604]/30 to-transparent pointer-events-none" />
+        {/* Top nav fade */}
+        <div className="absolute inset-0 bg-gradient-to-b from-[#080604]/70 via-transparent to-transparent pointer-events-none" />
 
-        {/* ── EMBER GLOW — warm orange behind subject ── */}
-        <div className="absolute inset-0 bg-gradient-to-tr from-transparent via-orange-900/10 to-orange-800/20" />
+        {/* Ember glow behind subject */}
+        <div className="absolute inset-0 bg-gradient-to-tr from-transparent via-orange-900/10 to-orange-800/20 pointer-events-none" />
         <div className="absolute bottom-0 right-[5%] w-[55%] h-[65%]
           bg-gradient-to-tl from-orange-700/20 via-amber-900/10 to-transparent
-          blur-[110px] rounded-full" />
+          blur-[110px] rounded-full pointer-events-none" />
         <div className="absolute top-[10%] right-[20%] w-[30%] h-[40%]
-          bg-orange-900/12 blur-[80px] rounded-full" />
+          bg-orange-900/12 blur-[80px] rounded-full pointer-events-none" />
       </motion.div>
 
-      {/* ── CONTENT LAYER ── */}
+      {/* ── MAIN CONTENT LAYER (z-10) ── */}
       <motion.div
+        ref={contentRef}
         style={{ y: textY, opacity }}
-        className="relative z-10 w-full max-w-7xl mx-auto px-6 sm:px-10 lg:px-16 pb-28 sm:pb-36"
+        className="relative z-10 w-full max-w-7xl mx-auto px-6 sm:px-10 lg:px-16 pb-24 sm:pb-32"
       >
-        {/* ── SUPER-LABEL ── */}
+        {/* Super-label */}
         <motion.div
           initial={{ opacity: 0, x: -24 }}
           animate={{ opacity: 1, x: 0 }}
@@ -91,7 +101,7 @@ export const Hero: React.FC<HeroProps> = ({
           </span>
         </motion.div>
 
-        {/* ── MAIN HEADLINE — cinematic serif style ── */}
+        {/* Main Headline — cinematic left-aligned display */}
         <motion.div
           initial={{ opacity: 0, y: 40 }}
           animate={{ opacity: 1, y: 0 }}
@@ -109,7 +119,7 @@ export const Hero: React.FC<HeroProps> = ({
           ))}
         </motion.div>
 
-        {/* ── SUPPORTING COPY + CTAs ── */}
+        {/* Supporting copy + CTAs */}
         <motion.div
           initial={{ opacity: 0, y: 24 }}
           animate={{ opacity: 1, y: 0 }}
@@ -121,35 +131,34 @@ export const Hero: React.FC<HeroProps> = ({
           </p>
 
           <div className="flex flex-wrap items-center gap-3">
-            {/* Primary CTA */}
             <motion.button
               whileHover={{ scale: 1.04, y: -2 }}
               whileTap={{ scale: 0.96 }}
               onClick={onExploreWork}
               className="flex items-center gap-2.5 px-6 py-3 rounded-full
-                bg-orange-500 hover:bg-orange-400
+                bg-orange-500 hover:bg-orange-400 active:scale-95
                 text-black text-sm font-bold uppercase tracking-wider
-                shadow-lg shadow-orange-600/30 transition-all cursor-pointer"
+                shadow-lg shadow-orange-600/30 transition-all cursor-pointer
+                focus-visible:outline-2 focus-visible:outline-orange-400"
             >
               <Play className="w-3.5 h-3.5 fill-black" />
               View Our Work
             </motion.button>
 
-            {/* Secondary CTA */}
             <motion.button
               whileHover={{ scale: 1.04, y: -2 }}
               whileTap={{ scale: 0.96 }}
               onClick={onWatchReel}
               className="flex items-center gap-2 px-6 py-3 rounded-full
-                bg-white/8 hover:bg-white/14 border border-white/20
+                bg-white/8 hover:bg-white/15 border border-white/20 active:scale-95
                 text-white text-sm font-semibold uppercase tracking-wider
-                backdrop-blur-sm transition-all cursor-pointer"
+                backdrop-blur-sm transition-all cursor-pointer
+                focus-visible:outline-2 focus-visible:outline-white/40"
             >
               Watch Showreel
               <ArrowUpRight className="w-3.5 h-3.5 text-orange-400" />
             </motion.button>
 
-            {/* Ghost link */}
             <motion.button
               whileHover={{ x: 4 }}
               onClick={onContact}
@@ -164,32 +173,29 @@ export const Hero: React.FC<HeroProps> = ({
         </motion.div>
       </motion.div>
 
-      {/* ── LARGE WATERMARK BRAND NAME (bleeds from bottom, like Shadow®) ── */}
-      <motion.div
-        style={{ opacity }}
-        className="absolute bottom-[-0.12em] left-0 right-0 z-20 overflow-hidden pointer-events-none select-none"
-      >
+      {/* ── LARGE WATERMARK BRAND NAME (z-5, pointer-events-none) ── */}
+      <div className="absolute bottom-0 left-0 right-0 z-[5] overflow-hidden pointer-events-none select-none">
         <motion.p
           initial={{ opacity: 0, y: 40 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 1.2, delay: 0.6, ease: [0.16, 1, 0.3, 1] }}
           className="text-[clamp(5rem,18vw,18rem)] font-display font-extrabold
-            tracking-[-0.04em] leading-[0.85]
+            tracking-[-0.04em] leading-[0.82]
             text-transparent bg-clip-text
-            bg-gradient-to-b from-white/10 via-white/5 to-transparent
+            bg-gradient-to-b from-white/8 via-white/4 to-transparent
             px-4 sm:px-8 lg:px-12 whitespace-nowrap"
         >
           {config.editorName}
         </motion.p>
-      </motion.div>
+      </div>
 
-      {/* ── STATS ROW — Groshev-style bottom data strip ── */}
+      {/* ── STATS STRIP — bottom-right, pointer-events-none ── */}
       <motion.div
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
         transition={{ duration: 1, delay: 0.8 }}
-        className="absolute bottom-6 right-6 sm:right-10 z-30
-          flex flex-col gap-3 items-end"
+        className="absolute bottom-16 right-6 sm:right-10 z-20
+          flex flex-col gap-3 items-end pointer-events-none select-none"
       >
         {[
           { num: '50M+', label: 'Reel Views' },
@@ -207,14 +213,15 @@ export const Hero: React.FC<HeroProps> = ({
         ))}
       </motion.div>
 
-      {/* ── SCROLL INDICATOR ── */}
+      {/* ── SCROLL INDICATOR (z-20, clickable) ── */}
       <motion.button
         animate={{ y: [0, 8, 0] }}
         transition={{ repeat: Infinity, duration: 2.2, ease: 'easeInOut' }}
         onClick={onExploreWork}
         aria-label="Scroll to work"
-        className="absolute bottom-7 left-1/2 -translate-x-1/2 z-30
-          flex flex-col items-center gap-1 cursor-pointer group"
+        className="absolute bottom-6 left-1/2 -translate-x-1/2 z-20
+          flex flex-col items-center gap-1 cursor-pointer group
+          focus-visible:outline-none"
       >
         <span className="text-[9px] font-mono tracking-widest uppercase text-zinc-500 group-hover:text-zinc-300 transition-colors">
           Scroll

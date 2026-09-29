@@ -43,6 +43,7 @@ import { checkApiStatus, projectsApi, servicesApi, testimonialsApi, inquiriesApi
 import { AdminLogin } from './AdminLogin';
 import { NavFontPicker } from '../../components/NavFontPicker';
 import { MultiSelectTagInput } from '../../components/admin/MultiSelectTagInput';
+import { DashboardHeroBanner } from '../../components/admin/DashboardHeroBanner';
 
 interface AdminPageProps {
   onNavigateToHome: () => void;
@@ -836,6 +837,17 @@ export const AdminPage: React.FC<AdminPageProps> = ({ onNavigateToHome }) => {
           {/* TAB 1: OVERVIEW DASHBOARD */}
           {activeTab === 'overview' && (
             <div className="space-y-8">
+              {/* ── CINEMATIC HERO TEMPLATE BANNER (Modify photo, copy, availability) ── */}
+              <DashboardHeroBanner
+                config={config}
+                onUpdateConfig={(updated) => {
+                  setConfig(updated);
+                  setSiteForm(updated);
+                }}
+                onViewSite={onNavigateToHome}
+                showNotification={showNotification}
+              />
+
               <div>
                 <h1 className="text-2xl font-bold font-display tracking-tight text-white">
                   Studio Control Center

@@ -81,8 +81,8 @@ export const AdminLogin: React.FC<AdminLoginProps> = ({ onLoginSuccess, onBackTo
             </p>
           </div>
 
-          {/* Demo Quick-Fill Helper Callout */}
-          <div className="bg-[#141008] border border-orange-600/25 rounded-xl p-3.5 space-y-2">
+          {/* Demo Quick-Fill Helper Callout & 1-Click Access */}
+          <div className="bg-[#141008] border border-orange-600/25 rounded-xl p-3.5 space-y-3">
             <div className="flex items-center justify-between text-[11px] font-mono">
               <span className="text-orange-500 flex items-center gap-1.5 font-semibold">
                 <Sparkles className="w-3.5 h-3.5" />
@@ -93,7 +93,7 @@ export const AdminLogin: React.FC<AdminLoginProps> = ({ onLoginSuccess, onBackTo
                 onClick={handleFillDemoCredentials}
                 className="text-[10px] text-orange-500 hover:text-orange-400 font-mono underline cursor-pointer"
               >
-                {autoFilled ? 'Filled!' : 'Auto-Fill Demo'}
+                {autoFilled ? 'Filled!' : 'Auto-Fill Fields'}
               </button>
             </div>
             <div className="grid grid-cols-2 gap-2 text-[11px] font-mono text-zinc-300 bg-black/40 p-2 rounded border border-white/5">
@@ -106,6 +106,19 @@ export const AdminLogin: React.FC<AdminLoginProps> = ({ onLoginSuccess, onBackTo
                 <span className="text-orange-400 font-mono block">{DEFAULT_ADMIN_CREDENTIALS.password}</span>
               </div>
             </div>
+
+            {/* Direct 1-Click Entry Button */}
+            <button
+              type="button"
+              onClick={() => {
+                auth.login(DEFAULT_ADMIN_CREDENTIALS.email, DEFAULT_ADMIN_CREDENTIALS.password);
+                onLoginSuccess();
+              }}
+              className="w-full py-2.5 px-3 rounded-lg bg-orange-500 hover:bg-orange-400 text-black text-xs font-bold uppercase tracking-wider flex items-center justify-center gap-2 transition-all cursor-pointer shadow-md shadow-orange-600/20 active:scale-95"
+            >
+              <Sparkles className="w-4 h-4 fill-black" />
+              <span>Instant 1-Click Access to Dashboard</span>
+            </button>
           </div>
 
           {/* Error Banner */}

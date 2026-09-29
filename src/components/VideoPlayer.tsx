@@ -32,14 +32,9 @@ export const VideoPlayer: React.FC<VideoPlayerProps> = ({
   const [showControls, setShowControls] = useState(false);
   const [showPoster, setShowPoster] = useState(true);
 
-  // Blob URLs are session-only — they become invalid after a page refresh.
-  // Detect this upfront so we never try to play a dead blob URL.
-  const isStaleBlobUrl = useMemo(() => {
-    if (!videoUrl) return false;
-    return videoUrl.startsWith('blob:');
-  }, [videoUrl]);
-
-  const parsedVideo = useMemo(() => parseVideoUrl(isStaleBlobUrl ? undefined : videoUrl), [videoUrl, isStaleBlobUrl]);
+  // Parse video URL (direct, YouTube, Vimeo, Instagram, or local blob)
+  const parsedVideo = useMemo(() => parseVideoUrl(videoUrl), [videoUrl]);
+  const isStaleBlobUrl = false;
 
   // Format seconds to mm:ss
   const formatTime = (secs: number) => {
