@@ -1,6 +1,6 @@
 import React, { useRef } from 'react';
 import { ArrowDown, ArrowUpRight, Play } from 'lucide-react';
-import { motion, useScroll, useTransform, useMotionValueEvent } from 'motion/react';
+import { motion, useScroll, useTransform } from 'motion/react';
 import { SiteConfig } from '../types';
 
 interface HeroProps {
@@ -29,12 +29,7 @@ export const Hero: React.FC<HeroProps> = ({
   const textY   = useTransform(scrollYProgress, [0, 0.6], ['0%', '25%']);
   const opacity = useTransform(scrollYProgress, [0, 0.65], [1, 0]);
 
-  // Disable pointer-events on content layer when nearly invisible
-  useMotionValueEvent(opacity, 'change', (v) => {
-    if (contentRef.current) {
-      contentRef.current.style.pointerEvents = v < 0.1 ? 'none' : 'auto';
-    }
-  });
+
 
   const lines = (config.heroTagline ?? 'Every Frame,\nTells a Story.').split('\n');
 
