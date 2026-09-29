@@ -35,9 +35,9 @@ export const Workflow: React.FC = () => {
   ];
 
   return (
-    <section id="workflow" className="py-20 sm:py-28 bg-[#050505] relative border-t border-white/[0.06] overflow-hidden">
+    <section id="workflow" className="py-20 sm:py-28 bg-[#080604] relative border-t border-white/[0.06] overflow-hidden">
       {/* Subtle ambient light glow */}
-      <div className="absolute top-1/2 left-1/3 w-80 h-80 rounded-full bg-red-600/5 blur-3xl pointer-events-none" />
+      <div className="absolute top-1/2 left-1/3 w-80 h-80 rounded-full bg-orange-600/5 blur-3xl pointer-events-none" />
 
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
         {/* Section Header with scroll reveal */}
@@ -48,7 +48,7 @@ export const Workflow: React.FC = () => {
           transition={{ duration: 0.6, ease: [0.16, 1, 0.3, 1] }}
           className="max-w-3xl mb-12 sm:mb-16"
         >
-          <div className="flex items-center gap-2 text-xs font-mono uppercase tracking-widest text-red-500 mb-3">
+          <div className="flex items-center gap-2 text-xs font-mono uppercase tracking-widest text-orange-500 mb-3">
             <GitBranch className="w-3.5 h-3.5" />
             <span>Process & Timeline</span>
           </div>
@@ -68,7 +68,7 @@ export const Workflow: React.FC = () => {
             whileInView={{ scaleX: 1 }}
             viewport={{ once: true, amount: 0.2 }}
             transition={{ duration: 1, delay: 0.2, ease: [0.16, 1, 0.3, 1] }}
-            className="hidden lg:block absolute top-12 left-10 right-10 h-[1px] bg-gradient-to-r from-red-600/20 via-red-500/50 to-red-600/20 z-0 origin-left"
+            className="hidden lg:block absolute top-12 left-10 right-10 h-[1px] bg-gradient-to-r from-orange-600/20 via-orange-500/50 to-orange-600/20 z-0 origin-left"
           />
 
           <motion.div
@@ -96,21 +96,21 @@ export const Workflow: React.FC = () => {
                     show: { opacity: 1, y: 0, transition: { duration: 0.5, ease: [0.16, 1, 0.3, 1] } },
                   }}
                   whileHover={{ y: -6 }}
-                  className="bg-[#0f0a0a] border border-white/[0.08] hover:border-red-600/40 rounded-xl p-5 sm:p-6 transition-all duration-300 hover:shadow-xl hover:shadow-black/60 flex flex-col justify-between group"
+                  className="bg-[#100c06] border border-white/[0.08] hover:border-orange-600/40 rounded-xl p-5 sm:p-6 transition-all duration-300 hover:shadow-xl hover:shadow-black/60 flex flex-col justify-between group"
                 >
                   <div>
                     {/* Top Row: Icon & Step Number */}
                     <div className="flex items-center justify-between mb-4">
-                      <div className="w-10 h-10 rounded-lg bg-white/5 border border-white/10 flex items-center justify-center text-red-500 group-hover:scale-105 group-hover:bg-red-500/10 group-hover:border-red-600/30 transition-all">
+                      <div className="w-10 h-10 rounded-lg bg-white/5 border border-white/10 flex items-center justify-center text-orange-500 group-hover:scale-105 group-hover:bg-orange-500/10 group-hover:border-orange-600/30 transition-all">
                         <Icon className="w-5 h-5" />
                       </div>
-                      <span className="font-mono text-xs font-bold text-red-500">
+                      <span className="font-mono text-xs font-bold text-orange-500">
                         {step.number}
                       </span>
                     </div>
 
                     {/* Step Title */}
-                    <h3 className="text-base sm:text-lg font-bold font-display tracking-tight text-white mb-1 group-hover:text-red-400 transition-colors">
+                    <h3 className="text-base sm:text-lg font-bold font-display tracking-tight text-white mb-1 group-hover:text-orange-400 transition-colors">
                       {step.title}
                     </h3>
                     <div className="text-[11px] font-mono text-zinc-500 mb-2.5">

@@ -172,13 +172,13 @@ export const VideoPlayer: React.FC<VideoPlayerProps> = ({
             src={posterUrl || 'https://images.unsplash.com/photo-1618005182384-a83a8bd57fbe?q=80&w=2564&auto=format&fit=crop'}
             alt={title}
             referrerPolicy="no-referrer"
-            className="w-full h-full object-cover bg-[#0f0a0a]"
+            className="w-full h-full object-cover bg-[#100c06]"
             onError={(e) => {
               (e.target as HTMLImageElement).src = 'https://images.unsplash.com/photo-1618005182384-a83a8bd57fbe?q=80&w=2564&auto=format&fit=crop';
             }}
           />
           <div className="absolute inset-0 bg-black/35 flex items-center justify-center transition-opacity hover:bg-black/25">
-            <div className="w-16 h-16 sm:w-20 sm:h-20 rounded-full bg-white/10 backdrop-blur-md border border-white/20 flex items-center justify-center text-white shadow-2xl transition-all duration-300 hover:scale-105 hover:bg-red-600 hover:text-black">
+            <div className="w-16 h-16 sm:w-20 sm:h-20 rounded-full bg-white/10 backdrop-blur-md border border-white/20 flex items-center justify-center text-white shadow-2xl transition-all duration-300 hover:scale-105 hover:bg-orange-600 hover:text-black">
               <Play className="w-7 h-7 sm:w-8 sm:h-8 fill-current translate-x-0.5" />
             </div>
           </div>
@@ -220,7 +220,7 @@ export const VideoPlayer: React.FC<VideoPlayerProps> = ({
             src={posterUrl || 'https://images.unsplash.com/photo-1618005182384-a83a8bd57fbe?q=80&w=2564&auto=format&fit=crop'}
             alt={title}
             referrerPolicy="no-referrer"
-            className="w-full h-full object-cover bg-[#0f0a0a]"
+            className="w-full h-full object-cover bg-[#100c06]"
             onError={(e) => {
               (e.target as HTMLImageElement).src = 'https://images.unsplash.com/photo-1618005182384-a83a8bd57fbe?q=80&w=2564&auto=format&fit=crop';
             }}
@@ -228,7 +228,7 @@ export const VideoPlayer: React.FC<VideoPlayerProps> = ({
           {/* Only show error badge for real stream failures (not blob or missing URL) */}
           {hasError && !isStaleBlobUrl && (
             <div className="absolute inset-0 bg-black/60 flex items-center justify-center p-4">
-              <div className="flex items-center gap-2 text-xs text-red-500 bg-black/80 px-3 py-2 rounded border border-red-600/20">
+              <div className="flex items-center gap-2 text-xs text-orange-500 bg-black/80 px-3 py-2 rounded border border-orange-600/20">
                 <AlertCircle className="w-4 h-4" />
                 <span>Stream unavailable · Displaying thumbnail</span>
               </div>
@@ -240,7 +240,7 @@ export const VideoPlayer: React.FC<VideoPlayerProps> = ({
       {/* Loading Spinner */}
       {isLoading && !showPoster && (
         <div className="absolute inset-0 bg-black/40 flex items-center justify-center pointer-events-none z-10">
-          <div className="w-10 h-10 border-2 border-red-500 border-t-transparent rounded-full animate-spin" />
+          <div className="w-10 h-10 border-2 border-orange-500 border-t-transparent rounded-full animate-spin" />
         </div>
       )}
 
@@ -261,7 +261,7 @@ export const VideoPlayer: React.FC<VideoPlayerProps> = ({
               value={currentTime}
               onChange={handleSeek}
               aria-label="Video timeline scrubber"
-              className="w-full h-1 bg-white/20 rounded-lg appearance-none cursor-pointer accent-red-500 focus:outline-none"
+              className="w-full h-1 bg-white/20 rounded-lg appearance-none cursor-pointer accent-orange-500 focus:outline-none"
             />
           </div>
 
@@ -270,7 +270,7 @@ export const VideoPlayer: React.FC<VideoPlayerProps> = ({
             <div className="flex items-center gap-3">
               <button
                 onClick={togglePlay}
-                className="p-1 hover:text-red-500 transition-colors focus-visible:outline-red-600"
+                className="p-1 hover:text-orange-500 transition-colors focus-visible:outline-orange-600"
                 aria-label={isPlaying ? 'Pause' : 'Play'}
               >
                 {isPlaying ? <Pause className="w-4 h-4" /> : <Play className="w-4 h-4" />}
@@ -278,7 +278,7 @@ export const VideoPlayer: React.FC<VideoPlayerProps> = ({
 
               <button
                 onClick={toggleMute}
-                className="p-1 hover:text-red-500 transition-colors focus-visible:outline-red-600"
+                className="p-1 hover:text-orange-500 transition-colors focus-visible:outline-orange-600"
                 aria-label={isMuted ? 'Unmute' : 'Mute'}
               >
                 {isMuted ? <VolumeX className="w-4 h-4" /> : <Volume2 className="w-4 h-4" />}
@@ -295,7 +295,7 @@ export const VideoPlayer: React.FC<VideoPlayerProps> = ({
               </span>
               <button
                 onClick={handleFullscreen}
-                className="p-1 hover:text-red-500 transition-colors focus-visible:outline-red-600"
+                className="p-1 hover:text-orange-500 transition-colors focus-visible:outline-orange-600"
                 aria-label="Toggle Fullscreen"
               >
                 <Maximize className="w-4 h-4" />

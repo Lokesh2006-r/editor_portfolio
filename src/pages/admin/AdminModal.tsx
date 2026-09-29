@@ -144,14 +144,14 @@ export const AdminModal: React.FC<AdminModalProps> = ({
     >
       <div className="fixed inset-0" onClick={onClose} aria-hidden="true" />
 
-      <div className="relative z-10 w-full max-w-6xl bg-[#0c0808] border border-white/10 rounded-2xl shadow-2xl overflow-hidden my-auto max-h-[94vh] flex flex-col">
+      <div className="relative z-10 w-full max-w-6xl bg-[#0e0b05] border border-white/10 rounded-2xl shadow-2xl overflow-hidden my-auto max-h-[94vh] flex flex-col">
         {/* Top Header */}
-        <div className="flex items-center justify-between px-6 py-4 border-b border-white/[0.08] bg-[#050505]">
+        <div className="flex items-center justify-between px-6 py-4 border-b border-white/[0.08] bg-[#080604]">
           <div className="flex items-center gap-3">
             <span className="font-display font-bold uppercase tracking-wider text-white text-base">
               Portfolio Studio Admin
             </span>
-            <span className="text-xs font-mono px-2 py-0.5 rounded bg-red-500/10 text-red-500 border border-red-600/20">
+            <span className="text-xs font-mono px-2 py-0.5 rounded bg-orange-500/10 text-orange-500 border border-orange-600/20">
               CMS & Inquiries
             </span>
           </div>
@@ -176,7 +176,7 @@ export const AdminModal: React.FC<AdminModalProps> = ({
         </div>
 
         {/* Tab Navigation */}
-        <div className="flex items-center gap-1 px-6 pt-3 border-b border-white/[0.06] bg-[#080808] overflow-x-auto no-scrollbar">
+        <div className="flex items-center gap-1 px-6 pt-3 border-b border-white/[0.06] bg-[#0a0704] overflow-x-auto no-scrollbar">
           {[
             { id: 'overview', label: 'Overview', icon: LayoutDashboard },
             { id: 'inquiries', label: `Inquiries (${inquiries.length})`, icon: Mail },
@@ -196,7 +196,7 @@ export const AdminModal: React.FC<AdminModalProps> = ({
                 }}
                 className={`flex items-center gap-2 px-4 py-2.5 text-xs font-medium border-b-2 transition-colors cursor-pointer whitespace-nowrap ${
                   isActive
-                    ? 'border-red-500 text-red-500'
+                    ? 'border-orange-500 text-orange-500'
                     : 'border-transparent text-zinc-400 hover:text-white'
                 }`}
               >
@@ -213,7 +213,7 @@ export const AdminModal: React.FC<AdminModalProps> = ({
           {activeTab === 'overview' && (
             <div className="space-y-6">
               <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
-                <div className="p-4 rounded-xl bg-[#100b0b] border border-white/[0.08]">
+                <div className="p-4 rounded-xl bg-[#120d07] border border-white/[0.08]">
                   <span className="text-xs font-mono text-zinc-400 uppercase tracking-wider block mb-1">
                     Total Projects
                   </span>
@@ -221,15 +221,15 @@ export const AdminModal: React.FC<AdminModalProps> = ({
                     {projects.length}
                   </span>
                 </div>
-                <div className="p-4 rounded-xl bg-[#100b0b] border border-white/[0.08]">
+                <div className="p-4 rounded-xl bg-[#120d07] border border-white/[0.08]">
                   <span className="text-xs font-mono text-zinc-400 uppercase tracking-wider block mb-1">
                     New Inquiries
                   </span>
-                  <span className="text-2xl font-bold font-display text-red-500 tabular-nums">
+                  <span className="text-2xl font-bold font-display text-orange-500 tabular-nums">
                     {inquiries.filter((i) => i.status === 'new').length}
                   </span>
                 </div>
-                <div className="p-4 rounded-xl bg-[#100b0b] border border-white/[0.08]">
+                <div className="p-4 rounded-xl bg-[#120d07] border border-white/[0.08]">
                   <span className="text-xs font-mono text-zinc-400 uppercase tracking-wider block mb-1">
                     Active Services
                   </span>
@@ -237,7 +237,7 @@ export const AdminModal: React.FC<AdminModalProps> = ({
                     6
                   </span>
                 </div>
-                <div className="p-4 rounded-xl bg-[#100b0b] border border-white/[0.08]">
+                <div className="p-4 rounded-xl bg-[#120d07] border border-white/[0.08]">
                   <span className="text-xs font-mono text-zinc-400 uppercase tracking-wider block mb-1">
                     Backend Mode
                   </span>
@@ -248,7 +248,7 @@ export const AdminModal: React.FC<AdminModalProps> = ({
               </div>
 
               {/* Quick Actions */}
-              <div className="p-5 rounded-xl bg-[#100b0b] border border-white/[0.08] flex flex-wrap items-center justify-between gap-4">
+              <div className="p-5 rounded-xl bg-[#120d07] border border-white/[0.08] flex flex-wrap items-center justify-between gap-4">
                 <div>
                   <h4 className="text-sm font-bold text-white mb-1">Quick Management Actions</h4>
                   <p className="text-xs text-zinc-400">
@@ -261,7 +261,7 @@ export const AdminModal: React.FC<AdminModalProps> = ({
                       setActiveTab('projects');
                       setIsCreatingProject(true);
                     }}
-                    className="flex items-center gap-1.5 px-3.5 py-2 text-xs font-semibold text-black bg-red-500 hover:bg-red-400 rounded-md transition-colors cursor-pointer"
+                    className="flex items-center gap-1.5 px-3.5 py-2 text-xs font-semibold text-black bg-orange-500 hover:bg-orange-400 rounded-md transition-colors cursor-pointer"
                   >
                     <Plus className="w-3.5 h-3.5" />
                     <span>Add New Project</span>
@@ -284,14 +284,14 @@ export const AdminModal: React.FC<AdminModalProps> = ({
                   </h4>
                   <button
                     onClick={() => setActiveTab('inquiries')}
-                    className="text-xs text-red-500 hover:underline cursor-pointer"
+                    className="text-xs text-orange-500 hover:underline cursor-pointer"
                   >
                     View All ({inquiries.length})
                   </button>
                 </div>
 
                 {inquiries.length === 0 ? (
-                  <div className="p-8 text-center bg-[#100b0b] rounded-xl border border-white/[0.08] text-xs text-zinc-400">
+                  <div className="p-8 text-center bg-[#120d07] rounded-xl border border-white/[0.08] text-xs text-zinc-400">
                     No client inquiries recorded yet. Submissions from the homepage contact form will appear here.
                   </div>
                 ) : (
@@ -299,7 +299,7 @@ export const AdminModal: React.FC<AdminModalProps> = ({
                     {inquiries.slice(0, 3).map((inq) => (
                       <div
                         key={inq.id}
-                        className="p-3.5 rounded-lg bg-[#100b0b] border border-white/[0.06] flex items-center justify-between gap-4 text-xs"
+                        className="p-3.5 rounded-lg bg-[#120d07] border border-white/[0.06] flex items-center justify-between gap-4 text-xs"
                       >
                         <div>
                           <div className="font-semibold text-white">{inq.fullName}</div>
@@ -308,7 +308,7 @@ export const AdminModal: React.FC<AdminModalProps> = ({
                         <div className="flex items-center gap-3">
                           <span className={`px-2 py-0.5 rounded text-[10px] font-mono uppercase ${
                             inq.status === 'new'
-                              ? 'bg-red-600/20 text-red-400'
+                              ? 'bg-orange-600/20 text-orange-400'
                               : inq.status === 'contacted'
                               ? 'bg-blue-500/20 text-blue-300'
                               : 'bg-emerald-500/20 text-emerald-300'
@@ -340,7 +340,7 @@ export const AdminModal: React.FC<AdminModalProps> = ({
               </div>
 
               {inquiries.length === 0 ? (
-                <div className="p-12 text-center bg-[#100b0b] rounded-xl border border-white/[0.08] text-sm text-zinc-400">
+                <div className="p-12 text-center bg-[#120d07] rounded-xl border border-white/[0.08] text-sm text-zinc-400">
                   No inquiries received yet. Try filling out the contact form on the website!
                 </div>
               ) : (
@@ -348,7 +348,7 @@ export const AdminModal: React.FC<AdminModalProps> = ({
                   {inquiries.map((inq) => (
                     <div
                       key={inq.id}
-                      className="p-5 rounded-xl bg-[#100b0b] border border-white/[0.08] space-y-3"
+                      className="p-5 rounded-xl bg-[#120d07] border border-white/[0.08] space-y-3"
                     >
                       <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-2 border-b border-white/[0.06] pb-3">
                         <div>
@@ -364,7 +364,7 @@ export const AdminModal: React.FC<AdminModalProps> = ({
                           <select
                             value={inq.status}
                             onChange={(e) => handleUpdateInquiryStatus(inq.id, e.target.value as any)}
-                            className="bg-black/60 border border-white/10 rounded px-2.5 py-1 text-xs text-zinc-300 focus:outline-none focus:border-red-500 cursor-pointer"
+                            className="bg-black/60 border border-white/10 rounded px-2.5 py-1 text-xs text-zinc-300 focus:outline-none focus:border-orange-500 cursor-pointer"
                           >
                             <option value="new">Status: New</option>
                             <option value="contacted">Status: Contacted</option>
@@ -374,7 +374,7 @@ export const AdminModal: React.FC<AdminModalProps> = ({
 
                           <button
                             onClick={() => handleDeleteInquiry(inq.id)}
-                            className="p-1 text-zinc-500 hover:text-red-400 transition-colors cursor-pointer"
+                            className="p-1 text-zinc-500 hover:text-orange-400 transition-colors cursor-pointer"
                             title="Delete Inquiry"
                           >
                             <Trash2 className="w-4 h-4" />
@@ -386,7 +386,7 @@ export const AdminModal: React.FC<AdminModalProps> = ({
                       <div className="grid grid-cols-1 sm:grid-cols-3 gap-3 text-xs text-zinc-400">
                         <div>
                           <span className="text-zinc-500 block mb-0.5">Project Type</span>
-                          <span className="text-red-500 font-medium">{inq.projectType}</span>
+                          <span className="text-orange-500 font-medium">{inq.projectType}</span>
                         </div>
                         <div>
                           <span className="text-zinc-500 block mb-0.5">Estimated Budget</span>
@@ -410,7 +410,7 @@ export const AdminModal: React.FC<AdminModalProps> = ({
                             href={inq.referenceLink}
                             target="_blank"
                             rel="noreferrer"
-                            className="text-red-500 hover:underline flex items-center gap-1 truncate max-w-md"
+                            className="text-orange-500 hover:underline flex items-center gap-1 truncate max-w-md"
                           >
                             <span>{inq.referenceLink}</span>
                             <ExternalLink className="w-3 h-3" />
@@ -438,7 +438,7 @@ export const AdminModal: React.FC<AdminModalProps> = ({
                     </div>
                     <button
                       onClick={() => setIsCreatingProject(true)}
-                      className="flex items-center gap-1.5 px-3.5 py-2 text-xs font-semibold text-black bg-red-500 hover:bg-red-400 rounded-md transition-colors cursor-pointer"
+                      className="flex items-center gap-1.5 px-3.5 py-2 text-xs font-semibold text-black bg-orange-500 hover:bg-orange-400 rounded-md transition-colors cursor-pointer"
                     >
                       <Plus className="w-3.5 h-3.5" />
                       <span>Add New Project</span>
@@ -449,7 +449,7 @@ export const AdminModal: React.FC<AdminModalProps> = ({
                     {projects.map((proj) => (
                       <div
                         key={proj.id}
-                        className="p-4 rounded-xl bg-[#100b0b] border border-white/[0.08] flex gap-4 items-start justify-between"
+                        className="p-4 rounded-xl bg-[#120d07] border border-white/[0.08] flex gap-4 items-start justify-between"
                       >
                         <div className="flex gap-3">
                           <img
@@ -473,14 +473,14 @@ export const AdminModal: React.FC<AdminModalProps> = ({
                         <div className="flex items-center gap-1 shrink-0">
                           <button
                             onClick={() => setEditingProject(proj)}
-                            className="p-1.5 text-zinc-400 hover:text-red-500 transition-colors cursor-pointer"
+                            className="p-1.5 text-zinc-400 hover:text-orange-500 transition-colors cursor-pointer"
                             title="Edit Project"
                           >
                             <Edit2 className="w-4 h-4" />
                           </button>
                           <button
                             onClick={() => handleDeleteProject(proj.id)}
-                            className="p-1.5 text-zinc-400 hover:text-red-400 transition-colors cursor-pointer"
+                            className="p-1.5 text-zinc-400 hover:text-orange-400 transition-colors cursor-pointer"
                             title="Delete Project"
                           >
                             <Trash2 className="w-4 h-4" />
@@ -709,7 +709,7 @@ export const AdminModal: React.FC<AdminModalProps> = ({
                       id="featured"
                       name="featured"
                       defaultChecked={editingProject?.featured}
-                      className="rounded border-white/20 bg-white/5 text-red-600"
+                      className="rounded border-white/20 bg-white/5 text-orange-600"
                     />
                     <label htmlFor="featured" className="text-xs text-zinc-300">
                       Feature on homepage
@@ -719,7 +719,7 @@ export const AdminModal: React.FC<AdminModalProps> = ({
                   <div className="pt-3 flex items-center gap-3">
                     <button
                       type="submit"
-                      className="px-5 py-2 text-xs font-semibold text-black bg-red-500 hover:bg-red-400 rounded transition-colors cursor-pointer"
+                      className="px-5 py-2 text-xs font-semibold text-black bg-orange-500 hover:bg-orange-400 rounded transition-colors cursor-pointer"
                     >
                       Save Project
                     </button>
@@ -855,7 +855,7 @@ export const AdminModal: React.FC<AdminModalProps> = ({
               <div className="pt-3">
                 <button
                   type="submit"
-                  className="px-6 py-2.5 text-xs font-semibold text-black bg-red-500 hover:bg-red-400 rounded flex items-center gap-2 cursor-pointer transition-colors"
+                  className="px-6 py-2.5 text-xs font-semibold text-black bg-orange-500 hover:bg-orange-400 rounded flex items-center gap-2 cursor-pointer transition-colors"
                 >
                   <Save className="w-3.5 h-3.5" />
                   <span>Save Site Settings</span>
@@ -874,9 +874,9 @@ export const AdminModal: React.FC<AdminModalProps> = ({
                 </p>
               </div>
 
-              <div className="p-5 rounded-xl bg-[#100b0b] border border-white/[0.08] space-y-4">
+              <div className="p-5 rounded-xl bg-[#120d07] border border-white/[0.08] space-y-4">
                 <div className="flex items-center gap-3">
-                  <div className={`w-3 h-3 rounded-full ${firebaseStatus.isConfigured ? 'bg-emerald-400' : 'bg-red-500'}`} />
+                  <div className={`w-3 h-3 rounded-full ${firebaseStatus.isConfigured ? 'bg-emerald-400' : 'bg-orange-500'}`} />
                   <span className="font-semibold text-white text-sm">
                     {firebaseStatus.isConfigured ? 'Firebase Cloud Connected' : 'Frontend-Only Local Storage Fallback (Active)'}
                   </span>
@@ -897,7 +897,7 @@ export const AdminModal: React.FC<AdminModalProps> = ({
                   <p className="mb-2">
                     <strong>Note:</strong> When you connect your live Firebase project, set:
                   </p>
-                  <pre className="bg-[#050505] p-3 rounded text-[11px] font-mono text-red-400">
+                  <pre className="bg-[#080604] p-3 rounded text-[11px] font-mono text-orange-400">
 VITE_FIREBASE_PROJECT_ID="your-project-id"&#10;VITE_FIREBASE_API_KEY="your-api-key"
                   </pre>
                 </div>

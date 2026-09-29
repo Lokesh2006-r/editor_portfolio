@@ -6,10 +6,10 @@
   --font-mono: 'JetBrains Mono', monospace;
   --font-grotesk: 'Space Grotesk', sans-serif;
   --font-outfit: 'Outfit', sans-serif;
-  --color-cinema-bg: #050505;
-  --color-cinema-surface: #0f0a0a;
-  --color-cinema-border: rgba(239, 68, 68, 0.12);
-  --color-cinema-accent: #ef4444;
+  --color-cinema-bg: #080604;
+  --color-cinema-surface: #100c06;
+  --color-cinema-border: rgba(251, 146, 60, 0.10);
+  --color-cinema-accent: #f97316;
 }
 
 .font-grotesk { font-family: 'Space Grotesk', 'Plus Jakarta Sans', sans-serif; }
@@ -20,12 +20,12 @@
 
 :root {
   color-scheme: dark;
-  --bg-cinema: #050505;
-  --bg-surface: #0f0a0a;
-  --text-main: #f1f0ee;
-  --accent-red: #ef4444;
-  --accent-crimson: #9a3412;
-  --accent-ember: #b91c1c;
+  --bg-cinema: #080604;
+  --bg-surface: #100c06;
+  --text-main: #faf5ee;
+  --accent-ember: #f97316;
+  --accent-amber: #f59e0b;
+  --accent-gold:  #fbbf24;
 }
 
 html {
@@ -35,38 +35,48 @@ html {
 
 body {
   font-family: var(--font-sans);
-  background-color: #050505;
-  color: #f1f0ee;
+  background-color: #080604;
+  color: #faf5ee;
   overflow-x: hidden;
-  transition: background-color 0.25s cubic-bezier(0.4, 0, 0.2, 1), color 0.25s cubic-bezier(0.4, 0, 0.2, 1);
+  transition: background-color 0.25s cubic-bezier(0.4, 0, 0.2, 1),
+              color 0.25s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
 /* ==========================================================================
-   CINEMATIC RED GLOW SYSTEM — #050505 → #9A3412 → #EF4444
+   EMBER NOIR — Cinematic Black + Molten Orange-Amber Glow System
    ========================================================================== */
 
-/* The signature red gradient sweep — base background for every section */
+/* Page-wide ambient sweep — baked into every section base */
 .theme-bg-sweep {
   background:
-    radial-gradient(ellipse 70% 60% at 20% 20%, rgba(154, 52, 18, 0.18) 0%, transparent 60%),
-    radial-gradient(ellipse 50% 70% at 85% 80%, rgba(239, 68, 68, 0.14) 0%, transparent 55%),
-    radial-gradient(ellipse 40% 30% at 60% 10%,  rgba(185, 28, 28, 0.08) 0%, transparent 50%),
-    #050505;
+    radial-gradient(ellipse 55% 50% at 15% 25%,  rgba(234, 88,  12,  0.13) 0%, transparent 60%),
+    radial-gradient(ellipse 45% 60% at 88% 80%,  rgba(245, 158, 11,  0.11) 0%, transparent 55%),
+    radial-gradient(ellipse 35% 30% at 55% 5%,   rgba(251, 146, 60,  0.06) 0%, transparent 50%),
+    #080604;
 }
 
-/* Glow orbs */
-.glow-orb-red {
-  background: radial-gradient(circle, rgba(239, 68, 68, 0.30) 0%, rgba(185, 28, 28, 0.12) 40%, transparent 70%);
-  filter: blur(50px);
-}
-
-.glow-orb-crimson {
-  background: radial-gradient(circle, rgba(154, 52, 18, 0.35) 0%, rgba(127, 29, 29, 0.15) 40%, transparent 70%);
-  filter: blur(60px);
-}
-
+/* Floating glow orbs */
 .glow-orb-ember {
-  background: radial-gradient(circle, rgba(239, 68, 68, 0.22) 0%, rgba(153, 27, 27, 0.10) 50%, transparent 70%);
+  background: radial-gradient(circle,
+    rgba(249, 115, 22,  0.30) 0%,
+    rgba(234, 88,  12,  0.12) 40%,
+    transparent 70%);
+  filter: blur(55px);
+}
+
+.glow-orb-amber {
+  background: radial-gradient(circle,
+    rgba(245, 158, 11,  0.28) 0%,
+    rgba(180, 83,  9,   0.12) 40%,
+    transparent 70%);
+  filter: blur(65px);
+}
+
+.glow-orb-gold {
+  background: radial-gradient(circle,
+    rgba(251, 191, 36,  0.20) 0%,
+    rgba(217, 119, 6,   0.08) 50%,
+    transparent 70%);
   filter: blur(80px);
 }
 
@@ -74,106 +84,129 @@ body {
    FLOATING ANIMATIONS
    ========================================================================== */
 @keyframes floatOrb1 {
-  0%, 100% { transform: translate(0px, 0px) scale(1); }
-  33%       { transform: translate(70px, -60px) scale(1.18); }
-  66%       { transform: translate(-50px, 40px) scale(0.92); }
+  0%, 100% { transform: translate(0px,  0px) scale(1); }
+  33%       { transform: translate(65px, -55px) scale(1.16); }
+  66%       { transform: translate(-45px, 38px) scale(0.93); }
 }
 
 @keyframes floatOrb2 {
-  0%, 100% { transform: translate(0px, 0px) scale(1); }
-  33%       { transform: translate(-80px, 50px) scale(1.12); }
-  66%       { transform: translate(60px, -50px) scale(0.95); }
+  0%, 100% { transform: translate(0px,   0px) scale(1); }
+  33%       { transform: translate(-75px, 48px) scale(1.11); }
+  66%       { transform: translate(55px, -45px) scale(0.96); }
 }
 
 @keyframes floatOrb3 {
   0%, 100% { transform: translate(0px, 0px) scale(1); }
-  50%       { transform: translate(90px, 50px) scale(1.22); }
+  50%       { transform: translate(85px, 45px) scale(1.20); }
+}
+
+@keyframes shimmer {
+  0%   { background-position: -200% center; }
+  100% { background-position:  200% center; }
 }
 
 @keyframes pulseGlow {
-  0%, 100% { opacity: 0.5; }
+  0%, 100% { opacity: 0.45; }
   50%       { opacity: 1; }
 }
 
-@keyframes scanline {
-  0%   { transform: translateY(-100%); }
-  100% { transform: translateY(100vh); }
-}
-
 @keyframes flicker {
-  0%, 100% { opacity: 1; }
-  92%       { opacity: 1; }
-  93%       { opacity: 0.85; }
-  94%       { opacity: 1; }
-  97%       { opacity: 0.9; }
-  98%       { opacity: 1; }
+  0%,100% { opacity: 1; }
+  92%      { opacity: 1; }
+  93%      { opacity: 0.88; }
+  94%      { opacity: 1; }
+  97%      { opacity: 0.92; }
+  98%      { opacity: 1; }
 }
 
 .animate-float-orb1  { animation: floatOrb1 18s ease-in-out infinite; }
 .animate-float-orb2  { animation: floatOrb2 22s ease-in-out infinite; }
 .animate-float-orb3  { animation: floatOrb3 25s ease-in-out infinite; }
 .animate-pulse-glow  { animation: pulseGlow 4s ease-in-out infinite; }
-.animate-flicker     { animation: flicker 8s ease-in-out infinite; }
+.animate-flicker     { animation: flicker   8s ease-in-out infinite; }
 
 /* ==========================================================================
-   AESTHETIC TYPOGRAPHIC EFFECTS
+   AESTHETIC TYPOGRAPHY EFFECTS
    ========================================================================== */
 
-/* Gradient text — red fire effect */
-.text-gradient-red {
-  background: linear-gradient(135deg, #ef4444 0%, #f87171 40%, #fca5a5 70%, #ef4444 100%);
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  background-clip: text;
-}
-
-/* Gradient text — ember/crimson */
+/* Molten shimmer gradient text */
 .text-gradient-ember {
-  background: linear-gradient(135deg, #9a3412 0%, #ef4444 50%, #fca5a5 100%);
+  background: linear-gradient(
+    120deg,
+    #f97316 0%,
+    #fbbf24 30%,
+    #fb923c 55%,
+    #fde68a 80%,
+    #f97316 100%
+  );
+  background-size: 200% auto;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  animation: shimmer 5s linear infinite;
+}
+
+/* Static gold-to-amber text */
+.text-gradient-gold {
+  background: linear-gradient(135deg, #f59e0b 0%, #fbbf24 50%, #fde68a 100%);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   background-clip: text;
 }
 
-/* Large display text with glow */
-.text-glow-red {
+/* Warm ember glow on large headings */
+.text-glow-ember {
   text-shadow:
-    0 0 20px rgba(239, 68, 68, 0.5),
-    0 0 60px rgba(239, 68, 68, 0.2),
-    0 0 100px rgba(154, 52, 18, 0.15);
+    0 0 20px  rgba(249, 115, 22, 0.55),
+    0 0 60px  rgba(245, 158, 11, 0.25),
+    0 0 100px rgba(180, 83,  9,  0.15);
 }
 
-/* Subtle letter-spacing for aesthetic headers */
-.tracking-cinematic { letter-spacing: -0.03em; }
-.tracking-wide-display { letter-spacing: 0.08em; }
+.tracking-cinematic    { letter-spacing: -0.03em; }
+.tracking-wide-display { letter-spacing:  0.08em; }
 
 /* ==========================================================================
-   GRID & DOT PATTERNS
+   GRID & TEXTURE PATTERNS
    ========================================================================== */
 .bg-grid-pattern {
   background-size: 40px 40px;
   background-image:
-    linear-gradient(to right, rgba(239, 68, 68, 0.04) 1px, transparent 1px),
-    linear-gradient(to bottom, rgba(154, 52, 18, 0.04) 1px, transparent 1px);
+    linear-gradient(to right,  rgba(249, 115, 22, 0.04) 1px, transparent 1px),
+    linear-gradient(to bottom, rgba(245, 158, 11, 0.04) 1px, transparent 1px);
 }
 
 .bg-dots-pattern {
   background-size: 24px 24px;
-  background-image: radial-gradient(circle, rgba(239, 68, 68, 0.10) 1.2px, transparent 1.2px);
+  background-image: radial-gradient(circle,
+    rgba(249, 115, 22, 0.11) 1.2px, transparent 1.2px);
 }
 
 .bg-radial-vignette {
-  background: radial-gradient(circle at 50% 50%, transparent 20%, rgba(5, 5, 5, 0.80) 100%);
+  background: radial-gradient(circle at 50% 50%,
+    transparent 20%, rgba(8, 6, 4, 0.80) 100%);
 }
 
-/* Film grain overlay */
+/* Warm cinematic film grain */
 .film-grain {
-  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.75' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)' opacity='0.04'/%3E%3C/svg%3E");
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.72' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.038'/%3E%3C/svg%3E");
   pointer-events: none;
 }
 
 /* ==========================================================================
-   THEME: NIGHT MODE (maintain pure black base)
+   SURFACE & CARD SYSTEM
+   ========================================================================== */
+.surface-card {
+  background: rgba(16, 12, 6, 0.82);
+  border: 1px solid rgba(249, 115, 22, 0.09);
+  backdrop-filter: blur(14px);
+}
+
+.border-theme {
+  border-color: rgba(249, 115, 22, 0.11);
+}
+
+/* ==========================================================================
+   THEME: NIGHT MODE (keep base near-OLED black)
    ========================================================================== */
 html[data-theme="night"],
 html.theme-night {
@@ -182,16 +215,12 @@ html.theme-night {
 
 html[data-theme="night"] body,
 html.theme-night body {
-  background-color: #020202 !important;
-  color: #f1f0ee !important;
-}
-
-html[data-theme="night"] .bg-\[\#050505\] {
-  background-color: #020202 !important;
+  background-color: #030201 !important;
+  color: #faf5ee !important;
 }
 
 /* ==========================================================================
-   VIDEO / CINEMA DARK ZONES (always forced dark regardless of theme)
+   VIDEO / CINEMA ZONES — always forced dark
    ========================================================================== */
 #video-lightbox,
 .cinema-force-dark,
@@ -204,33 +233,21 @@ h1, h2, h3, .font-display {
 }
 
 /* ==========================================================================
-   SCROLLBAR — crimson accent
+   SCROLLBAR — molten amber accent
    ========================================================================== */
 ::-webkit-scrollbar        { width: 5px; height: 5px; }
-::-webkit-scrollbar-track  { background: #050505; }
+::-webkit-scrollbar-track  { background: #080604; }
 ::-webkit-scrollbar-thumb  {
-  background: rgba(154, 52, 18, 0.5);
+  background: rgba(180, 83, 9, 0.45);
   border-radius: 9999px;
+  transition: background 0.2s;
 }
 ::-webkit-scrollbar-thumb:hover {
-  background: rgba(239, 68, 68, 0.7);
+  background: rgba(249, 115, 22, 0.75);
 }
 
-/* Focus ring — red */
+/* Focus ring — ember orange */
 :focus-visible {
-  outline: 2px solid #ef4444;
+  outline: 2px solid #f97316;
   outline-offset: 2px;
-}
-
-/* ==========================================================================
-   CARD / SURFACE BORDERS — warm ember tint
-   ========================================================================== */
-.border-theme {
-  border-color: rgba(239, 68, 68, 0.12);
-}
-
-.surface-card {
-  background: rgba(15, 10, 10, 0.8);
-  border: 1px solid rgba(239, 68, 68, 0.10);
-  backdrop-filter: blur(12px);
 }

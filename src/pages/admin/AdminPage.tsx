@@ -702,16 +702,16 @@ export const AdminPage: React.FC<AdminPageProps> = ({ onNavigateToHome }) => {
   });
 
   return (
-    <div className="min-h-screen bg-[#050505] text-[#f4f4f5] flex flex-col font-sans selection:bg-red-500 selection:text-black">
+    <div className="min-h-screen bg-[#080604] text-[#f4f4f5] flex flex-col font-sans selection:bg-orange-500 selection:text-black">
       {/* Top Header Bar */}
-      <header className="sticky top-0 z-30 bg-[#0c0808]/95 backdrop-blur-xl border-b border-white/[0.08] px-4 sm:px-8 py-3.5 flex items-center justify-between shadow-lg">
+      <header className="sticky top-0 z-30 bg-[#0e0b05]/95 backdrop-blur-xl border-b border-white/[0.08] px-4 sm:px-8 py-3.5 flex items-center justify-between shadow-lg">
         <div className="flex items-center gap-4">
           <button
             onClick={onNavigateToHome}
             className="flex items-center gap-1.5 text-xs font-mono text-zinc-400 hover:text-white transition-colors cursor-pointer"
             title="Return to public portfolio"
           >
-            <ArrowLeft className="w-4 h-4 text-red-500" />
+            <ArrowLeft className="w-4 h-4 text-orange-500" />
             <span className="hidden sm:inline">Portfolio Site</span>
           </button>
 
@@ -721,7 +721,7 @@ export const AdminPage: React.FC<AdminPageProps> = ({ onNavigateToHome }) => {
             <span className="font-display font-bold uppercase tracking-wider text-white text-sm sm:text-base">
               {config.editorName}
             </span>
-            <span className="text-[10px] font-mono px-2 py-0.5 rounded bg-red-500/10 text-red-500 border border-red-600/20 font-semibold uppercase">
+            <span className="text-[10px] font-mono px-2 py-0.5 rounded bg-orange-500/10 text-orange-500 border border-orange-600/20 font-semibold uppercase">
               Admin Portal
             </span>
           </div>
@@ -748,13 +748,13 @@ export const AdminPage: React.FC<AdminPageProps> = ({ onNavigateToHome }) => {
             onClick={onNavigateToHome}
             className="flex items-center gap-1.5 px-3 py-1.5 rounded-lg bg-white/5 hover:bg-white/10 border border-white/10 text-xs font-medium text-zinc-300 hover:text-white transition-colors cursor-pointer"
           >
-            <Eye className="w-3.5 h-3.5 text-red-500" />
+            <Eye className="w-3.5 h-3.5 text-orange-500" />
             <span className="hidden sm:inline">View Site</span>
           </button>
 
           <button
             onClick={handleLogout}
-            className="flex items-center gap-1.5 px-3 py-1.5 rounded-lg bg-red-500/10 hover:bg-red-500/20 border border-red-500/20 text-xs font-medium text-red-300 hover:text-red-200 transition-colors cursor-pointer"
+            className="flex items-center gap-1.5 px-3 py-1.5 rounded-lg bg-orange-500/10 hover:bg-orange-500/20 border border-orange-500/20 text-xs font-medium text-orange-300 hover:text-orange-200 transition-colors cursor-pointer"
             title="Sign out of Admin Portal"
           >
             <LogOut className="w-3.5 h-3.5" />
@@ -766,12 +766,12 @@ export const AdminPage: React.FC<AdminPageProps> = ({ onNavigateToHome }) => {
       {/* Main Layout */}
       <div className="flex-1 flex flex-col md:flex-row">
         {/* Navigation Sidebar */}
-        <aside className="w-full md:w-64 bg-[#080808] border-b md:border-b-0 md:border-r border-white/[0.06] p-3 sm:p-4 shrink-0 overflow-x-auto md:overflow-x-visible">
+        <aside className="w-full md:w-64 bg-[#0a0704] border-b md:border-b-0 md:border-r border-white/[0.06] p-3 sm:p-4 shrink-0 overflow-x-auto md:overflow-x-visible">
           <nav className="flex md:flex-col gap-1 overflow-x-auto no-scrollbar">
             {[
               { id: 'overview', label: 'Dashboard', icon: LayoutDashboard, badge: null },
               { id: 'projects', label: 'Projects & Edits', icon: Film, badge: projects.length },
-              { id: 'inquiries', label: 'Inquiries CRM', icon: Mail, badge: inquiries.filter((i) => i.status === 'new').length, badgeColor: 'bg-red-500 text-black' },
+              { id: 'inquiries', label: 'Inquiries CRM', icon: Mail, badge: inquiries.filter((i) => i.status === 'new').length, badgeColor: 'bg-orange-500 text-black' },
               { id: 'services', label: 'Services', icon: Layers, badge: services.length },
               { id: 'testimonials', label: 'Testimonials', icon: MessageSquareQuote, badge: testimonials.length },
               { id: 'settings', label: 'Site & Brand', icon: Sliders, badge: null },
@@ -794,7 +794,7 @@ export const AdminPage: React.FC<AdminPageProps> = ({ onNavigateToHome }) => {
                   }}
                   className={`flex items-center justify-between px-3.5 py-2.5 rounded-xl text-xs font-medium transition-all cursor-pointer whitespace-nowrap ${
                     isActive
-                      ? 'bg-red-500/15 text-red-500 font-semibold border border-red-600/20'
+                      ? 'bg-orange-500/15 text-orange-500 font-semibold border border-orange-600/20'
                       : 'text-zinc-400 hover:text-white hover:bg-white/5'
                   }`}
                 >
@@ -817,7 +817,7 @@ export const AdminPage: React.FC<AdminPageProps> = ({ onNavigateToHome }) => {
           </nav>
 
           {/* Quick Creator Info Card in Sidebar */}
-          <div className="hidden md:block mt-8 p-3.5 rounded-xl bg-[#100b0b] border border-white/[0.06] text-xs space-y-2">
+          <div className="hidden md:block mt-8 p-3.5 rounded-xl bg-[#120d07] border border-white/[0.06] text-xs space-y-2">
             <div className="font-bold text-white flex items-center justify-between">
               <span>Status</span>
               <span className="w-2 h-2 rounded-full bg-emerald-400 animate-pulse" />
@@ -847,7 +847,7 @@ export const AdminPage: React.FC<AdminPageProps> = ({ onNavigateToHome }) => {
 
               {/* 4 Stat Cards */}
               <div className="grid grid-cols-2 lg:grid-cols-4 gap-4">
-                <div className="p-5 rounded-2xl bg-[#0f0a0a] border border-white/[0.08] relative overflow-hidden">
+                <div className="p-5 rounded-2xl bg-[#100c06] border border-white/[0.08] relative overflow-hidden">
                   <span className="text-xs font-mono text-zinc-400 uppercase tracking-wider block mb-1">
                     Showcase Edits
                   </span>
@@ -859,18 +859,18 @@ export const AdminPage: React.FC<AdminPageProps> = ({ onNavigateToHome }) => {
                       ({projects.filter((p) => p.featured).length} featured)
                     </span>
                   </div>
-                  <div className="mt-3 flex items-center gap-1.5 text-xs text-red-500">
+                  <div className="mt-3 flex items-center gap-1.5 text-xs text-orange-500">
                     <Film className="w-3.5 h-3.5" />
                     <span>Vertical & 16:9</span>
                   </div>
                 </div>
 
-                <div className="p-5 rounded-2xl bg-[#0f0a0a] border border-white/[0.08] relative overflow-hidden">
+                <div className="p-5 rounded-2xl bg-[#100c06] border border-white/[0.08] relative overflow-hidden">
                   <span className="text-xs font-mono text-zinc-400 uppercase tracking-wider block mb-1">
                     New Inquiries
                   </span>
                   <div className="flex items-baseline gap-2">
-                    <span className="text-3xl font-bold font-display text-red-500 tabular-nums">
+                    <span className="text-3xl font-bold font-display text-orange-500 tabular-nums">
                       {inquiries.filter((i) => i.status === 'new').length}
                     </span>
                     <span className="text-xs text-zinc-500 font-mono">
@@ -883,7 +883,7 @@ export const AdminPage: React.FC<AdminPageProps> = ({ onNavigateToHome }) => {
                   </div>
                 </div>
 
-                <div className="p-5 rounded-2xl bg-[#0f0a0a] border border-white/[0.08] relative overflow-hidden">
+                <div className="p-5 rounded-2xl bg-[#100c06] border border-white/[0.08] relative overflow-hidden">
                   <span className="text-xs font-mono text-zinc-400 uppercase tracking-wider block mb-1">
                     Active Services
                   </span>
@@ -891,12 +891,12 @@ export const AdminPage: React.FC<AdminPageProps> = ({ onNavigateToHome }) => {
                     {services.length}
                   </span>
                   <div className="mt-3 flex items-center gap-1.5 text-xs text-zinc-400">
-                    <Layers className="w-3.5 h-3.5 text-red-500" />
+                    <Layers className="w-3.5 h-3.5 text-orange-500" />
                     <span>Turnarounds & packages</span>
                   </div>
                 </div>
 
-                <div className="p-5 rounded-2xl bg-[#0f0a0a] border border-white/[0.08] relative overflow-hidden">
+                <div className="p-5 rounded-2xl bg-[#100c06] border border-white/[0.08] relative overflow-hidden">
                   <span className="text-xs font-mono text-zinc-400 uppercase tracking-wider block mb-1">
                     Testimonials
                   </span>
@@ -904,14 +904,14 @@ export const AdminPage: React.FC<AdminPageProps> = ({ onNavigateToHome }) => {
                     {testimonials.length}
                   </span>
                   <div className="mt-3 flex items-center gap-1.5 text-xs text-zinc-400">
-                    <Star className="w-3.5 h-3.5 text-red-500" />
+                    <Star className="w-3.5 h-3.5 text-orange-500" />
                     <span>Client reviews</span>
                   </div>
                 </div>
               </div>
 
               {/* Quick Actions Card */}
-              <div className="p-6 rounded-2xl bg-[#0f0a0a] border border-white/[0.08] flex flex-wrap items-center justify-between gap-4">
+              <div className="p-6 rounded-2xl bg-[#100c06] border border-white/[0.08] flex flex-wrap items-center justify-between gap-4">
                 <div>
                   <h3 className="text-base font-bold text-white font-display">
                     Quick Management Actions
@@ -926,7 +926,7 @@ export const AdminPage: React.FC<AdminPageProps> = ({ onNavigateToHome }) => {
                       setActiveTab('projects');
                       setIsCreatingProject(true);
                     }}
-                    className="flex items-center gap-1.5 px-3.5 py-2 text-xs font-semibold text-black bg-red-500 hover:bg-red-400 rounded-xl transition-colors cursor-pointer"
+                    className="flex items-center gap-1.5 px-3.5 py-2 text-xs font-semibold text-black bg-orange-500 hover:bg-orange-400 rounded-xl transition-colors cursor-pointer"
                   >
                     <Plus className="w-3.5 h-3.5" />
                     <span>Add Project</span>
@@ -945,7 +945,7 @@ export const AdminPage: React.FC<AdminPageProps> = ({ onNavigateToHome }) => {
                     onClick={() => setActiveTab('security')}
                     className="flex items-center gap-1.5 px-3.5 py-2 text-xs font-medium text-zinc-300 hover:text-white bg-white/5 hover:bg-white/10 border border-white/10 rounded-xl transition-colors cursor-pointer"
                   >
-                    <KeyRound className="w-3.5 h-3.5 text-red-500" />
+                    <KeyRound className="w-3.5 h-3.5 text-orange-500" />
                     <span>Change Password</span>
                   </button>
                   <button
@@ -966,14 +966,14 @@ export const AdminPage: React.FC<AdminPageProps> = ({ onNavigateToHome }) => {
                   </h3>
                   <button
                     onClick={() => setActiveTab('inquiries')}
-                    className="text-xs text-red-500 hover:underline cursor-pointer"
+                    className="text-xs text-orange-500 hover:underline cursor-pointer"
                   >
                     Manage Inquiries ({inquiries.length}) →
                   </button>
                 </div>
 
                 {inquiries.length === 0 ? (
-                  <div className="p-8 text-center bg-[#0f0a0a] rounded-xl border border-white/[0.08] text-xs text-zinc-400">
+                  <div className="p-8 text-center bg-[#100c06] rounded-xl border border-white/[0.08] text-xs text-zinc-400">
                     No client inquiries received yet. Submissions from the public contact form appear here.
                   </div>
                 ) : (
@@ -981,12 +981,12 @@ export const AdminPage: React.FC<AdminPageProps> = ({ onNavigateToHome }) => {
                     {inquiries.slice(0, 4).map((inq) => (
                       <div
                         key={inq.id}
-                        className="p-4 rounded-xl bg-[#0f0a0a] border border-white/[0.06] flex flex-col sm:flex-row sm:items-center justify-between gap-3 text-xs"
+                        className="p-4 rounded-xl bg-[#100c06] border border-white/[0.06] flex flex-col sm:flex-row sm:items-center justify-between gap-3 text-xs"
                       >
                         <div>
                           <div className="font-semibold text-white text-sm">{inq.fullName}</div>
                           <div className="text-zinc-400 mt-0.5">
-                            {inq.email} &middot; <span className="text-red-500 font-medium">{inq.projectType}</span>
+                            {inq.email} &middot; <span className="text-orange-500 font-medium">{inq.projectType}</span>
                           </div>
                         </div>
 
@@ -1049,13 +1049,13 @@ export const AdminPage: React.FC<AdminPageProps> = ({ onNavigateToHome }) => {
                           value={projectSearch}
                           onChange={(e) => setProjectSearch(e.target.value)}
                           placeholder="Search edits..."
-                          className="bg-[#0f0a0a] border border-white/10 rounded-xl pl-9 pr-3 py-1.5 text-xs text-white placeholder-zinc-500 focus:outline-none focus:border-red-500"
+                          className="bg-[#100c06] border border-white/10 rounded-xl pl-9 pr-3 py-1.5 text-xs text-white placeholder-zinc-500 focus:outline-none focus:border-orange-500"
                         />
                       </div>
 
                       <button
                         onClick={() => setIsCreatingProject(true)}
-                        className="flex items-center gap-1.5 px-3.5 py-2 text-xs font-semibold text-black bg-red-500 hover:bg-red-400 rounded-xl transition-colors cursor-pointer shrink-0"
+                        className="flex items-center gap-1.5 px-3.5 py-2 text-xs font-semibold text-black bg-orange-500 hover:bg-orange-400 rounded-xl transition-colors cursor-pointer shrink-0"
                       >
                         <Plus className="w-3.5 h-3.5" />
                         <span>Add Edit</span>
@@ -1067,7 +1067,7 @@ export const AdminPage: React.FC<AdminPageProps> = ({ onNavigateToHome }) => {
                     {filteredProjects.map((proj, idx) => (
                       <div
                         key={proj.id}
-                        className="p-4 rounded-xl bg-[#0f0a0a] border border-white/[0.08] hover:border-white/20 transition-colors flex gap-4 items-start justify-between group"
+                        className="p-4 rounded-xl bg-[#100c06] border border-white/[0.08] hover:border-white/20 transition-colors flex gap-4 items-start justify-between group"
                       >
                         <div className="flex gap-3.5 min-w-0">
                           <div className="relative w-20 h-28 bg-black rounded-lg overflow-hidden shrink-0 border border-white/10">
@@ -1087,12 +1087,12 @@ export const AdminPage: React.FC<AdminPageProps> = ({ onNavigateToHome }) => {
                                 {proj.title}
                               </h3>
                               {proj.featured && (
-                                <span className="text-[9px] font-mono px-1.5 py-0.2 rounded bg-red-500/20 text-red-400 uppercase">
+                                <span className="text-[9px] font-mono px-1.5 py-0.2 rounded bg-orange-500/20 text-orange-400 uppercase">
                                   Featured
                                 </span>
                               )}
                             </div>
-                            <div className="text-xs text-red-500 font-medium mt-0.5">
+                            <div className="text-xs text-orange-500 font-medium mt-0.5">
                               {proj.categoryLabel}
                             </div>
                             <div className="text-[11px] text-zinc-400 mt-0.5">
@@ -1131,7 +1131,7 @@ export const AdminPage: React.FC<AdminPageProps> = ({ onNavigateToHome }) => {
                               onClick={() => handleToggleFeatured(proj.id)}
                               className={`p-1.5 rounded-lg border transition-colors cursor-pointer ${
                                 proj.featured
-                                  ? 'bg-red-500/10 border-red-500/30 text-red-500'
+                                  ? 'bg-orange-500/10 border-orange-500/30 text-orange-500'
                                   : 'bg-white/5 border-white/5 text-zinc-500 hover:text-zinc-300'
                               }`}
                               title={proj.featured ? 'Remove from featured' : 'Mark as featured'}
@@ -1140,14 +1140,14 @@ export const AdminPage: React.FC<AdminPageProps> = ({ onNavigateToHome }) => {
                             </button>
                             <button
                               onClick={() => setEditingProject(proj)}
-                              className="p-1.5 rounded-lg bg-white/5 hover:bg-white/10 text-zinc-300 hover:text-red-500 transition-colors cursor-pointer"
+                              className="p-1.5 rounded-lg bg-white/5 hover:bg-white/10 text-zinc-300 hover:text-orange-500 transition-colors cursor-pointer"
                               title="Edit Project"
                             >
                               <Edit2 className="w-3.5 h-3.5" />
                             </button>
                             <button
                               onClick={() => handleDeleteProject(proj.id)}
-                              className="p-1.5 rounded-lg bg-white/5 hover:bg-red-500/20 text-zinc-300 hover:text-red-400 transition-colors cursor-pointer"
+                              className="p-1.5 rounded-lg bg-white/5 hover:bg-orange-500/20 text-zinc-300 hover:text-orange-400 transition-colors cursor-pointer"
                               title="Delete Project"
                             >
                               <Trash2 className="w-3.5 h-3.5" />
@@ -1160,7 +1160,7 @@ export const AdminPage: React.FC<AdminPageProps> = ({ onNavigateToHome }) => {
                 </>
               ) : (
                 /* Edit / Create Form */
-                <form onSubmit={handleSaveProject} className="space-y-5 bg-[#0f0a0a] p-6 rounded-2xl border border-white/[0.08]">
+                <form onSubmit={handleSaveProject} className="space-y-5 bg-[#100c06] p-6 rounded-2xl border border-white/[0.08]">
                   <div className="flex items-center justify-between border-b border-white/[0.08] pb-4">
                     <h3 className="text-base font-bold text-white font-display">
                       {editingProject ? `Edit Edit: ${editingProject.title}` : 'Add New Video Project'}
@@ -1187,7 +1187,7 @@ export const AdminPage: React.FC<AdminPageProps> = ({ onNavigateToHome }) => {
                         defaultValue={editingProject?.title || ''}
                         required
                         placeholder="e.g. Neo Tokyo &middot; Fast Cuts Reel"
-                        className="w-full bg-[#120c0c] border border-white/10 rounded-xl px-3.5 py-2 text-xs text-white"
+                        className="w-full bg-[#141008] border border-white/10 rounded-xl px-3.5 py-2 text-xs text-white"
                       />
                     </div>
                     <div className="relative">
@@ -1201,7 +1201,7 @@ export const AdminPage: React.FC<AdminPageProps> = ({ onNavigateToHome }) => {
                       <button
                         type="button"
                         onClick={() => setCategoryDropdownOpen(prev => !prev)}
-                        className="w-full flex items-center justify-between bg-[#120c0c] border border-white/10 hover:border-red-500/40 rounded-xl px-3.5 py-2 text-xs text-white transition-all cursor-pointer"
+                        className="w-full flex items-center justify-between bg-[#141008] border border-white/10 hover:border-orange-500/40 rounded-xl px-3.5 py-2 text-xs text-white transition-all cursor-pointer"
                       >
                         <span className="truncate">
                           {[
@@ -1256,7 +1256,7 @@ export const AdminPage: React.FC<AdminPageProps> = ({ onNavigateToHome }) => {
                                   }}
                                   className={`w-full flex items-center gap-3 px-4 py-2.5 text-xs text-left transition-all cursor-pointer ${
                                     isSelected
-                                      ? 'bg-red-500/10 text-red-400'
+                                      ? 'bg-orange-500/10 text-orange-400'
                                       : 'text-zinc-300 hover:bg-white/[0.04] hover:text-white'
                                   }`}
                                 >
@@ -1264,7 +1264,7 @@ export const AdminPage: React.FC<AdminPageProps> = ({ onNavigateToHome }) => {
                                   <span
                                     className={`flex-shrink-0 w-4 h-4 rounded flex items-center justify-center border transition-all ${
                                       isSelected
-                                        ? 'bg-red-500 border-red-500'
+                                        ? 'bg-orange-500 border-orange-500'
                                         : 'border-white/25 bg-white/5'
                                     }`}
                                   >
@@ -1295,7 +1295,7 @@ export const AdminPage: React.FC<AdminPageProps> = ({ onNavigateToHome }) => {
                         name="categoryLabel"
                         defaultValue={editingProject?.categoryLabel || 'Instagram Reel'}
                         required
-                        className="w-full bg-[#120c0c] border border-white/10 rounded-xl px-3.5 py-2 text-xs text-white"
+                        className="w-full bg-[#141008] border border-white/10 rounded-xl px-3.5 py-2 text-xs text-white"
                       />
                     </div>
                     <div>
@@ -1305,7 +1305,7 @@ export const AdminPage: React.FC<AdminPageProps> = ({ onNavigateToHome }) => {
                       <select
                         name="aspectRatio"
                         defaultValue={editingProject?.aspectRatio || '9:16'}
-                        className="w-full bg-[#120c0c] border border-white/10 rounded-xl px-3.5 py-2 text-xs text-white"
+                        className="w-full bg-[#141008] border border-white/10 rounded-xl px-3.5 py-2 text-xs text-white"
                       >
                         <option value="9:16">9:16 (Vertical Mobile Reel)</option>
                         <option value="16:9">16:9 (Cinematic Horizontal)</option>
@@ -1320,7 +1320,7 @@ export const AdminPage: React.FC<AdminPageProps> = ({ onNavigateToHome }) => {
                         name="duration"
                         defaultValue={editingProject?.duration || '00:30'}
                         required
-                        className="w-full bg-[#120c0c] border border-white/10 rounded-xl px-3.5 py-2 text-xs text-white"
+                        className="w-full bg-[#141008] border border-white/10 rounded-xl px-3.5 py-2 text-xs text-white"
                       />
                     </div>
                   </div>
@@ -1334,7 +1334,7 @@ export const AdminPage: React.FC<AdminPageProps> = ({ onNavigateToHome }) => {
                         name="client"
                         defaultValue={editingProject?.client || ''}
                         placeholder="e.g. Red Bull, Zara, Independent Creator"
-                        className="w-full bg-[#120c0c] border border-white/10 rounded-xl px-3.5 py-2 text-xs text-white"
+                        className="w-full bg-[#141008] border border-white/10 rounded-xl px-3.5 py-2 text-xs text-white"
                       />
                     </div>
                     <div>
@@ -1345,7 +1345,7 @@ export const AdminPage: React.FC<AdminPageProps> = ({ onNavigateToHome }) => {
                         name="role"
                         defaultValue={editingProject?.role || 'Lead Mobile Video Editor & Colorist'}
                         required
-                        className="w-full bg-[#120c0c] border border-white/10 rounded-xl px-3.5 py-2 text-xs text-white"
+                        className="w-full bg-[#141008] border border-white/10 rounded-xl px-3.5 py-2 text-xs text-white"
                       />
                     </div>
                   </div>
@@ -1366,10 +1366,10 @@ export const AdminPage: React.FC<AdminPageProps> = ({ onNavigateToHome }) => {
                         defaultValue={editingProject?.thumbnail || AVAILABLE_ASSET_PRESETS[0].path}
                         required
                         placeholder="/src/assets/images/... or blob: URL"
-                        className="flex-1 bg-[#120c0c] border border-white/10 rounded-xl px-3.5 py-2 text-xs text-white font-mono"
+                        className="flex-1 bg-[#141008] border border-white/10 rounded-xl px-3.5 py-2 text-xs text-white font-mono"
                       />
                       {/* Upload Photo */}
-                      <label className="flex items-center gap-1.5 px-3 py-2 bg-white/10 border border-white/10 hover:bg-red-500/20 hover:border-red-500/40 hover:text-red-400 rounded-xl text-xs font-medium text-zinc-300 cursor-pointer transition-all">
+                      <label className="flex items-center gap-1.5 px-3 py-2 bg-white/10 border border-white/10 hover:bg-orange-500/20 hover:border-orange-500/40 hover:text-orange-400 rounded-xl text-xs font-medium text-zinc-300 cursor-pointer transition-all">
                         <svg className="w-3.5 h-3.5" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z"/></svg>
                         Photo
                         <input
@@ -1421,7 +1421,7 @@ export const AdminPage: React.FC<AdminPageProps> = ({ onNavigateToHome }) => {
                               const input = document.getElementById('project-thumbnail-input') as HTMLInputElement;
                               if (input) input.value = asset.path;
                             }}
-                            className="px-2.5 py-1 rounded-lg bg-black/60 hover:bg-red-500/20 border border-white/10 text-[10px] font-mono text-zinc-300 hover:text-red-400 transition-colors whitespace-nowrap cursor-pointer"
+                            className="px-2.5 py-1 rounded-lg bg-black/60 hover:bg-orange-500/20 border border-white/10 text-[10px] font-mono text-zinc-300 hover:text-orange-400 transition-colors whitespace-nowrap cursor-pointer"
                           >
                             {asset.label}
                           </button>
@@ -1443,9 +1443,9 @@ export const AdminPage: React.FC<AdminPageProps> = ({ onNavigateToHome }) => {
                         name="videoUrl"
                         defaultValue={editingProject?.videoUrl || ''}
                         placeholder="https://... direct .mp4 or stream URL"
-                        className="flex-1 bg-[#120c0c] border border-white/10 rounded-xl px-3.5 py-2 text-xs text-white font-mono"
+                        className="flex-1 bg-[#141008] border border-white/10 rounded-xl px-3.5 py-2 text-xs text-white font-mono"
                       />
-                      <label className="flex items-center gap-1.5 px-4 py-2 bg-red-500 hover:bg-red-400 border border-red-500/80 rounded-xl text-xs font-bold text-black cursor-pointer transition-all shadow-lg shadow-red-500/20 whitespace-nowrap">
+                      <label className="flex items-center gap-1.5 px-4 py-2 bg-orange-500 hover:bg-orange-400 border border-orange-500/80 rounded-xl text-xs font-bold text-black cursor-pointer transition-all shadow-lg shadow-orange-500/20 whitespace-nowrap">
                         <svg className="w-3.5 h-3.5" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2.5} d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-8l-4-4m0 0L8 8m4-4v12"/></svg>
                         Upload Video
                         <input
@@ -1475,7 +1475,7 @@ export const AdminPage: React.FC<AdminPageProps> = ({ onNavigateToHome }) => {
                       defaultValue={editingProject?.overview || ''}
                       required
                       placeholder="Explain the narrative concept, the opening hook, and how the edit creates retention..."
-                      className="w-full bg-[#120c0c] border border-white/10 rounded-xl px-3.5 py-2 text-xs text-white resize-y"
+                      className="w-full bg-[#141008] border border-white/10 rounded-xl px-3.5 py-2 text-xs text-white resize-y"
                     />
                   </div>
 
@@ -1489,7 +1489,7 @@ export const AdminPage: React.FC<AdminPageProps> = ({ onNavigateToHome }) => {
                       defaultValue={editingProject?.creativeApproach || ''}
                       required
                       placeholder="Color palette, match cuts, sound layers, and pacing..."
-                      className="w-full bg-[#120c0c] border border-white/10 rounded-xl px-3.5 py-2 text-xs text-white resize-y"
+                      className="w-full bg-[#141008] border border-white/10 rounded-xl px-3.5 py-2 text-xs text-white resize-y"
                     />
                   </div>
 
@@ -1522,7 +1522,7 @@ export const AdminPage: React.FC<AdminPageProps> = ({ onNavigateToHome }) => {
                       id="featured"
                       name="featured"
                       defaultChecked={editingProject ? editingProject.featured : true}
-                      className="rounded border-white/20 bg-white/5 text-red-600 w-4 h-4"
+                      className="rounded border-white/20 bg-white/5 text-orange-600 w-4 h-4"
                     />
                     <label htmlFor="featured" className="text-xs text-zinc-300 cursor-pointer">
                       Feature prominently in top gallery
@@ -1532,7 +1532,7 @@ export const AdminPage: React.FC<AdminPageProps> = ({ onNavigateToHome }) => {
                   <div className="pt-3 flex items-center gap-3 border-t border-white/[0.08]">
                     <button
                       type="submit"
-                      className="px-6 py-2.5 text-xs font-semibold text-black bg-red-500 hover:bg-red-400 rounded-xl transition-colors cursor-pointer"
+                      className="px-6 py-2.5 text-xs font-semibold text-black bg-orange-500 hover:bg-orange-400 rounded-xl transition-colors cursor-pointer"
                     >
                       {editingProject ? 'Save Changes' : 'Create Edit'}
                     </button>
@@ -1573,14 +1573,14 @@ export const AdminPage: React.FC<AdminPageProps> = ({ onNavigateToHome }) => {
                       value={inquirySearch}
                       onChange={(e) => setInquirySearch(e.target.value)}
                       placeholder="Search briefs..."
-                      className="bg-[#0f0a0a] border border-white/10 rounded-xl pl-9 pr-3 py-1.5 text-xs text-white placeholder-zinc-500 focus:outline-none focus:border-red-500"
+                      className="bg-[#100c06] border border-white/10 rounded-xl pl-9 pr-3 py-1.5 text-xs text-white placeholder-zinc-500 focus:outline-none focus:border-orange-500"
                     />
                   </div>
 
                   <select
                     value={inquiryStatusFilter}
                     onChange={(e) => setInquiryStatusFilter(e.target.value)}
-                    className="bg-[#0f0a0a] border border-white/10 rounded-xl px-3 py-1.5 text-xs text-zinc-300 cursor-pointer"
+                    className="bg-[#100c06] border border-white/10 rounded-xl px-3 py-1.5 text-xs text-zinc-300 cursor-pointer"
                   >
                     <option value="all">All Statuses ({inquiries.length})</option>
                     <option value="new">New ({inquiries.filter((i) => i.status === 'new').length})</option>
@@ -1601,7 +1601,7 @@ export const AdminPage: React.FC<AdminPageProps> = ({ onNavigateToHome }) => {
               </div>
 
               {filteredInquiries.length === 0 ? (
-                <div className="p-12 text-center bg-[#0f0a0a] rounded-2xl border border-white/[0.08] text-sm text-zinc-400">
+                <div className="p-12 text-center bg-[#100c06] rounded-2xl border border-white/[0.08] text-sm text-zinc-400">
                   No inquiries match the current filter.
                 </div>
               ) : (
@@ -1609,14 +1609,14 @@ export const AdminPage: React.FC<AdminPageProps> = ({ onNavigateToHome }) => {
                   {filteredInquiries.map((inq) => (
                     <div
                       key={inq.id}
-                      className="p-5 rounded-2xl bg-[#0f0a0a] border border-white/[0.08] space-y-4"
+                      className="p-5 rounded-2xl bg-[#100c06] border border-white/[0.08] space-y-4"
                     >
                       <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-2 border-b border-white/[0.06] pb-3">
                         <div>
                           <span className="text-base font-bold text-white mr-2">{inq.fullName}</span>
                           <a
                             href={`mailto:${inq.email}?subject=${encodeURIComponent(`Re: ${inq.projectType} Editing Project`)}`}
-                            className="text-xs text-red-500 hover:underline font-mono"
+                            className="text-xs text-orange-500 hover:underline font-mono"
                           >
                             {inq.email}
                           </a>
@@ -1662,7 +1662,7 @@ export const AdminPage: React.FC<AdminPageProps> = ({ onNavigateToHome }) => {
 
                           <button
                             onClick={() => handleDeleteInquiry(inq.id)}
-                            className="p-1.5 text-zinc-500 hover:text-red-400 transition-colors cursor-pointer"
+                            className="p-1.5 text-zinc-500 hover:text-orange-400 transition-colors cursor-pointer"
                             title="Delete Inquiry"
                           >
                             <Trash2 className="w-4 h-4" />
@@ -1674,7 +1674,7 @@ export const AdminPage: React.FC<AdminPageProps> = ({ onNavigateToHome }) => {
                       <div className="grid grid-cols-2 sm:grid-cols-4 gap-3 text-xs">
                         <div>
                           <span className="text-zinc-500 block mb-0.5">Project Type</span>
-                          <span className="text-red-500 font-semibold">{inq.projectType}</span>
+                          <span className="text-orange-500 font-semibold">{inq.projectType}</span>
                         </div>
                         <div>
                           <span className="text-zinc-500 block mb-0.5">Estimated Budget</span>
@@ -1705,7 +1705,7 @@ export const AdminPage: React.FC<AdminPageProps> = ({ onNavigateToHome }) => {
                             href={inq.referenceLink}
                             target="_blank"
                             rel="noreferrer"
-                            className="text-red-500 hover:underline flex items-center gap-1 font-mono truncate max-w-lg"
+                            className="text-orange-500 hover:underline flex items-center gap-1 font-mono truncate max-w-lg"
                           >
                             <span>{inq.referenceLink}</span>
                             <ExternalLink className="w-3 h-3" />
@@ -1723,7 +1723,7 @@ export const AdminPage: React.FC<AdminPageProps> = ({ onNavigateToHome }) => {
                           defaultValue={inq.adminNotes || ''}
                           onBlur={(e) => handleSaveInquiryNotes(inq.id, e.target.value)}
                           placeholder="Jot notes regarding footage delivery, revisions, negotiation..."
-                          className="w-full bg-[#120c0c] border border-white/5 rounded-lg px-3 py-1.5 text-xs text-white focus:outline-none focus:border-red-500 resize-y"
+                          className="w-full bg-[#141008] border border-white/5 rounded-lg px-3 py-1.5 text-xs text-white focus:outline-none focus:border-orange-500 resize-y"
                         />
                       </div>
                     </div>
@@ -1750,7 +1750,7 @@ export const AdminPage: React.FC<AdminPageProps> = ({ onNavigateToHome }) => {
 
                     <button
                       onClick={() => setIsCreatingService(true)}
-                      className="flex items-center gap-1.5 px-3.5 py-2 text-xs font-semibold text-black bg-red-500 hover:bg-red-400 rounded-xl transition-colors cursor-pointer"
+                      className="flex items-center gap-1.5 px-3.5 py-2 text-xs font-semibold text-black bg-orange-500 hover:bg-orange-400 rounded-xl transition-colors cursor-pointer"
                     >
                       <Plus className="w-3.5 h-3.5" />
                       <span>Add Service</span>
@@ -1761,11 +1761,11 @@ export const AdminPage: React.FC<AdminPageProps> = ({ onNavigateToHome }) => {
                     {services.map((srv) => (
                       <div
                         key={srv.id}
-                        className="p-5 rounded-2xl bg-[#0f0a0a] border border-white/[0.08] space-y-3"
+                        className="p-5 rounded-2xl bg-[#100c06] border border-white/[0.08] space-y-3"
                       >
                         <div className="flex items-start justify-between">
                           <div>
-                            <span className="text-xs font-mono text-red-500 font-bold">{srv.number}</span>
+                            <span className="text-xs font-mono text-orange-500 font-bold">{srv.number}</span>
                             <h3 className="text-base font-bold font-display text-white mt-0.5">{srv.title}</h3>
                             {srv.pricingStartingAt && (
                               <span className="text-xs text-emerald-400 font-mono">From {srv.pricingStartingAt}</span>
@@ -1774,14 +1774,14 @@ export const AdminPage: React.FC<AdminPageProps> = ({ onNavigateToHome }) => {
                           <div className="flex items-center gap-1">
                             <button
                               onClick={() => setEditingService(srv)}
-                              className="p-1.5 text-zinc-400 hover:text-red-500 transition-colors cursor-pointer"
+                              className="p-1.5 text-zinc-400 hover:text-orange-500 transition-colors cursor-pointer"
                               title="Edit Service"
                             >
                               <Edit2 className="w-4 h-4" />
                             </button>
                             <button
                               onClick={() => handleDeleteService(srv.id)}
-                              className="p-1.5 text-zinc-400 hover:text-red-400 transition-colors cursor-pointer"
+                              className="p-1.5 text-zinc-400 hover:text-orange-400 transition-colors cursor-pointer"
                               title="Delete Service"
                             >
                               <Trash2 className="w-4 h-4" />
@@ -1796,7 +1796,7 @@ export const AdminPage: React.FC<AdminPageProps> = ({ onNavigateToHome }) => {
                         <div className="space-y-1 pt-2 border-t border-white/[0.06]">
                           {srv.features.map((feat, i) => (
                             <div key={i} className="text-xs text-zinc-300 flex items-center gap-2">
-                              <span className="w-1.5 h-1.5 rounded-full bg-red-500" />
+                              <span className="w-1.5 h-1.5 rounded-full bg-orange-500" />
                               <span>{feat}</span>
                             </div>
                           ))}
@@ -1813,7 +1813,7 @@ export const AdminPage: React.FC<AdminPageProps> = ({ onNavigateToHome }) => {
                 </>
               ) : (
                 /* Edit Service Form */
-                <form onSubmit={handleSaveService} className="space-y-4 bg-[#0f0a0a] p-6 rounded-2xl border border-white/[0.08]">
+                <form onSubmit={handleSaveService} className="space-y-4 bg-[#100c06] p-6 rounded-2xl border border-white/[0.08]">
                   <div className="flex items-center justify-between border-b border-white/[0.08] pb-3">
                     <h3 className="text-base font-bold text-white font-display">
                       {editingService ? `Edit Service: ${editingService.title}` : 'Add New Service'}
@@ -1839,7 +1839,7 @@ export const AdminPage: React.FC<AdminPageProps> = ({ onNavigateToHome }) => {
                         name="number"
                         defaultValue={editingService?.number || `0${services.length + 1}`}
                         required
-                        className="w-full bg-[#120c0c] border border-white/10 rounded-xl px-3 py-2 text-xs text-white"
+                        className="w-full bg-[#141008] border border-white/10 rounded-xl px-3 py-2 text-xs text-white"
                       />
                     </div>
                     <div className="sm:col-span-2">
@@ -1851,7 +1851,7 @@ export const AdminPage: React.FC<AdminPageProps> = ({ onNavigateToHome }) => {
                         defaultValue={editingService?.title || ''}
                         required
                         placeholder="e.g. Cinematic Reels"
-                        className="w-full bg-[#120c0c] border border-white/10 rounded-xl px-3 py-2 text-xs text-white"
+                        className="w-full bg-[#141008] border border-white/10 rounded-xl px-3 py-2 text-xs text-white"
                       />
                     </div>
                   </div>
@@ -1864,7 +1864,7 @@ export const AdminPage: React.FC<AdminPageProps> = ({ onNavigateToHome }) => {
                       <input
                         name="deliverableTimeframe"
                         defaultValue={editingService?.deliverableTimeframe || '24-48 hours'}
-                        className="w-full bg-[#120c0c] border border-white/10 rounded-xl px-3 py-2 text-xs text-white"
+                        className="w-full bg-[#141008] border border-white/10 rounded-xl px-3 py-2 text-xs text-white"
                       />
                     </div>
                     <div>
@@ -1875,7 +1875,7 @@ export const AdminPage: React.FC<AdminPageProps> = ({ onNavigateToHome }) => {
                         name="pricingStartingAt"
                         defaultValue={editingService?.pricingStartingAt || ''}
                         placeholder="e.g. $350 / reel"
-                        className="w-full bg-[#120c0c] border border-white/10 rounded-xl px-3 py-2 text-xs text-white"
+                        className="w-full bg-[#141008] border border-white/10 rounded-xl px-3 py-2 text-xs text-white"
                       />
                     </div>
                   </div>
@@ -1889,7 +1889,7 @@ export const AdminPage: React.FC<AdminPageProps> = ({ onNavigateToHome }) => {
                       rows={2}
                       defaultValue={editingService?.shortDesc || ''}
                       required
-                      className="w-full bg-[#120c0c] border border-white/10 rounded-xl px-3 py-2 text-xs text-white resize-y"
+                      className="w-full bg-[#141008] border border-white/10 rounded-xl px-3 py-2 text-xs text-white resize-y"
                     />
                   </div>
 
@@ -1903,14 +1903,14 @@ export const AdminPage: React.FC<AdminPageProps> = ({ onNavigateToHome }) => {
                       defaultValue={editingService?.features?.join('\n') || ''}
                       required
                       placeholder="Story-driven narrative arc in under 60s&#10;Filmic color grading & print film emulation&#10;Sub-frame music synchronization"
-                      className="w-full bg-[#120c0c] border border-white/10 rounded-xl px-3 py-2 text-xs text-white resize-y font-mono"
+                      className="w-full bg-[#141008] border border-white/10 rounded-xl px-3 py-2 text-xs text-white resize-y font-mono"
                     />
                   </div>
 
                   <div className="pt-3 flex items-center gap-3 border-t border-white/[0.08]">
                     <button
                       type="submit"
-                      className="px-6 py-2.5 text-xs font-semibold text-black bg-red-500 hover:bg-red-400 rounded-xl transition-colors cursor-pointer"
+                      className="px-6 py-2.5 text-xs font-semibold text-black bg-orange-500 hover:bg-orange-400 rounded-xl transition-colors cursor-pointer"
                     >
                       Save Service
                     </button>
@@ -1947,7 +1947,7 @@ export const AdminPage: React.FC<AdminPageProps> = ({ onNavigateToHome }) => {
 
                     <button
                       onClick={() => setIsCreatingTestimonial(true)}
-                      className="flex items-center gap-1.5 px-3.5 py-2 text-xs font-semibold text-black bg-red-500 hover:bg-red-400 rounded-xl transition-colors cursor-pointer"
+                      className="flex items-center gap-1.5 px-3.5 py-2 text-xs font-semibold text-black bg-orange-500 hover:bg-orange-400 rounded-xl transition-colors cursor-pointer"
                     >
                       <Plus className="w-3.5 h-3.5" />
                       <span>Add Testimonial</span>
@@ -1958,7 +1958,7 @@ export const AdminPage: React.FC<AdminPageProps> = ({ onNavigateToHome }) => {
                     {testimonials.map((test) => (
                       <div
                         key={test.id}
-                        className="p-5 rounded-2xl bg-[#0f0a0a] border border-white/[0.08] flex flex-col justify-between space-y-3"
+                        className="p-5 rounded-2xl bg-[#100c06] border border-white/[0.08] flex flex-col justify-between space-y-3"
                       >
                         <div>
                           <div className="flex items-center justify-between">
@@ -1968,20 +1968,20 @@ export const AdminPage: React.FC<AdminPageProps> = ({ onNavigateToHome }) => {
                             <div className="flex items-center gap-1">
                               <button
                                 onClick={() => setEditingTestimonial(test)}
-                                className="p-1.5 text-zinc-400 hover:text-red-500 transition-colors cursor-pointer"
+                                className="p-1.5 text-zinc-400 hover:text-orange-500 transition-colors cursor-pointer"
                               >
                                 <Edit2 className="w-3.5 h-3.5" />
                               </button>
                               <button
                                 onClick={() => handleDeleteTestimonial(test.id)}
-                                className="p-1.5 text-zinc-400 hover:text-red-400 transition-colors cursor-pointer"
+                                className="p-1.5 text-zinc-400 hover:text-orange-400 transition-colors cursor-pointer"
                               >
                                 <Trash2 className="w-3.5 h-3.5" />
                               </button>
                             </div>
                           </div>
 
-                          <div className="text-xs text-red-500 mt-0.5">
+                          <div className="text-xs text-orange-500 mt-0.5">
                             {test.role} {test.company && `&middot; ${test.company}`}
                           </div>
 
@@ -1993,7 +1993,7 @@ export const AdminPage: React.FC<AdminPageProps> = ({ onNavigateToHome }) => {
                         <div className="flex items-center justify-between pt-2 border-t border-white/[0.06] text-xs">
                           <span className="text-zinc-500 font-mono">{test.projectType}</span>
                           {test.isDemo && (
-                            <span className="text-[10px] font-mono text-red-500/80 uppercase">
+                            <span className="text-[10px] font-mono text-orange-500/80 uppercase">
                               Demo Placeholder
                             </span>
                           )}
@@ -2004,7 +2004,7 @@ export const AdminPage: React.FC<AdminPageProps> = ({ onNavigateToHome }) => {
                 </>
               ) : (
                 /* Edit Testimonial Form */
-                <form onSubmit={handleSaveTestimonial} className="space-y-4 bg-[#0f0a0a] p-6 rounded-2xl border border-white/[0.08]">
+                <form onSubmit={handleSaveTestimonial} className="space-y-4 bg-[#100c06] p-6 rounded-2xl border border-white/[0.08]">
                   <div className="flex items-center justify-between border-b border-white/[0.08] pb-3">
                     <h3 className="text-base font-bold text-white font-display">
                       {editingTestimonial ? `Edit Testimonial: ${editingTestimonial.clientName}` : 'Add Testimonial'}
@@ -2030,7 +2030,7 @@ export const AdminPage: React.FC<AdminPageProps> = ({ onNavigateToHome }) => {
                         name="clientName"
                         defaultValue={editingTestimonial?.clientName || ''}
                         required
-                        className="w-full bg-[#120c0c] border border-white/10 rounded-xl px-3 py-2 text-xs text-white"
+                        className="w-full bg-[#141008] border border-white/10 rounded-xl px-3 py-2 text-xs text-white"
                       />
                     </div>
                     <div>
@@ -2041,7 +2041,7 @@ export const AdminPage: React.FC<AdminPageProps> = ({ onNavigateToHome }) => {
                         name="role"
                         defaultValue={editingTestimonial?.role || 'Creator & Director'}
                         required
-                        className="w-full bg-[#120c0c] border border-white/10 rounded-xl px-3 py-2 text-xs text-white"
+                        className="w-full bg-[#141008] border border-white/10 rounded-xl px-3 py-2 text-xs text-white"
                       />
                     </div>
                   </div>
@@ -2054,7 +2054,7 @@ export const AdminPage: React.FC<AdminPageProps> = ({ onNavigateToHome }) => {
                       <input
                         name="company"
                         defaultValue={editingTestimonial?.company || ''}
-                        className="w-full bg-[#120c0c] border border-white/10 rounded-xl px-3 py-2 text-xs text-white"
+                        className="w-full bg-[#141008] border border-white/10 rounded-xl px-3 py-2 text-xs text-white"
                       />
                     </div>
                     <div>
@@ -2065,7 +2065,7 @@ export const AdminPage: React.FC<AdminPageProps> = ({ onNavigateToHome }) => {
                         name="projectType"
                         defaultValue={editingTestimonial?.projectType || 'Instagram Reels Series'}
                         required
-                        className="w-full bg-[#120c0c] border border-white/10 rounded-xl px-3 py-2 text-xs text-white"
+                        className="w-full bg-[#141008] border border-white/10 rounded-xl px-3 py-2 text-xs text-white"
                       />
                     </div>
                   </div>
@@ -2079,7 +2079,7 @@ export const AdminPage: React.FC<AdminPageProps> = ({ onNavigateToHome }) => {
                       rows={3}
                       defaultValue={editingTestimonial?.feedback || ''}
                       required
-                      className="w-full bg-[#120c0c] border border-white/10 rounded-xl px-3 py-2 text-xs text-white resize-y"
+                      className="w-full bg-[#141008] border border-white/10 rounded-xl px-3 py-2 text-xs text-white resize-y"
                     />
                   </div>
 
@@ -2089,7 +2089,7 @@ export const AdminPage: React.FC<AdminPageProps> = ({ onNavigateToHome }) => {
                       id="isDemo"
                       name="isDemo"
                       defaultChecked={editingTestimonial?.isDemo}
-                      className="rounded border-white/20 bg-white/5 text-red-600 w-4 h-4"
+                      className="rounded border-white/20 bg-white/5 text-orange-600 w-4 h-4"
                     />
                     <label htmlFor="isDemo" className="text-xs text-zinc-300 cursor-pointer">
                       Mark as sample placeholder
@@ -2099,7 +2099,7 @@ export const AdminPage: React.FC<AdminPageProps> = ({ onNavigateToHome }) => {
                   <div className="pt-3 flex items-center gap-3 border-t border-white/[0.08]">
                     <button
                       type="submit"
-                      className="px-6 py-2.5 text-xs font-semibold text-black bg-red-500 hover:bg-red-400 rounded-xl transition-colors cursor-pointer"
+                      className="px-6 py-2.5 text-xs font-semibold text-black bg-orange-500 hover:bg-orange-400 rounded-xl transition-colors cursor-pointer"
                     >
                       Save Testimonial
                     </button>
@@ -2121,7 +2121,7 @@ export const AdminPage: React.FC<AdminPageProps> = ({ onNavigateToHome }) => {
 
           {/* TAB 6: SITE & BRAND SETTINGS */}
           {activeTab === 'settings' && (
-            <form onSubmit={handleSaveConfig} className="space-y-6 max-w-4xl bg-[#0f0a0a] p-6 sm:p-8 rounded-2xl border border-white/[0.08]">
+            <form onSubmit={handleSaveConfig} className="space-y-6 max-w-4xl bg-[#100c06] p-6 sm:p-8 rounded-2xl border border-white/[0.08]">
               <div>
                 <h2 className="text-xl font-bold font-display text-white">
                   Brand, Showreel & Contact Settings
@@ -2141,7 +2141,7 @@ export const AdminPage: React.FC<AdminPageProps> = ({ onNavigateToHome }) => {
                     value={siteForm.editorName}
                     onChange={(e) => setSiteForm({ ...siteForm, editorName: e.target.value })}
                     required
-                    className="w-full bg-[#120c0c] border border-white/10 rounded-xl px-3.5 py-2 text-xs text-white"
+                    className="w-full bg-[#141008] border border-white/10 rounded-xl px-3.5 py-2 text-xs text-white"
                   />
                 </div>
                 <div>
@@ -2152,7 +2152,7 @@ export const AdminPage: React.FC<AdminPageProps> = ({ onNavigateToHome }) => {
                     value={siteForm.tagline}
                     onChange={(e) => setSiteForm({ ...siteForm, tagline: e.target.value })}
                     required
-                    className="w-full bg-[#120c0c] border border-white/10 rounded-xl px-3.5 py-2 text-xs text-white"
+                    className="w-full bg-[#141008] border border-white/10 rounded-xl px-3.5 py-2 text-xs text-white"
                   />
                 </div>
               </div>
@@ -2170,7 +2170,7 @@ export const AdminPage: React.FC<AdminPageProps> = ({ onNavigateToHome }) => {
                     onChange={(e) => setSiteForm({ ...siteForm, availableForProjects: e.target.checked })}
                     className="sr-only peer"
                   />
-                  <div className="w-11 h-6 bg-zinc-700 peer-focus:outline-none rounded-full peer peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all peer-checked:bg-red-500"></div>
+                  <div className="w-11 h-6 bg-zinc-700 peer-focus:outline-none rounded-full peer peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all peer-checked:bg-orange-500"></div>
                 </label>
               </div>
 
@@ -2186,7 +2186,7 @@ export const AdminPage: React.FC<AdminPageProps> = ({ onNavigateToHome }) => {
                   value={siteForm.shortBio}
                   onChange={(e) => setSiteForm({ ...siteForm, shortBio: e.target.value })}
                   rows={2}
-                  className="w-full bg-[#120c0c] border border-white/10 rounded-xl px-3.5 py-2 text-xs text-white resize-y"
+                  className="w-full bg-[#141008] border border-white/10 rounded-xl px-3.5 py-2 text-xs text-white resize-y"
                 />
               </div>
 
@@ -2199,7 +2199,7 @@ export const AdminPage: React.FC<AdminPageProps> = ({ onNavigateToHome }) => {
                     value={siteForm.aboutPhilosophy}
                     onChange={(e) => setSiteForm({ ...siteForm, aboutPhilosophy: e.target.value })}
                     rows={2}
-                    className="w-full bg-[#120c0c] border border-white/10 rounded-xl px-3.5 py-2 text-xs text-white resize-y"
+                    className="w-full bg-[#141008] border border-white/10 rounded-xl px-3.5 py-2 text-xs text-white resize-y"
                   />
                 </div>
                 <div>
@@ -2210,7 +2210,7 @@ export const AdminPage: React.FC<AdminPageProps> = ({ onNavigateToHome }) => {
                     value={siteForm.aboutApproach}
                     onChange={(e) => setSiteForm({ ...siteForm, aboutApproach: e.target.value })}
                     rows={2}
-                    className="w-full bg-[#120c0c] border border-white/10 rounded-xl px-3.5 py-2 text-xs text-white resize-y"
+                    className="w-full bg-[#141008] border border-white/10 rounded-xl px-3.5 py-2 text-xs text-white resize-y"
                   />
                 </div>
               </div>
@@ -2226,7 +2226,7 @@ export const AdminPage: React.FC<AdminPageProps> = ({ onNavigateToHome }) => {
                     value={siteForm.contactEmail}
                     onChange={(e) => setSiteForm({ ...siteForm, contactEmail: e.target.value })}
                     required
-                    className="w-full bg-[#120c0c] border border-white/10 rounded-xl px-3.5 py-2 text-xs text-white"
+                    className="w-full bg-[#141008] border border-white/10 rounded-xl px-3.5 py-2 text-xs text-white"
                   />
                 </div>
                 <div>
@@ -2237,7 +2237,7 @@ export const AdminPage: React.FC<AdminPageProps> = ({ onNavigateToHome }) => {
                     value={siteForm.whatsappNumber}
                     onChange={(e) => setSiteForm({ ...siteForm, whatsappNumber: e.target.value })}
                     placeholder="+1 (555) 234-5678"
-                    className="w-full bg-[#120c0c] border border-white/10 rounded-xl px-3.5 py-2 text-xs text-white"
+                    className="w-full bg-[#141008] border border-white/10 rounded-xl px-3.5 py-2 text-xs text-white"
                   />
                 </div>
                 <div>
@@ -2247,14 +2247,14 @@ export const AdminPage: React.FC<AdminPageProps> = ({ onNavigateToHome }) => {
                   <input
                     value={siteForm.location}
                     onChange={(e) => setSiteForm({ ...siteForm, location: e.target.value })}
-                    className="w-full bg-[#120c0c] border border-white/10 rounded-xl px-3.5 py-2 text-xs text-white"
+                    className="w-full bg-[#141008] border border-white/10 rounded-xl px-3.5 py-2 text-xs text-white"
                   />
                 </div>
               </div>
 
               {/* Showreel Section Settings */}
               <div className="p-4 rounded-xl bg-black/40 border border-white/[0.06] space-y-4">
-                <span className="text-xs font-bold font-mono uppercase text-red-500 block">
+                <span className="text-xs font-bold font-mono uppercase text-orange-500 block">
                   Showreel Player Configuration
                 </span>
 
@@ -2264,7 +2264,7 @@ export const AdminPage: React.FC<AdminPageProps> = ({ onNavigateToHome }) => {
                     <input
                       value={siteForm.showreelTitle}
                       onChange={(e) => setSiteForm({ ...siteForm, showreelTitle: e.target.value })}
-                      className="w-full bg-[#120c0c] border border-white/10 rounded-xl px-3 py-2 text-xs text-white"
+                      className="w-full bg-[#141008] border border-white/10 rounded-xl px-3 py-2 text-xs text-white"
                     />
                   </div>
                   <div>
@@ -2272,7 +2272,7 @@ export const AdminPage: React.FC<AdminPageProps> = ({ onNavigateToHome }) => {
                     <input
                       value={siteForm.showreelDuration}
                       onChange={(e) => setSiteForm({ ...siteForm, showreelDuration: e.target.value })}
-                      className="w-full bg-[#120c0c] border border-white/10 rounded-xl px-3 py-2 text-xs text-white"
+                      className="w-full bg-[#141008] border border-white/10 rounded-xl px-3 py-2 text-xs text-white"
                     />
                   </div>
                 </div>
@@ -2286,10 +2286,10 @@ export const AdminPage: React.FC<AdminPageProps> = ({ onNavigateToHome }) => {
                       value={siteForm.showreelVideoUrl}
                       onChange={(e) => setSiteForm({ ...siteForm, showreelVideoUrl: e.target.value })}
                       placeholder="https://youtube.com/... or https://vimeo.com/... or .mp4 URL"
-                      className="flex-1 bg-[#120c0c] border border-white/10 rounded-xl px-3 py-2 text-xs text-white font-mono"
+                      className="flex-1 bg-[#141008] border border-white/10 rounded-xl px-3 py-2 text-xs text-white font-mono"
                     />
                     {/* Upload local video */}
-                    <label className="flex items-center gap-1.5 px-3 py-2 bg-red-500 hover:bg-red-400 border border-red-500/80 rounded-xl text-xs font-bold text-black cursor-pointer transition-all shadow-lg shadow-red-500/20 whitespace-nowrap">
+                    <label className="flex items-center gap-1.5 px-3 py-2 bg-orange-500 hover:bg-orange-400 border border-orange-500/80 rounded-xl text-xs font-bold text-black cursor-pointer transition-all shadow-lg shadow-orange-500/20 whitespace-nowrap">
                       <svg className="w-3.5 h-3.5" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2.5} d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-8l-4-4m0 0L8 8m4-4v12"/></svg>
                       Upload
                       <input
@@ -2332,10 +2332,10 @@ export const AdminPage: React.FC<AdminPageProps> = ({ onNavigateToHome }) => {
                         value={siteForm.showreelCover}
                         onChange={(e) => setSiteForm({ ...siteForm, showreelCover: e.target.value })}
                         placeholder="/src/assets/images/... or URL"
-                        className="flex-1 bg-[#120c0c] border border-white/10 rounded-xl px-3 py-2 text-xs text-white font-mono"
+                        className="flex-1 bg-[#141008] border border-white/10 rounded-xl px-3 py-2 text-xs text-white font-mono"
                       />
                       {/* Upload photo */}
-                      <label className="flex items-center gap-1 px-3 py-2 bg-white/10 border border-white/10 hover:bg-red-500/20 hover:border-red-500/40 hover:text-red-400 rounded-xl text-xs font-medium text-zinc-300 cursor-pointer transition-all whitespace-nowrap">
+                      <label className="flex items-center gap-1 px-3 py-2 bg-white/10 border border-white/10 hover:bg-orange-500/20 hover:border-orange-500/40 hover:text-orange-400 rounded-xl text-xs font-medium text-zinc-300 cursor-pointer transition-all whitespace-nowrap">
                         <svg className="w-3.5 h-3.5" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z"/></svg>
                         Photo
                         <input
@@ -2382,7 +2382,7 @@ export const AdminPage: React.FC<AdminPageProps> = ({ onNavigateToHome }) => {
                     value={siteForm.showreelSubtitle || ''}
                     onChange={(e) => setSiteForm({ ...siteForm, showreelSubtitle: e.target.value })}
                     placeholder="e.g. A few seconds. A whole story. Mastered for mobile screens."
-                    className="w-full bg-[#120c0c] border border-white/10 rounded-xl px-3 py-2 text-xs text-white"
+                    className="w-full bg-[#141008] border border-white/10 rounded-xl px-3 py-2 text-xs text-white"
                   />
                 </div>
               </div>
@@ -2391,7 +2391,7 @@ export const AdminPage: React.FC<AdminPageProps> = ({ onNavigateToHome }) => {
               <div>
                 <button
                   type="submit"
-                  className="px-6 py-2.5 text-xs font-semibold text-black bg-red-500 hover:bg-red-400 rounded-xl flex items-center gap-2 cursor-pointer transition-colors shadow-lg shadow-red-600/10"
+                  className="px-6 py-2.5 text-xs font-semibold text-black bg-orange-500 hover:bg-orange-400 rounded-xl flex items-center gap-2 cursor-pointer transition-colors shadow-lg shadow-orange-600/10"
                 >
                   <Save className="w-3.5 h-3.5" />
                   <span>Save Brand Settings</span>
@@ -2413,7 +2413,7 @@ export const AdminPage: React.FC<AdminPageProps> = ({ onNavigateToHome }) => {
               </div>
 
               {/* Current Credentials Overview */}
-              <div className="p-5 rounded-2xl bg-[#0f0a0a] border border-white/[0.08] space-y-3">
+              <div className="p-5 rounded-2xl bg-[#100c06] border border-white/[0.08] space-y-3">
                 <div className="flex items-center justify-between">
                   <span className="text-xs font-mono uppercase text-zinc-400">Current Login Session</span>
                   <span className="text-xs font-mono text-emerald-400 flex items-center gap-1.5">
@@ -2434,13 +2434,13 @@ export const AdminPage: React.FC<AdminPageProps> = ({ onNavigateToHome }) => {
               </div>
 
               {/* Change Password Form */}
-              <form onSubmit={handleUpdateCredentials} className="p-6 rounded-2xl bg-[#0f0a0a] border border-white/[0.08] space-y-4">
+              <form onSubmit={handleUpdateCredentials} className="p-6 rounded-2xl bg-[#100c06] border border-white/[0.08] space-y-4">
                 <h3 className="text-sm font-bold text-white font-display">
                   Update Login Email & Password
                 </h3>
 
                 {securityError && (
-                  <div className="p-3 rounded-lg bg-red-500/10 border border-red-500/20 text-red-300 text-xs">
+                  <div className="p-3 rounded-lg bg-orange-500/10 border border-orange-500/20 text-orange-300 text-xs">
                     {securityError}
                   </div>
                 )}
@@ -2455,7 +2455,7 @@ export const AdminPage: React.FC<AdminPageProps> = ({ onNavigateToHome }) => {
                       value={newEmail}
                       onChange={(e) => setNewEmail(e.target.value)}
                       required
-                      className="w-full bg-[#120c0c] border border-white/10 rounded-xl px-3.5 py-2 text-xs text-white"
+                      className="w-full bg-[#141008] border border-white/10 rounded-xl px-3.5 py-2 text-xs text-white"
                     />
                   </div>
                   <div>
@@ -2467,7 +2467,7 @@ export const AdminPage: React.FC<AdminPageProps> = ({ onNavigateToHome }) => {
                       value={newUsername}
                       onChange={(e) => setNewUsername(e.target.value)}
                       required
-                      className="w-full bg-[#120c0c] border border-white/10 rounded-xl px-3.5 py-2 text-xs text-white"
+                      className="w-full bg-[#141008] border border-white/10 rounded-xl px-3.5 py-2 text-xs text-white"
                     />
                   </div>
                 </div>
@@ -2482,7 +2482,7 @@ export const AdminPage: React.FC<AdminPageProps> = ({ onNavigateToHome }) => {
                       value={newPassword}
                       onChange={(e) => setNewPassword(e.target.value)}
                       placeholder="Leave blank to keep current"
-                      className="w-full bg-[#120c0c] border border-white/10 rounded-xl px-3.5 py-2 text-xs text-white font-mono"
+                      className="w-full bg-[#141008] border border-white/10 rounded-xl px-3.5 py-2 text-xs text-white font-mono"
                     />
                   </div>
                   <div>
@@ -2494,13 +2494,13 @@ export const AdminPage: React.FC<AdminPageProps> = ({ onNavigateToHome }) => {
                       value={confirmPassword}
                       onChange={(e) => setConfirmPassword(e.target.value)}
                       placeholder="Repeat new password"
-                      className="w-full bg-[#120c0c] border border-white/10 rounded-xl px-3.5 py-2 text-xs text-white font-mono"
+                      className="w-full bg-[#141008] border border-white/10 rounded-xl px-3.5 py-2 text-xs text-white font-mono"
                     />
                   </div>
                 </div>
 
                 <div className="pt-2">
-                  <label className="block text-xs font-mono uppercase tracking-wider text-red-500 mb-1.5">
+                  <label className="block text-xs font-mono uppercase tracking-wider text-orange-500 mb-1.5">
                     Current Password (Required for verification)
                   </label>
                   <input
@@ -2509,14 +2509,14 @@ export const AdminPage: React.FC<AdminPageProps> = ({ onNavigateToHome }) => {
                     onChange={(e) => setCurrentPassword(e.target.value)}
                     required
                     placeholder="Enter existing password to verify"
-                    className="w-full bg-[#120c0c] border border-red-600/30 rounded-xl px-3.5 py-2 text-xs text-white font-mono"
+                    className="w-full bg-[#141008] border border-orange-600/30 rounded-xl px-3.5 py-2 text-xs text-white font-mono"
                   />
                 </div>
 
                 <div className="pt-3 flex items-center justify-between">
                   <button
                     type="submit"
-                    className="px-6 py-2.5 text-xs font-semibold text-black bg-red-500 hover:bg-red-400 rounded-xl transition-colors cursor-pointer shadow-lg shadow-red-600/10"
+                    className="px-6 py-2.5 text-xs font-semibold text-black bg-orange-500 hover:bg-orange-400 rounded-xl transition-colors cursor-pointer shadow-lg shadow-orange-600/10"
                   >
                     Update Admin Credentials
                   </button>
@@ -2538,7 +2538,7 @@ export const AdminPage: React.FC<AdminPageProps> = ({ onNavigateToHome }) => {
             <div className="space-y-6 max-w-3xl">
               <div>
                 <h2 className="text-xl font-bold font-display text-white flex items-center gap-2">
-                  <Database className="w-5 h-5 text-red-500" />
+                  <Database className="w-5 h-5 text-orange-500" />
                   MongoDB Atlas &amp; Data Management
                 </h2>
                 <p className="text-xs text-zinc-400 mt-0.5">
@@ -2547,10 +2547,10 @@ export const AdminPage: React.FC<AdminPageProps> = ({ onNavigateToHome }) => {
               </div>
 
               {/* ── MongoDB Atlas Sync Card ── */}
-              <div className="p-6 rounded-2xl bg-[#0d1117] border border-red-600/20 space-y-5">
+              <div className="p-6 rounded-2xl bg-[#0d1117] border border-orange-600/20 space-y-5">
                 <div className="flex items-center gap-3">
-                  <div className="w-8 h-8 rounded-lg bg-red-500/10 flex items-center justify-center">
-                    <Database className="w-4 h-4 text-red-500" />
+                  <div className="w-8 h-8 rounded-lg bg-orange-500/10 flex items-center justify-center">
+                    <Database className="w-4 h-4 text-orange-500" />
                   </div>
                   <div>
                     <h3 className="text-sm font-bold text-white font-display">MongoDB Atlas Connection</h3>
@@ -2575,8 +2575,8 @@ export const AdminPage: React.FC<AdminPageProps> = ({ onNavigateToHome }) => {
                       </>
                     ) : (
                       <>
-                        <span className="w-2.5 h-2.5 rounded-full bg-red-400" />
-                        <span className="text-[11px] font-mono text-red-400">API Offline</span>
+                        <span className="w-2.5 h-2.5 rounded-full bg-orange-400" />
+                        <span className="text-[11px] font-mono text-orange-400">API Offline</span>
                       </>
                     )}
                     <button
@@ -2590,10 +2590,10 @@ export const AdminPage: React.FC<AdminPageProps> = ({ onNavigateToHome }) => {
 
                 {/* Setup instructions */}
                 {(!mongoStatus || !mongoStatus.mongoConfigured) && (
-                  <div className="p-4 rounded-xl bg-red-600/5 border border-red-600/15 space-y-2">
-                    <p className="text-xs font-semibold text-red-400">📋 Setup Guide</p>
+                  <div className="p-4 rounded-xl bg-orange-600/5 border border-orange-600/15 space-y-2">
+                    <p className="text-xs font-semibold text-orange-400">📋 Setup Guide</p>
                     <ol className="text-[11px] text-zinc-400 space-y-1.5 list-decimal list-inside font-mono">
-                      <li>Go to <a href="https://cloud.mongodb.com" target="_blank" rel="noopener noreferrer" className="text-red-500 underline">cloud.mongodb.com</a> and create a free cluster</li>
+                      <li>Go to <a href="https://cloud.mongodb.com" target="_blank" rel="noopener noreferrer" className="text-orange-500 underline">cloud.mongodb.com</a> and create a free cluster</li>
                       <li>Create a database user and whitelist your IP address (or 0.0.0.0/0 for dev)</li>
                       <li>Click <strong>Connect → Connect your application</strong> and copy the connection string</li>
                       <li>Add it to your <code className="bg-white/10 px-1 rounded">.env</code> file: <code className="bg-white/10 px-1 rounded">MONGODB_URI=mongodb+srv://...</code></li>
@@ -2608,7 +2608,7 @@ export const AdminPage: React.FC<AdminPageProps> = ({ onNavigateToHome }) => {
                   <button
                     onClick={handleSyncToMongo}
                     disabled={mongoSyncing || mongoPulling}
-                    className="flex items-center gap-2 px-4 py-2.5 bg-red-500 hover:bg-red-400 disabled:opacity-40 text-black text-xs font-bold rounded-xl cursor-pointer transition-colors"
+                    className="flex items-center gap-2 px-4 py-2.5 bg-orange-500 hover:bg-orange-400 disabled:opacity-40 text-black text-xs font-bold rounded-xl cursor-pointer transition-colors"
                   >
                     <Upload className="w-3.5 h-3.5" />
                     {mongoSyncing ? 'Syncing to Atlas...' : 'Push to MongoDB Atlas'}
@@ -2645,7 +2645,7 @@ export const AdminPage: React.FC<AdminPageProps> = ({ onNavigateToHome }) => {
               </div>
 
               {/* Backup Card */}
-              <div className="p-6 rounded-2xl bg-[#0f0a0a] border border-white/[0.08] space-y-4">
+              <div className="p-6 rounded-2xl bg-[#100c06] border border-white/[0.08] space-y-4">
                 <div className="flex items-center justify-between">
                   <div>
                     <h3 className="text-base font-bold text-white font-display">Export Portfolio Data</h3>
@@ -2655,7 +2655,7 @@ export const AdminPage: React.FC<AdminPageProps> = ({ onNavigateToHome }) => {
                   </div>
                   <button
                     onClick={handleExportJSON}
-                    className="px-4 py-2 bg-red-500 hover:bg-red-400 text-black text-xs font-semibold rounded-xl flex items-center gap-1.5 cursor-pointer transition-colors"
+                    className="px-4 py-2 bg-orange-500 hover:bg-orange-400 text-black text-xs font-semibold rounded-xl flex items-center gap-1.5 cursor-pointer transition-colors"
                   >
                     <Download className="w-3.5 h-3.5" />
                     <span>Download JSON Backup</span>
@@ -2664,7 +2664,7 @@ export const AdminPage: React.FC<AdminPageProps> = ({ onNavigateToHome }) => {
               </div>
 
               {/* Restore Card */}
-              <div className="p-6 rounded-2xl bg-[#0f0a0a] border border-white/[0.08] space-y-3">
+              <div className="p-6 rounded-2xl bg-[#100c06] border border-white/[0.08] space-y-3">
                 <h3 className="text-base font-bold text-white font-display">Restore from JSON</h3>
                 <p className="text-xs text-zinc-400">
                   Paste a previously exported portfolio JSON payload to restore all data:
@@ -2674,7 +2674,7 @@ export const AdminPage: React.FC<AdminPageProps> = ({ onNavigateToHome }) => {
                   value={importJsonText}
                   onChange={(e) => setImportJsonText(e.target.value)}
                   placeholder="Paste JSON content here..."
-                  className="w-full bg-[#120c0c] border border-white/10 rounded-xl p-3 text-xs text-white font-mono resize-y"
+                  className="w-full bg-[#141008] border border-white/10 rounded-xl p-3 text-xs text-white font-mono resize-y"
                 />
                 <button
                   onClick={handleImportJSON}
@@ -2687,17 +2687,17 @@ export const AdminPage: React.FC<AdminPageProps> = ({ onNavigateToHome }) => {
               </div>
 
               {/* Reset to Demo Defaults */}
-              <div className="p-6 rounded-2xl bg-red-950/20 border border-red-500/20 space-y-3">
+              <div className="p-6 rounded-2xl bg-orange-950/20 border border-orange-500/20 space-y-3">
                 <div className="flex items-center justify-between">
                   <div>
-                    <h3 className="text-sm font-bold text-red-300">Reset All to Initial Demo Samples</h3>
+                    <h3 className="text-sm font-bold text-orange-300">Reset All to Initial Demo Samples</h3>
                     <p className="text-xs text-zinc-400 mt-0.5">
                       Restores demo video projects, services, testimonials, and sample data.
                     </p>
                   </div>
                   <button
                     onClick={handleResetAllToDemo}
-                    className="px-4 py-2 bg-red-500/20 hover:bg-red-500/30 text-red-300 border border-red-500/30 text-xs font-semibold rounded-xl cursor-pointer transition-colors"
+                    className="px-4 py-2 bg-orange-500/20 hover:bg-orange-500/30 text-orange-300 border border-orange-500/30 text-xs font-semibold rounded-xl cursor-pointer transition-colors"
                   >
                     Reset All Data
                   </button>
@@ -2750,8 +2750,8 @@ export const AdminPage: React.FC<AdminPageProps> = ({ onNavigateToHome }) => {
             <div className="mb-3">
               {videoUploadOverlay.phase === 'uploading' && (
                 <div className="flex items-center justify-center gap-2">
-                  <span className="inline-block w-2 h-2 rounded-full bg-red-500 animate-pulse" />
-                  <span className="text-red-400 font-mono text-sm tracking-widest uppercase">Uploading</span>
+                  <span className="inline-block w-2 h-2 rounded-full bg-orange-500 animate-pulse" />
+                  <span className="text-orange-400 font-mono text-sm tracking-widest uppercase">Uploading</span>
                 </div>
               )}
               {videoUploadOverlay.phase === 'processing' && (
@@ -2786,13 +2786,13 @@ export const AdminPage: React.FC<AdminPageProps> = ({ onNavigateToHome }) => {
             {videoUploadOverlay.phase === 'done' && (
               <div className="flex flex-col gap-3">
                 {/* Blob URL warning */}
-                <div className="flex items-start gap-2.5 px-4 py-3 bg-red-500/10 border border-red-500/30 rounded-xl text-left">
-                  <svg className="w-4 h-4 text-red-500 flex-shrink-0 mt-0.5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <div className="flex items-start gap-2.5 px-4 py-3 bg-orange-500/10 border border-orange-500/30 rounded-xl text-left">
+                  <svg className="w-4 h-4 text-orange-500 flex-shrink-0 mt-0.5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 9v2m0 4h.01M10.29 3.86L1.82 18a2 2 0 001.71 3h16.94a2 2 0 001.71-3L13.71 3.86a2 2 0 00-3.42 0z" />
                   </svg>
                   <div>
-                    <p className="text-red-400 text-xs font-semibold mb-0.5">Temporary session video</p>
-                    <p className="text-red-300/70 text-[11px] font-mono leading-relaxed">
+                    <p className="text-orange-400 text-xs font-semibold mb-0.5">Temporary session video</p>
+                    <p className="text-orange-300/70 text-[11px] font-mono leading-relaxed">
                       This local file is only available until you refresh the page. For persistent playback, host the video on YouTube, Vimeo, or a CDN and paste the URL instead.
                     </p>
                   </div>
@@ -2802,7 +2802,7 @@ export const AdminPage: React.FC<AdminPageProps> = ({ onNavigateToHome }) => {
                     setVideoUploadOverlay(prev => ({ ...prev, active: false }));
                     openFramePicker(videoUploadOverlay.blobUrl);
                   }}
-                  className="w-full py-3 px-6 bg-red-500 hover:bg-red-400 text-black font-bold rounded-2xl text-sm flex items-center justify-center gap-2 transition-all shadow-lg shadow-red-500/30"
+                  className="w-full py-3 px-6 bg-orange-500 hover:bg-orange-400 text-black font-bold rounded-2xl text-sm flex items-center justify-center gap-2 transition-all shadow-lg shadow-orange-500/30"
                 >
                   <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2.5} d="M15 10l4.553-2.069A1 1 0 0121 8.876V15.124a1 1 0 01-1.447.894L15 14M5 18h8a2 2 0 002-2V8a2 2 0 00-2-2H5a2 2 0 00-2 2v8a2 2 0 002 2z" />
@@ -2829,7 +2829,7 @@ export const AdminPage: React.FC<AdminPageProps> = ({ onNavigateToHome }) => {
           style={{ background: 'rgba(5,5,10,0.94)', backdropFilter: 'blur(14px)' }}
           onClick={(e) => { if (e.target === e.currentTarget) setThumbFramePicker(prev => ({ ...prev, open: false })); }}
         >
-          <div className="w-full max-w-2xl bg-[#0c0808] border border-white/10 rounded-3xl overflow-hidden shadow-2xl">
+          <div className="w-full max-w-2xl bg-[#0e0b05] border border-white/10 rounded-3xl overflow-hidden shadow-2xl">
             <div className="px-6 py-4 border-b border-white/[0.07] flex items-center justify-between">
               <div>
                 <h3 className="text-white font-bold text-base">Pick Thumbnail from Video</h3>
@@ -2862,7 +2862,7 @@ export const AdminPage: React.FC<AdminPageProps> = ({ onNavigateToHome }) => {
                 <button
                   type="button"
                   onClick={captureVideoFrame}
-                  className="absolute bottom-3 right-3 flex items-center gap-1.5 px-3 py-2 bg-black/70 hover:bg-red-500/90 hover:text-black border border-white/20 hover:border-red-500 text-white rounded-xl text-xs font-semibold transition-all backdrop-blur"
+                  className="absolute bottom-3 right-3 flex items-center gap-1.5 px-3 py-2 bg-black/70 hover:bg-orange-500/90 hover:text-black border border-white/20 hover:border-orange-500 text-white rounded-xl text-xs font-semibold transition-all backdrop-blur"
                 >
                   <svg className="w-3.5 h-3.5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 9a2 2 0 012-2h.93a2 2 0 001.664-.89l.812-1.22A2 2 0 0110.07 4h3.86a2 2 0 011.664.89l.812 1.22A2 2 0 0018.07 7H19a2 2 0 012 2v9a2 2 0 01-2 2H5a2 2 0 01-2-2V9z" />
@@ -2912,7 +2912,7 @@ export const AdminPage: React.FC<AdminPageProps> = ({ onNavigateToHome }) => {
                         if (thumbVideoRef.current) thumbVideoRef.current.currentTime = t;
                         setThumbFramePicker(prev => ({ ...prev, currentTime: t }));
                       }}
-                      className="flex-1 py-1 text-[10px] font-mono bg-white/5 hover:bg-red-500/20 hover:text-red-400 border border-white/10 rounded-lg text-zinc-400 transition-all"
+                      className="flex-1 py-1 text-[10px] font-mono bg-white/5 hover:bg-orange-500/20 hover:text-orange-400 border border-white/10 rounded-lg text-zinc-400 transition-all"
                     >
                       {pct}%
                     </button>
@@ -2950,7 +2950,7 @@ export const AdminPage: React.FC<AdminPageProps> = ({ onNavigateToHome }) => {
                 <button
                   type="button"
                   onClick={captureVideoFrame}
-                  className="flex-1 py-3 bg-red-500 hover:bg-red-400 text-black font-bold rounded-2xl text-sm flex items-center justify-center gap-2 transition-all"
+                  className="flex-1 py-3 bg-orange-500 hover:bg-orange-400 text-black font-bold rounded-2xl text-sm flex items-center justify-center gap-2 transition-all"
                 >
                   <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2.5} d="M3 9a2 2 0 012-2h.93a2 2 0 001.664-.89l.812-1.22A2 2 0 0110.07 4h3.86a2 2 0 011.664.89l.812 1.22A2 2 0 0018.07 7H19a2 2 0 012 2v9a2 2 0 01-2 2H5a2 2 0 01-2-2V9z" />

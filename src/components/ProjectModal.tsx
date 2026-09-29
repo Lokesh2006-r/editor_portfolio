@@ -104,7 +104,7 @@ export const ProjectModal: React.FC<ProjectModalProps> = ({
       {/* Main Container */}
       <div
         ref={modalRef}
-        className="relative z-10 w-full max-w-5xl bg-[#0c0808] border border-white/10 rounded-2xl shadow-2xl overflow-hidden my-auto max-h-[96vh] flex flex-col"
+        className="relative z-10 w-full max-w-5xl bg-[#0e0b05] border border-white/10 rounded-2xl shadow-2xl overflow-hidden my-auto max-h-[96vh] flex flex-col"
       >
         {/* Top Header Bar */}
         <div className="flex items-center justify-between px-4 sm:px-6 py-3 border-b border-white/[0.08] bg-[#09090c]">
@@ -139,7 +139,7 @@ export const ProjectModal: React.FC<ProjectModalProps> = ({
           <div className="flex items-center gap-2 sm:gap-3">
             <button
               onClick={handleShare}
-              className="flex items-center gap-1.5 px-2.5 py-1.5 rounded-lg bg-white/5 hover:bg-white/10 text-zinc-300 hover:text-red-500 text-xs font-mono transition-colors cursor-pointer"
+              className="flex items-center gap-1.5 px-2.5 py-1.5 rounded-lg bg-white/5 hover:bg-white/10 text-zinc-300 hover:text-orange-500 text-xs font-mono transition-colors cursor-pointer"
               title="Share edit link"
             >
               {copiedLink ? (
@@ -158,7 +158,7 @@ export const ProjectModal: React.FC<ProjectModalProps> = ({
             <button
               ref={closeBtnRef}
               onClick={onClose}
-              className="p-1.5 rounded-lg bg-white/5 hover:bg-white/15 text-zinc-300 hover:text-white transition-colors cursor-pointer focus-visible:outline-red-600"
+              className="p-1.5 rounded-lg bg-white/5 hover:bg-white/15 text-zinc-300 hover:text-white transition-colors cursor-pointer focus-visible:outline-orange-600"
               aria-label="Close vertical video viewer"
             >
               <X className="w-5 h-5" />
@@ -187,7 +187,7 @@ export const ProjectModal: React.FC<ProjectModalProps> = ({
               {/* Category, Duration, Year */}
               <div className="space-y-2">
                 <div className="flex items-center gap-2 text-xs text-zinc-400 flex-wrap">
-                  <span className="text-red-500 font-semibold">{project.categoryLabel}</span>
+                  <span className="text-orange-500 font-semibold">{project.categoryLabel}</span>
                   <span aria-hidden="true">·</span>
                   <span className="font-mono">{project.year}</span>
                   <span aria-hidden="true">·</span>
@@ -212,7 +212,7 @@ export const ProjectModal: React.FC<ProjectModalProps> = ({
               {/* Role & Creative Approach */}
               <div className="space-y-3 pt-3 border-t border-white/[0.08]">
                 <div>
-                  <span className="text-[11px] font-mono uppercase tracking-widest text-red-500 block mb-1">
+                  <span className="text-[11px] font-mono uppercase tracking-widest text-orange-500 block mb-1">
                     Editorial Role
                   </span>
                   <p className="text-xs sm:text-sm text-zinc-200 font-medium">
@@ -239,7 +239,7 @@ export const ProjectModal: React.FC<ProjectModalProps> = ({
                   <ul className="space-y-1.5 text-xs text-zinc-300">
                     {project.editingTechniques.map((tech, i) => (
                       <li key={i} className="flex items-start gap-1.5">
-                        <span className="text-red-500">•</span>
+                        <span className="text-orange-500">•</span>
                         <span>{tech}</span>
                       </li>
                     ))}
@@ -272,7 +272,7 @@ export const ProjectModal: React.FC<ProjectModalProps> = ({
                   <div className="text-xs text-zinc-300 flex flex-wrap gap-2">
                     {project.deliverables.map((item, i) => (
                       <span key={i} className="flex items-center gap-1">
-                        <span className="w-1 h-1 rounded-full bg-red-500" />
+                        <span className="w-1 h-1 rounded-full bg-orange-500" />
                         <span>{item}</span>
                       </span>
                     ))}
@@ -284,7 +284,7 @@ export const ProjectModal: React.FC<ProjectModalProps> = ({
                     onClose();
                     onDiscussProject(project);
                   }}
-                  className="inline-flex items-center justify-center gap-1.5 px-4 py-2.5 text-xs font-semibold uppercase tracking-wider text-black bg-red-500 hover:bg-red-400 rounded-lg shadow-sm whitespace-nowrap cursor-pointer active:scale-95 transition-all"
+                  className="inline-flex items-center justify-center gap-1.5 px-4 py-2.5 text-xs font-semibold uppercase tracking-wider text-black bg-orange-500 hover:bg-orange-400 rounded-lg shadow-sm whitespace-nowrap cursor-pointer active:scale-95 transition-all"
                 >
                   <span>Enquire about similar edit</span>
                   <ArrowUpRight className="w-3.5 h-3.5" />

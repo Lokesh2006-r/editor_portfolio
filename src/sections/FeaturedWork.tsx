@@ -50,9 +50,9 @@ export const FeaturedWork: React.FC<FeaturedWorkProps> = ({
   }, [projects, activeFilter, searchQuery]);
 
   return (
-    <section id="edits" className="py-20 sm:py-28 bg-[#050505] relative overflow-hidden">
+    <section id="edits" className="py-20 sm:py-28 bg-[#080604] relative overflow-hidden">
       {/* Subtle ambient light glow */}
-      <div className="absolute top-1/3 left-0 w-80 h-80 rounded-full bg-red-600/5 blur-3xl pointer-events-none" />
+      <div className="absolute top-1/3 left-0 w-80 h-80 rounded-full bg-orange-600/5 blur-3xl pointer-events-none" />
 
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
         {/* Section Header with scroll reveal */}
@@ -64,7 +64,7 @@ export const FeaturedWork: React.FC<FeaturedWorkProps> = ({
           className="flex flex-col md:flex-row md:items-end justify-between gap-6 mb-8 sm:mb-12"
         >
           <div className="max-w-2xl">
-            <div className="flex items-center gap-2 text-xs font-mono uppercase tracking-widest text-red-500 mb-2 sm:mb-3">
+            <div className="flex items-center gap-2 text-xs font-mono uppercase tracking-widest text-orange-500 mb-2 sm:mb-3">
               <Film className="w-3.5 h-3.5" />
               <span>Vertical Video Gallery (9:16)</span>
             </div>
@@ -85,7 +85,7 @@ export const FeaturedWork: React.FC<FeaturedWorkProps> = ({
               placeholder="Search edits, styles..."
               value={searchQuery}
               onChange={(e) => setSearchQuery(e.target.value)}
-              className="w-full bg-[#0f0a0a] border border-white/10 rounded-lg pl-10 pr-4 py-2 text-xs text-white placeholder-zinc-500 focus:outline-none focus:border-red-600/50 transition-colors"
+              className="w-full bg-[#100c06] border border-white/10 rounded-lg pl-10 pr-4 py-2 text-xs text-white placeholder-zinc-500 focus:outline-none focus:border-orange-600/50 transition-colors"
             />
           </div>
         </motion.div>
@@ -98,7 +98,7 @@ export const FeaturedWork: React.FC<FeaturedWorkProps> = ({
           transition={{ duration: 0.5, delay: 0.1 }}
           className="flex items-center gap-2 overflow-x-auto pb-3 mb-8 no-scrollbar border-b border-white/[0.06]"
         >
-          <div className="flex items-center gap-1.5 p-1 bg-[#0f0a0a] rounded-xl border border-white/10 shrink-0">
+          <div className="flex items-center gap-1.5 p-1 bg-[#100c06] rounded-xl border border-white/10 shrink-0">
             {filterTabs.map((tab) => {
               const isActive = activeFilter === tab.id;
               return (
@@ -107,7 +107,7 @@ export const FeaturedWork: React.FC<FeaturedWorkProps> = ({
                   onClick={() => setActiveFilter(tab.id)}
                   className={`px-3 py-1.5 text-xs font-mono uppercase tracking-wider rounded-lg transition-all cursor-pointer whitespace-nowrap active:scale-95 ${
                     isActive
-                      ? 'bg-red-500 text-black font-bold shadow-md'
+                      ? 'bg-orange-500 text-black font-bold shadow-md'
                       : 'text-zinc-400 hover:text-white hover:bg-white/5'
                   }`}
                 >
@@ -120,7 +120,7 @@ export const FeaturedWork: React.FC<FeaturedWorkProps> = ({
           {searchQuery && (
             <button
               onClick={() => setSearchQuery('')}
-              className="text-xs font-mono text-red-500 hover:underline px-2 whitespace-nowrap cursor-pointer"
+              className="text-xs font-mono text-orange-500 hover:underline px-2 whitespace-nowrap cursor-pointer"
             >
               Clear search
             </button>
@@ -155,7 +155,7 @@ export const FeaturedWork: React.FC<FeaturedWorkProps> = ({
             ))}
           </motion.div>
         ) : (
-          <div className="text-center py-16 bg-[#0f0a0a] rounded-2xl border border-white/10 p-6">
+          <div className="text-center py-16 bg-[#100c06] rounded-2xl border border-white/10 p-6">
             <SlidersHorizontal className="w-8 h-8 text-zinc-600 mx-auto mb-2" />
             <h3 className="text-sm sm:text-base font-bold text-white mb-1">No matching edits found</h3>
             <p className="text-xs text-zinc-400 mb-4">
@@ -166,7 +166,7 @@ export const FeaturedWork: React.FC<FeaturedWorkProps> = ({
                 setActiveFilter('all');
                 setSearchQuery('');
               }}
-              className="px-4 py-2 text-xs font-semibold text-black bg-red-500 hover:bg-red-400 rounded-md transition-colors cursor-pointer"
+              className="px-4 py-2 text-xs font-semibold text-black bg-orange-500 hover:bg-orange-400 rounded-md transition-colors cursor-pointer"
             >
               Reset Filters
             </button>

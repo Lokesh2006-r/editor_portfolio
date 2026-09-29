@@ -152,7 +152,7 @@ export const Home: React.FC<HomeProps> = ({ onNavigateToAdmin }) => {
   };
 
   return (
-    <div className="relative min-h-screen text-[#f4f4f5] flex flex-col font-sans film-grain selection:bg-red-500 selection:text-black">
+    <div className="relative min-h-screen text-[#f4f4f5] flex flex-col font-sans film-grain selection:bg-orange-500 selection:text-black">
       {/* Aesthetic Floating Glowing Background Canvas */}
       <AestheticBackground />
 

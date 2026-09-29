@@ -10,9 +10,9 @@ interface TestimonialsProps {
 
 export const Testimonials: React.FC<TestimonialsProps> = ({ testimonials, onContact }) => {
   return (
-    <section id="testimonials" className="py-20 sm:py-28 bg-[#080808] relative border-t border-white/[0.06] overflow-hidden">
+    <section id="testimonials" className="py-20 sm:py-28 bg-[#0a0704] relative border-t border-white/[0.06] overflow-hidden">
       {/* Subtle ambient light glow */}
-      <div className="absolute top-1/2 right-10 w-80 h-80 rounded-full bg-red-600/5 blur-3xl pointer-events-none" />
+      <div className="absolute top-1/2 right-10 w-80 h-80 rounded-full bg-orange-600/5 blur-3xl pointer-events-none" />
 
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
         {/* Section Header with scroll reveal */}
@@ -23,7 +23,7 @@ export const Testimonials: React.FC<TestimonialsProps> = ({ testimonials, onCont
           transition={{ duration: 0.6, ease: [0.16, 1, 0.3, 1] }}
           className="max-w-3xl mb-12 sm:mb-16"
         >
-          <div className="flex items-center gap-2 text-xs font-mono uppercase tracking-widest text-red-500 mb-3">
+          <div className="flex items-center gap-2 text-xs font-mono uppercase tracking-widest text-orange-500 mb-3">
             <MessageSquareQuote className="w-3.5 h-3.5" />
             <span>Client Feedback</span>
           </div>
@@ -59,12 +59,12 @@ export const Testimonials: React.FC<TestimonialsProps> = ({ testimonials, onCont
                 show: { opacity: 1, y: 0, transition: { duration: 0.5, ease: [0.16, 1, 0.3, 1] } },
               }}
               whileHover={{ y: -6 }}
-              className="bg-[#0f0a0a] border border-white/[0.08] hover:border-red-600/40 rounded-xl p-6 flex flex-col justify-between transition-all shadow-lg shadow-black/40"
+              className="bg-[#100c06] border border-white/[0.08] hover:border-orange-600/40 rounded-xl p-6 flex flex-col justify-between transition-all shadow-lg shadow-black/40"
             >
               <div>
                 {/* Demo Marker */}
                 {test.isDemo && (
-                  <div className="flex items-center justify-between text-[10px] font-mono uppercase tracking-wider text-red-600/80 mb-4 pb-2 border-b border-white/[0.06]">
+                  <div className="flex items-center justify-between text-[10px] font-mono uppercase tracking-wider text-orange-600/80 mb-4 pb-2 border-b border-white/[0.06]">
                     <span>Sample Review Placeholder</span>
                   </div>
                 )}
@@ -81,7 +81,7 @@ export const Testimonials: React.FC<TestimonialsProps> = ({ testimonials, onCont
                 <div className="text-xs text-zinc-400 mt-0.5 flex items-center gap-1.5 flex-wrap">
                   <span>{test.role}</span>
                   <span aria-hidden="true">·</span>
-                  <span className="text-red-500 font-medium">{test.projectType}</span>
+                  <span className="text-orange-500 font-medium">{test.projectType}</span>
                 </div>
                 {test.company && (
                   <div className="text-[11px] font-mono text-zinc-500 mt-1">
@@ -101,13 +101,13 @@ export const Testimonials: React.FC<TestimonialsProps> = ({ testimonials, onCont
             whileHover={{ y: -6, scale: 1.01 }}
             whileTap={{ scale: 0.98 }}
             onClick={onContact}
-            className="group bg-gradient-to-br from-[#0f0a0a] to-[#120c0c] border border-dashed border-red-600/30 hover:border-red-500 rounded-xl p-6 flex flex-col justify-between cursor-pointer transition-all duration-300"
+            className="group bg-gradient-to-br from-[#100c06] to-[#141008] border border-dashed border-orange-600/30 hover:border-orange-500 rounded-xl p-6 flex flex-col justify-between cursor-pointer transition-all duration-300"
           >
             <div>
-              <span className="text-[10px] font-mono uppercase tracking-widest text-red-500 block mb-2">
+              <span className="text-[10px] font-mono uppercase tracking-widest text-orange-500 block mb-2">
                 Next Collaboration
               </span>
-              <h3 className="text-lg sm:text-xl font-bold font-display text-white mb-2 group-hover:text-red-400 transition-colors">
+              <h3 className="text-lg sm:text-xl font-bold font-display text-white mb-2 group-hover:text-orange-400 transition-colors">
                 Your edit could be next.
               </h3>
               <p className="text-xs text-zinc-400 leading-relaxed">
@@ -115,7 +115,7 @@ export const Testimonials: React.FC<TestimonialsProps> = ({ testimonials, onCont
               </p>
             </div>
 
-            <div className="mt-6 pt-4 border-t border-white/[0.06] flex items-center justify-between text-xs font-semibold uppercase tracking-wider text-red-500">
+            <div className="mt-6 pt-4 border-t border-white/[0.06] flex items-center justify-between text-xs font-semibold uppercase tracking-wider text-orange-500">
               <span>Start an edit inquiry</span>
               <ArrowUpRight className="w-4 h-4 transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-transform" />
             </div>

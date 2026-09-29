@@ -19,12 +19,12 @@ export const Showreel: React.FC<ShowreelProps> = ({ config, onOpenLightbox }) =>
   ];
 
   return (
-    <section id="showreel" className="py-20 sm:py-28 bg-[#050505] relative border-t border-red-900/20 overflow-hidden">
+    <section id="showreel" className="py-20 sm:py-28 bg-[#080604] relative border-t border-orange-950/20 overflow-hidden">
       {/* Cinematic red sweep background */}
       <div className="absolute inset-0 pointer-events-none">
-        <div className="absolute top-0 left-0 w-[60%] h-[60%] rounded-full bg-red-900/8 blur-[120px] animate-float-orb1" />
-        <div className="absolute bottom-0 right-0 w-[50%] h-[50%] rounded-full bg-red-600/6 blur-[100px] animate-float-orb2" />
-        <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[40%] h-[40%] rounded-full bg-red-800/5 blur-[80px]" />
+        <div className="absolute top-0 left-0 w-[60%] h-[60%] rounded-full bg-orange-950/8 blur-[120px] animate-float-orb1" />
+        <div className="absolute bottom-0 right-0 w-[50%] h-[50%] rounded-full bg-orange-600/6 blur-[100px] animate-float-orb2" />
+        <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[40%] h-[40%] rounded-full bg-orange-900/5 blur-[80px]" />
       </div>
       {/* Subtle grid */}
       <div className="absolute inset-0 bg-grid-pattern opacity-30 pointer-events-none" />
@@ -38,7 +38,7 @@ export const Showreel: React.FC<ShowreelProps> = ({ config, onOpenLightbox }) =>
           transition={{ duration: 0.6, ease: [0.16, 1, 0.3, 1] }}
           className="max-w-3xl mb-12 sm:mb-16"
         >
-          <div className="flex items-center gap-2 text-xs font-mono uppercase tracking-widest text-red-500 mb-3">
+          <div className="flex items-center gap-2 text-xs font-mono uppercase tracking-widest text-orange-500 mb-3">
             <Film className="w-3.5 h-3.5" />
             <span>Featured Mobile Showreel</span>
           </div>
@@ -61,10 +61,10 @@ export const Showreel: React.FC<ShowreelProps> = ({ config, onOpenLightbox }) =>
             transition={{ duration: 0.7, ease: [0.16, 1, 0.3, 1] }}
             className="lg:col-span-6 flex justify-center"
           >
-            <div className="relative w-full max-w-[340px] sm:max-w-[380px] bg-[#0f0a0a] rounded-2xl p-2.5 sm:p-3 border border-white/10 shadow-2xl shadow-black/80 ring-1 ring-white/5 transition-transform duration-500 hover:scale-[1.01]">
+            <div className="relative w-full max-w-[340px] sm:max-w-[380px] bg-[#100c06] rounded-2xl p-2.5 sm:p-3 border border-white/10 shadow-2xl shadow-black/80 ring-1 ring-white/5 transition-transform duration-500 hover:scale-[1.01]">
               {/* Phone Mockup Subtle Notch / Top Bar */}
               <div className="flex items-center justify-between px-3 py-1.5 mb-1.5 text-[10px] font-mono text-zinc-500">
-                <span className="text-red-500 font-semibold">9:16 REEL PREVIEW</span>
+                <span className="text-orange-500 font-semibold">9:16 REEL PREVIEW</span>
                 <span className="flex items-center gap-1.5">
                   <span className="w-1.5 h-1.5 rounded-full bg-emerald-400 animate-pulse" />
                   <span>4K 60FPS</span>
@@ -87,7 +87,7 @@ export const Showreel: React.FC<ShowreelProps> = ({ config, onOpenLightbox }) =>
                 <span>Duration: {config.showreelDuration}</span>
                 <button
                   onClick={onOpenLightbox}
-                  className="flex items-center gap-1 text-red-500 hover:text-red-400 transition-colors cursor-pointer"
+                  className="flex items-center gap-1 text-orange-500 hover:text-orange-400 transition-colors cursor-pointer"
                 >
                   <Maximize className="w-3.5 h-3.5" />
                   <span>Fullscreen</span>
@@ -105,7 +105,7 @@ export const Showreel: React.FC<ShowreelProps> = ({ config, onOpenLightbox }) =>
             className="lg:col-span-6 space-y-7"
           >
             <div>
-              <span className="text-xs font-mono uppercase tracking-wider text-red-500 block mb-1.5">
+              <span className="text-xs font-mono uppercase tracking-wider text-orange-500 block mb-1.5">
                 Curated Vertical Montage
               </span>
               <h3 className="text-2xl sm:text-3xl font-bold font-display text-white">
@@ -120,7 +120,7 @@ export const Showreel: React.FC<ShowreelProps> = ({ config, onOpenLightbox }) =>
             {/* List of Key Editing Styles */}
             <div className="space-y-3.5 pt-2 border-t border-white/[0.08]">
               <h4 className="flex items-center gap-2 text-xs font-mono uppercase tracking-widest text-zinc-400">
-                <Sliders className="w-3.5 h-3.5 text-red-500" />
+                <Sliders className="w-3.5 h-3.5 text-orange-500" />
                 <span>Featured Post-Production Techniques</span>
               </h4>
 
@@ -133,9 +133,9 @@ export const Showreel: React.FC<ShowreelProps> = ({ config, onOpenLightbox }) =>
                     viewport={{ once: true }}
                     transition={{ duration: 0.4, delay: 0.08 * idx }}
                     whileHover={{ x: 4 }}
-                    className="p-3 rounded-xl bg-[#0f0a0a] border border-white/[0.06] hover:border-red-600/30 transition-all flex items-start gap-3"
+                    className="p-3 rounded-xl bg-[#100c06] border border-white/[0.06] hover:border-orange-600/30 transition-all flex items-start gap-3"
                   >
-                    <CheckCircle2 className="w-4 h-4 text-red-500 shrink-0 mt-0.5" />
+                    <CheckCircle2 className="w-4 h-4 text-orange-500 shrink-0 mt-0.5" />
                     <div>
                       <h5 className="text-xs font-semibold text-white">{style.title}</h5>
                       <p className="text-[11px] text-zinc-400 mt-0.5">{style.desc}</p>
@@ -151,7 +151,7 @@ export const Showreel: React.FC<ShowreelProps> = ({ config, onOpenLightbox }) =>
                 whileHover={{ scale: 1.02 }}
                 whileTap={{ scale: 0.98 }}
                 onClick={onOpenLightbox}
-                className="px-6 py-3 text-xs font-semibold uppercase tracking-wider text-black bg-red-500 hover:bg-red-400 rounded-lg shadow-md transition-all flex items-center justify-center gap-2 cursor-pointer active:scale-95"
+                className="px-6 py-3 text-xs font-semibold uppercase tracking-wider text-black bg-orange-500 hover:bg-orange-400 rounded-lg shadow-md transition-all flex items-center justify-center gap-2 cursor-pointer active:scale-95"
               >
                 <Play className="w-3.5 h-3.5 fill-black" />
                 <span>Play In Fullscreen Viewer</span>

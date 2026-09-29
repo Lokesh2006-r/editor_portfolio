@@ -59,7 +59,7 @@ export const MultiSelectTagInput: React.FC<MultiSelectTagInputProps> = ({
       <input type="hidden" name={name} value={tags.join(', ')} />
 
       <div 
-        className="min-h-[38px] bg-[#18181e] border border-white/10 rounded px-2 py-1.5 flex flex-wrap gap-1.5 focus-within:border-red-500 focus-within:ring-1 focus-within:ring-red-500/50 cursor-text"
+        className="min-h-[38px] bg-[#18181e] border border-white/10 rounded px-2 py-1.5 flex flex-wrap gap-1.5 focus-within:border-orange-500 focus-within:ring-1 focus-within:ring-orange-500/50 cursor-text"
         onClick={() => setIsOpen(true)}
       >
         {tags.map((tag) => (
@@ -74,7 +74,7 @@ export const MultiSelectTagInput: React.FC<MultiSelectTagInputProps> = ({
                 e.stopPropagation();
                 removeTag(tag);
               }}
-              className="text-zinc-400 hover:text-red-400 focus:outline-none"
+              className="text-zinc-400 hover:text-orange-400 focus:outline-none"
             >
               <X className="w-3 h-3" />
             </button>
@@ -113,7 +113,7 @@ export const MultiSelectTagInput: React.FC<MultiSelectTagInputProps> = ({
                   addTag(suggested);
                   setIsOpen(false);
                 }}
-                className="w-full text-left px-3 py-1.5 text-xs text-zinc-300 hover:bg-white/5 hover:text-red-500 rounded transition-colors flex items-center gap-2"
+                className="w-full text-left px-3 py-1.5 text-xs text-zinc-300 hover:bg-white/5 hover:text-orange-500 rounded transition-colors flex items-center gap-2"
               >
                 <Plus className="w-3 h-3" />
                 {suggested}
@@ -126,7 +126,7 @@ export const MultiSelectTagInput: React.FC<MultiSelectTagInputProps> = ({
                 addTag(inputValue);
                 setIsOpen(false);
               }}
-              className="w-full text-left px-3 py-1.5 text-xs text-red-500 bg-red-600/10 hover:bg-red-600/20 rounded transition-colors flex items-center gap-2"
+              className="w-full text-left px-3 py-1.5 text-xs text-orange-500 bg-orange-600/10 hover:bg-orange-600/20 rounded transition-colors flex items-center gap-2"
             >
               <Plus className="w-3 h-3" />
               Add "{inputValue.trim()}"
