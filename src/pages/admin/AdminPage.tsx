@@ -110,6 +110,79 @@ export const AdminPage: React.FC<AdminPageProps> = ({ onNavigateToHome }) => {
   const [mongoSyncLog, setMongoSyncLog] = useState<string[]>([]);
   const [mongoPulling, setMongoPulling] = useState(false);
 
+  // ── Video Upload Overlay State ──────────────────────────────────────────
+  const [videoUploadOverlay, setVideoUploadOverlay] = useState<{
+    active: boolean;
+    progress: number;
+    phase: 'uploading' | 'processing' | 'done' | 'idle';
+    blobUrl: string;
+    fileName: string;
+    fileSize: string;
+  }>({ active: false, progress: 0, phase: 'idle', blobUrl: '', fileName: '', fileSize: '' });
+
+  // ── Thumbnail Frame Extractor State ────────────────────────────────────
+  const [thumbFramePicker, setThumbFramePicker] = useState<{
+    open: boolean;
+    videoSrc: string;
+    currentTime: number;
+    duration: number;
+    capturedFrame: string;
+  }>({ open: false, videoSrc: '', currentTime: 0, duration: 0, capturedFrame: '' });
+
+  const thumbVideoRef = React.useRef<HTMLVideoElement>(null);
+  const thumbCanvasRef = React.useRef<HTMLCanvasElement>(null);
+
+  // Simulate file upload progress for video
+  const handleVideoFileUpload = (file: File) => {
+    const blobUrl = URL.createObjectURL(file);
+    const sizeMB = (file.size / (1024 * 1024)).toFixed(1);
+    setVideoUploadOverlay({ active: true, progress: 0, phase: 'uploading', blobUrl, fileName: file.name, fileSize: `${sizeMB} MB` });
+
+    let prog = 0;
+    const interval = setInterval(() => {
+      prog += Math.random() * 12 + 3;
+      if (prog >= 90) {
+        clearInterval(interval);
+        setVideoUploadOverlay(prev => ({ ...prev, progress: 90, phase: 'processing' }));
+        setTimeout(() => {
+          setVideoUploadOverlay(prev => ({ ...prev, progress: 100, phase: 'done' }));
+          // Set video URL in the form input
+          const input = document.getElementById('project-video-input') as HTMLInputElement;
+          if (input) input.value = blobUrl;
+        }, 1200);
+        return;
+      }
+      setVideoUploadOverlay(prev => ({ ...prev, progress: Math.min(prog, 89) }));
+    }, 180);
+  };
+
+  // Extract canvas frame from video scrubber
+  const captureVideoFrame = () => {
+    const video = thumbVideoRef.current;
+    const canvas = thumbCanvasRef.current;
+    if (!video || !canvas) return;
+    canvas.width = video.videoWidth;
+    canvas.height = video.videoHeight;
+    const ctx = canvas.getContext('2d');
+    if (!ctx) return;
+    ctx.drawImage(video, 0, 0, canvas.width, canvas.height);
+    const dataUrl = canvas.toDataURL('image/jpeg', 0.92);
+    setThumbFramePicker(prev => ({ ...prev, capturedFrame: dataUrl }));
+  };
+
+  const applyFrameAsThumbnail = () => {
+    const { capturedFrame } = thumbFramePicker;
+    if (!capturedFrame) return;
+    const input = document.getElementById('project-thumbnail-input') as HTMLInputElement;
+    if (input) input.value = capturedFrame;
+    setThumbFramePicker(prev => ({ ...prev, open: false }));
+    showNotification('✅ Video frame set as thumbnail!');
+  };
+
+  const openFramePicker = (videoSrc: string) => {
+    setThumbFramePicker({ open: true, videoSrc, currentTime: 0, duration: 0, capturedFrame: '' });
+  };
+
   // Keep state synced with events
   useEffect(() => {
     const handleAuthChange = () => setSession(auth.getSession());
@@ -1170,35 +1243,61 @@ export const AdminPage: React.FC<AdminPageProps> = ({ onNavigateToHome }) => {
                     </div>
                   </div>
 
-                  {/* Thumbnail & Quick Preset Picker */}
-                  <div className="space-y-2">
+                  {/* ═══════════════════════════════════════════════════════════
+                      THUMBNAIL SECTION — Photo Upload + Video Frame Extractor
+                  ═══════════════════════════════════════════════════════════ */}
+                  <div className="space-y-3">
                     <label className="block text-xs font-mono uppercase tracking-wider text-zinc-300">
-                      Thumbnail Image Path or URL
+                      Thumbnail Image
                     </label>
+
+                    {/* Path input + action buttons */}
                     <div className="flex gap-2">
                       <input
                         id="project-thumbnail-input"
                         name="thumbnail"
                         defaultValue={editingProject?.thumbnail || AVAILABLE_ASSET_PRESETS[0].path}
                         required
+                        placeholder="/src/assets/images/... or blob: URL"
                         className="flex-1 bg-[#181820] border border-white/10 rounded-xl px-3.5 py-2 text-xs text-white font-mono"
                       />
-                      <label className="flex items-center justify-center px-4 py-2 bg-white/10 border border-white/10 hover:bg-white/20 hover:text-white rounded-xl text-xs font-medium text-zinc-300 cursor-pointer transition-colors">
-                        Upload
-                        <input 
-                          type="file" 
-                          accept="image/*" 
-                          className="hidden" 
+                      {/* Upload Photo */}
+                      <label className="flex items-center gap-1.5 px-3 py-2 bg-white/10 border border-white/10 hover:bg-amber-400/20 hover:border-amber-400/40 hover:text-amber-300 rounded-xl text-xs font-medium text-zinc-300 cursor-pointer transition-all">
+                        <svg className="w-3.5 h-3.5" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z"/></svg>
+                        Photo
+                        <input
+                          type="file"
+                          accept="image/*"
+                          className="hidden"
                           onChange={(e) => {
                             const file = e.target.files?.[0];
                             if (file) {
                               const url = URL.createObjectURL(file);
                               const input = document.getElementById('project-thumbnail-input') as HTMLInputElement;
                               if (input) input.value = url;
+                              showNotification('✅ Photo set as thumbnail!');
                             }
                           }}
                         />
                       </label>
+                      {/* Pick frame from video */}
+                      <button
+                        type="button"
+                        title="Extract thumbnail from video timeline"
+                        onClick={() => {
+                          const videoInput = document.getElementById('project-video-input') as HTMLInputElement;
+                          const videoSrc = videoInput?.value || editingProject?.videoUrl || '';
+                          if (!videoSrc) {
+                            showNotification('⚠️ Upload or enter a video URL first');
+                            return;
+                          }
+                          openFramePicker(videoSrc);
+                        }}
+                        className="flex items-center gap-1.5 px-3 py-2 bg-white/10 border border-white/10 hover:bg-purple-500/20 hover:border-purple-400/40 hover:text-purple-300 rounded-xl text-xs font-medium text-zinc-300 cursor-pointer transition-all whitespace-nowrap"
+                      >
+                        <svg className="w-3.5 h-3.5" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 10l4.553-2.069A1 1 0 0121 8.876V15.124a1 1 0 01-1.447.894L15 14M5 18h8a2 2 0 002-2V8a2 2 0 00-2-2H5a2 2 0 00-2 2v8a2 2 0 002 2z"/></svg>
+                        From Video
+                      </button>
                     </div>
 
                     {/* 1-Click Preset Asset Selector */}
@@ -1224,6 +1323,9 @@ export const AdminPage: React.FC<AdminPageProps> = ({ onNavigateToHome }) => {
                     </div>
                   </div>
 
+                  {/* ═══════════════════════════════════════════════════════════
+                      VIDEO UPLOAD SECTION — with Full-screen Overlay + Thumbnail Picker
+                  ═══════════════════════════════════════════════════════════ */}
                   <div>
                     <label className="block text-xs font-mono uppercase tracking-wider text-zinc-300 mb-1.5">
                       Video Stream or MP4 URL (Optional)
@@ -1232,27 +1334,28 @@ export const AdminPage: React.FC<AdminPageProps> = ({ onNavigateToHome }) => {
                       <input
                         id="project-video-input"
                         name="videoUrl"
-                        defaultValue={editingProject?.videoUrl || 'https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/ForBiggerBlazes.mp4'}
-                        placeholder="https://... direct .mp4 or stream"
+                        defaultValue={editingProject?.videoUrl || ''}
+                        placeholder="https://... direct .mp4 or stream URL"
                         className="flex-1 bg-[#181820] border border-white/10 rounded-xl px-3.5 py-2 text-xs text-white font-mono"
                       />
-                      <label className="flex items-center justify-center px-4 py-2 bg-white/10 border border-white/10 hover:bg-white/20 hover:text-white rounded-xl text-xs font-medium text-zinc-300 cursor-pointer transition-colors">
-                        Upload
-                        <input 
-                          type="file" 
-                          accept="video/*" 
-                          className="hidden" 
+                      <label className="flex items-center gap-1.5 px-4 py-2 bg-amber-400 hover:bg-amber-300 border border-amber-400/80 rounded-xl text-xs font-bold text-black cursor-pointer transition-all shadow-lg shadow-amber-400/20 whitespace-nowrap">
+                        <svg className="w-3.5 h-3.5" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2.5} d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-8l-4-4m0 0L8 8m4-4v12"/></svg>
+                        Upload Video
+                        <input
+                          type="file"
+                          accept="video/*"
+                          className="hidden"
                           onChange={(e) => {
                             const file = e.target.files?.[0];
-                            if (file) {
-                              const url = URL.createObjectURL(file);
-                              const input = document.getElementById('project-video-input') as HTMLInputElement;
-                              if (input) input.value = url;
-                            }
+                            if (file) handleVideoFileUpload(file);
                           }}
                         />
                       </label>
                     </div>
+                    {/* Quick hint */}
+                    <p className="text-[10px] text-zinc-500 mt-1.5 font-mono">
+                      Upload shows a full-screen progress overlay. After upload, use "From Video" above to set a thumbnail frame.
+                    </p>
                   </div>
 
                   <div>
@@ -2397,6 +2500,259 @@ export const AdminPage: React.FC<AdminPageProps> = ({ onNavigateToHome }) => {
 
         </main>
       </div>
+
+      {/* VIDEO UPLOAD OVERLAY */}
+      {videoUploadOverlay.active && (
+        <div
+          className="fixed inset-0 z-[9999] flex items-center justify-center"
+          style={{ background: 'rgba(5,5,10,0.96)', backdropFilter: 'blur(18px)' }}
+        >
+          <div className="absolute inset-0 opacity-10" style={{
+            backgroundImage: 'linear-gradient(rgba(251,191,36,0.3) 1px,transparent 1px),linear-gradient(90deg,rgba(251,191,36,0.3) 1px,transparent 1px)',
+            backgroundSize: '48px 48px',
+          }} />
+          <div className="relative w-full max-w-md mx-4 text-center">
+            <div className="relative inline-flex items-center justify-center mb-8">
+              <svg className="w-40 h-40 -rotate-90" viewBox="0 0 140 140">
+                <circle cx="70" cy="70" r="60" fill="none" stroke="rgba(255,255,255,0.06)" strokeWidth="8" />
+                <circle
+                  cx="70" cy="70" r="60"
+                  fill="none"
+                  stroke={videoUploadOverlay.phase === 'done' ? '#22c55e' : '#fbbf24'}
+                  strokeWidth="8"
+                  strokeLinecap="round"
+                  strokeDasharray={`${2 * Math.PI * 60}`}
+                  strokeDashoffset={`${2 * Math.PI * 60 * (1 - videoUploadOverlay.progress / 100)}`}
+                  style={{ transition: 'stroke-dashoffset 0.3s ease, stroke 0.4s ease' }}
+                />
+              </svg>
+              <div className="absolute flex flex-col items-center justify-center">
+                {videoUploadOverlay.phase === 'done' ? (
+                  <svg className="w-10 h-10 text-green-400" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2.5} d="M5 13l4 4L19 7" />
+                  </svg>
+                ) : (
+                  <span className="text-3xl font-black text-white font-mono tabular-nums">
+                    {Math.round(videoUploadOverlay.progress)}%
+                  </span>
+                )}
+              </div>
+            </div>
+
+            <div className="mb-3">
+              {videoUploadOverlay.phase === 'uploading' && (
+                <div className="flex items-center justify-center gap-2">
+                  <span className="inline-block w-2 h-2 rounded-full bg-amber-400 animate-pulse" />
+                  <span className="text-amber-300 font-mono text-sm tracking-widest uppercase">Uploading</span>
+                </div>
+              )}
+              {videoUploadOverlay.phase === 'processing' && (
+                <div className="flex items-center justify-center gap-2">
+                  <span className="inline-block w-2 h-2 rounded-full bg-purple-400 animate-pulse" />
+                  <span className="text-purple-300 font-mono text-sm tracking-widest uppercase">Processing</span>
+                </div>
+              )}
+              {videoUploadOverlay.phase === 'done' && (
+                <div className="flex items-center justify-center gap-2">
+                  <span className="inline-block w-2 h-2 rounded-full bg-green-400" />
+                  <span className="text-green-300 font-mono text-sm tracking-widest uppercase">Upload Complete</span>
+                </div>
+              )}
+            </div>
+
+            <p className="text-white font-semibold text-base mb-1 truncate max-w-xs mx-auto">{videoUploadOverlay.fileName}</p>
+            <p className="text-zinc-400 text-xs font-mono mb-8">{videoUploadOverlay.fileSize}</p>
+
+            <div className="w-full bg-white/10 rounded-full h-1.5 mb-6 overflow-hidden">
+              <div
+                className="h-full rounded-full transition-all duration-300"
+                style={{
+                  width: `${videoUploadOverlay.progress}%`,
+                  background: videoUploadOverlay.phase === 'done'
+                    ? 'linear-gradient(90deg,#22c55e,#4ade80)'
+                    : 'linear-gradient(90deg,#d97706,#fbbf24,#fde68a)',
+                }}
+              />
+            </div>
+
+            {videoUploadOverlay.phase === 'done' && (
+              <div className="flex flex-col gap-3">
+                <button
+                  onClick={() => {
+                    setVideoUploadOverlay(prev => ({ ...prev, active: false }));
+                    openFramePicker(videoUploadOverlay.blobUrl);
+                  }}
+                  className="w-full py-3 px-6 bg-amber-400 hover:bg-amber-300 text-black font-bold rounded-2xl text-sm flex items-center justify-center gap-2 transition-all shadow-lg shadow-amber-400/30"
+                >
+                  <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2.5} d="M15 10l4.553-2.069A1 1 0 0121 8.876V15.124a1 1 0 01-1.447.894L15 14M5 18h8a2 2 0 002-2V8a2 2 0 00-2-2H5a2 2 0 00-2 2v8a2 2 0 002 2z" />
+                  </svg>
+                  Set Thumbnail from Video
+                </button>
+                <button
+                  onClick={() => setVideoUploadOverlay(prev => ({ ...prev, active: false }))}
+                  className="w-full py-2.5 px-6 bg-white/10 hover:bg-white/15 text-zinc-300 font-medium rounded-2xl text-sm transition-all"
+                >
+                  Continue Without Thumbnail
+                </button>
+              </div>
+            )}
+          </div>
+        </div>
+      )}
+
+      {/* VIDEO FRAME PICKER MODAL */}
+      {thumbFramePicker.open && (
+        <div
+          className="fixed inset-0 z-[9998] flex items-center justify-center p-4"
+          style={{ background: 'rgba(5,5,10,0.94)', backdropFilter: 'blur(14px)' }}
+          onClick={(e) => { if (e.target === e.currentTarget) setThumbFramePicker(prev => ({ ...prev, open: false })); }}
+        >
+          <div className="w-full max-w-2xl bg-[#0e0e14] border border-white/10 rounded-3xl overflow-hidden shadow-2xl">
+            <div className="px-6 py-4 border-b border-white/[0.07] flex items-center justify-between">
+              <div>
+                <h3 className="text-white font-bold text-base">Pick Thumbnail from Video</h3>
+                <p className="text-zinc-400 text-xs mt-0.5 font-mono">Scrub the timeline to find the perfect frame, then capture it</p>
+              </div>
+              <button
+                onClick={() => setThumbFramePicker(prev => ({ ...prev, open: false }))}
+                className="w-8 h-8 flex items-center justify-center rounded-full bg-white/10 hover:bg-white/20 text-zinc-400 hover:text-white transition-all"
+              >✕</button>
+            </div>
+
+            <div className="p-6 space-y-5">
+              {/* Video preview */}
+              <div className="relative rounded-2xl overflow-hidden bg-black aspect-video w-full">
+                <video
+                  ref={thumbVideoRef}
+                  src={thumbFramePicker.videoSrc}
+                  className="w-full h-full object-contain"
+                  onLoadedMetadata={() => {
+                    const v = thumbVideoRef.current;
+                    if (v) setThumbFramePicker(prev => ({ ...prev, duration: v.duration }));
+                  }}
+                  onTimeUpdate={() => {
+                    const v = thumbVideoRef.current;
+                    if (v) setThumbFramePicker(prev => ({ ...prev, currentTime: v.currentTime }));
+                  }}
+                  crossOrigin="anonymous"
+                  preload="metadata"
+                />
+                <button
+                  type="button"
+                  onClick={captureVideoFrame}
+                  className="absolute bottom-3 right-3 flex items-center gap-1.5 px-3 py-2 bg-black/70 hover:bg-amber-400/90 hover:text-black border border-white/20 hover:border-amber-400 text-white rounded-xl text-xs font-semibold transition-all backdrop-blur"
+                >
+                  <svg className="w-3.5 h-3.5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 9a2 2 0 012-2h.93a2 2 0 001.664-.89l.812-1.22A2 2 0 0110.07 4h3.86a2 2 0 011.664.89l.812 1.22A2 2 0 0018.07 7H19a2 2 0 012 2v9a2 2 0 01-2 2H5a2 2 0 01-2-2V9z" />
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 13a3 3 0 11-6 0 3 3 0 016 0z" />
+                  </svg>
+                  Capture Frame
+                </button>
+              </div>
+
+              {/* Timeline scrubber */}
+              <div className="space-y-2">
+                <div className="flex items-center justify-between text-[11px] font-mono text-zinc-400">
+                  <span>
+                    {Math.floor(thumbFramePicker.currentTime / 60).toString().padStart(2,'0')}:
+                    {Math.floor(thumbFramePicker.currentTime % 60).toString().padStart(2,'0')}
+                  </span>
+                  <span className="text-zinc-500 text-[10px]">TIMELINE — drag to scrub</span>
+                  <span>
+                    {Math.floor(thumbFramePicker.duration / 60).toString().padStart(2,'0')}:
+                    {Math.floor(thumbFramePicker.duration % 60).toString().padStart(2,'0')}
+                  </span>
+                </div>
+                <input
+                  type="range"
+                  min={0}
+                  max={thumbFramePicker.duration || 100}
+                  step={0.033}
+                  value={thumbFramePicker.currentTime}
+                  onChange={(e) => {
+                    const t = parseFloat(e.target.value);
+                    setThumbFramePicker(prev => ({ ...prev, currentTime: t }));
+                    if (thumbVideoRef.current) thumbVideoRef.current.currentTime = t;
+                  }}
+                  className="w-full h-2 rounded-full cursor-pointer appearance-none"
+                  style={{
+                    background: `linear-gradient(90deg, #fbbf24 ${(thumbFramePicker.currentTime / (thumbFramePicker.duration || 1)) * 100}%, rgba(255,255,255,0.1) 0%)`,
+                  }}
+                />
+                {/* Quick jump buttons */}
+                <div className="flex gap-2 mt-1">
+                  {[0, 10, 25, 50, 75, 90].map(pct => (
+                    <button
+                      key={pct}
+                      type="button"
+                      onClick={() => {
+                        const t = (pct / 100) * thumbFramePicker.duration;
+                        if (thumbVideoRef.current) thumbVideoRef.current.currentTime = t;
+                        setThumbFramePicker(prev => ({ ...prev, currentTime: t }));
+                      }}
+                      className="flex-1 py-1 text-[10px] font-mono bg-white/5 hover:bg-amber-400/20 hover:text-amber-300 border border-white/10 rounded-lg text-zinc-400 transition-all"
+                    >
+                      {pct}%
+                    </button>
+                  ))}
+                </div>
+              </div>
+
+              {/* Captured frame preview */}
+              {thumbFramePicker.capturedFrame && (
+                <div className="flex gap-4 items-center p-4 bg-white/[0.04] border border-green-500/30 rounded-2xl">
+                  <img
+                    src={thumbFramePicker.capturedFrame}
+                    alt="Captured frame"
+                    className="w-28 h-16 object-cover rounded-xl border border-white/20 flex-shrink-0"
+                  />
+                  <div className="flex-1 min-w-0">
+                    <p className="text-green-300 text-xs font-semibold mb-1">✓ Frame captured</p>
+                    <p className="text-zinc-400 text-[11px] font-mono">
+                      at {Math.floor(thumbFramePicker.currentTime / 60).toString().padStart(2,'0')}:
+                      {Math.floor(thumbFramePicker.currentTime % 60).toString().padStart(2,'0')}
+                    </p>
+                  </div>
+                  <button
+                    type="button"
+                    onClick={applyFrameAsThumbnail}
+                    className="px-4 py-2 bg-green-500 hover:bg-green-400 text-white font-bold rounded-xl text-xs transition-all shadow-lg shadow-green-500/30 whitespace-nowrap"
+                  >
+                    Use as Thumbnail →
+                  </button>
+                </div>
+              )}
+
+              {/* Action row */}
+              <div className="flex gap-3">
+                <button
+                  type="button"
+                  onClick={captureVideoFrame}
+                  className="flex-1 py-3 bg-amber-400 hover:bg-amber-300 text-black font-bold rounded-2xl text-sm flex items-center justify-center gap-2 transition-all"
+                >
+                  <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2.5} d="M3 9a2 2 0 012-2h.93a2 2 0 001.664-.89l.812-1.22A2 2 0 0110.07 4h3.86a2 2 0 011.664.89l.812 1.22A2 2 0 0018.07 7H19a2 2 0 012 2v9a2 2 0 01-2 2H5a2 2 0 01-2-2V9z" />
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2.5} d="M15 13a3 3 0 11-6 0 3 3 0 016 0z" />
+                  </svg>
+                  Capture This Frame
+                </button>
+                {thumbFramePicker.capturedFrame && (
+                  <button
+                    type="button"
+                    onClick={applyFrameAsThumbnail}
+                    className="flex-1 py-3 bg-green-600 hover:bg-green-500 text-white font-bold rounded-2xl text-sm flex items-center justify-center gap-2 transition-all"
+                  >
+                    Set as Thumbnail ✓
+                  </button>
+                )}
+              </div>
+            </div>
+          </div>
+          <canvas ref={thumbCanvasRef} className="hidden" />
+        </div>
+      )}
+
     </div>
   );
 };
