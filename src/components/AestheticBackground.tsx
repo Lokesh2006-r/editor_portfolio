@@ -27,9 +27,9 @@ export const AestheticBackground: React.FC = () => {
 
   // Night Theme Glowing Orbs & Ambient Mesh
   const orbStyles = {
-    orb1: 'bg-gradient-to-r from-amber-500/25 via-yellow-600/15 to-orange-600/20 shadow-[0_0_120px_rgba(245,158,11,0.35)]',
+    orb1: 'bg-gradient-to-r from-red-600/25 via-yellow-600/15 to-orange-600/20 shadow-[0_0_120px_rgba(245,158,11,0.35)]',
     orb2: 'bg-gradient-to-r from-zinc-800/40 via-amber-700/15 to-zinc-900/40 shadow-[0_0_140px_rgba(217,119,6,0.25)]',
-    orb3: 'bg-gradient-to-r from-amber-600/20 via-orange-500/20 to-yellow-500/15 shadow-[0_0_100px_rgba(245,158,11,0.2)]',
+    orb3: 'bg-gradient-to-r from-red-700/20 via-orange-500/20 to-yellow-500/15 shadow-[0_0_100px_rgba(245,158,11,0.2)]',
     accent: 'rgba(245, 158, 11, 0.12)',
   };
 

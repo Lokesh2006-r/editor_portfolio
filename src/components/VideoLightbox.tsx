@@ -84,7 +84,7 @@ export const VideoLightbox: React.FC<VideoLightboxProps> = ({
         {/* Header Bar */}
         <div className="flex items-center justify-between text-white border-b border-white/10 pb-2.5">
           <div className="flex items-center gap-2.5">
-            <div className="w-7 h-7 rounded bg-amber-500/10 border border-amber-500/20 flex items-center justify-center text-amber-400">
+            <div className="w-7 h-7 rounded bg-red-600/10 border border-red-600/20 flex items-center justify-center text-red-500">
               <Film className="w-3.5 h-3.5" />
             </div>
             <div>
@@ -106,7 +106,7 @@ export const VideoLightbox: React.FC<VideoLightboxProps> = ({
           <button
             ref={closeButtonRef}
             onClick={onClose}
-            className="p-1.5 rounded-lg bg-white/10 hover:bg-white/20 text-white transition-colors cursor-pointer focus-visible:outline-amber-500 active:scale-90"
+            className="p-1.5 rounded-lg bg-white/10 hover:bg-white/20 text-white transition-colors cursor-pointer focus-visible:outline-red-600 active:scale-90"
             aria-label="Close video player"
           >
             <X className="w-4 h-4" />

@@ -45,8 +45,11 @@ export const Hero: React.FC<HeroProps> = ({
           className="w-full h-full object-cover object-center filter brightness-[0.35] contrast-[1.12]"
         />
         {/* Gradients: top nav fade + deep bottom fade + radial dark vignette */}
-        <div className="absolute inset-0 bg-gradient-to-b from-[#09090b]/85 via-[#09090b]/45 to-[#09090b]" />
-        <div className="absolute inset-0 bg-radial-at-c from-transparent via-black/50 to-black/85" />
+        <div className="absolute inset-0 bg-gradient-to-b from-[#050505]/85 via-[#050505]/40 to-[#050505]" />
+        <div className="absolute inset-0 bg-radial-at-c from-transparent via-black/50 to-black/90" />
+        {/* Cinematic red ember glow — matches #050505 → #9A3412 → #EF4444 palette */}
+        <div className="absolute bottom-0 right-0 w-[60%] h-[55%] bg-gradient-to-tl from-red-900/25 via-red-950/10 to-transparent blur-[80px] rounded-full" />
+        <div className="absolute top-0 left-0 w-[35%] h-[40%] bg-red-950/10 blur-[70px] rounded-full" />
       </motion.div>
 
       {/* Ambient drifting bokeh light (subtle organic movement) */}
@@ -61,7 +64,7 @@ export const Hero: React.FC<HeroProps> = ({
           repeat: Infinity,
           ease: 'easeInOut',
         }}
-        className="absolute top-1/3 left-1/4 w-80 h-80 rounded-full bg-amber-500/10 blur-3xl pointer-events-none z-0"
+        className="absolute top-1/3 left-1/4 w-80 h-80 rounded-full bg-red-600/10 blur-3xl pointer-events-none z-0"
       />
 
       {/* Hero Content Container inside a Frosted White Fade Card */}
@@ -76,8 +79,8 @@ export const Hero: React.FC<HeroProps> = ({
           transition={{ duration: 0.6, ease: [0.16, 1, 0.3, 1] }}
           className="flex items-center gap-2 sm:gap-3 mb-5 flex-wrap justify-center"
         >
-          <span className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-white/10 border border-white/20 text-[11px] sm:text-xs font-mono tracking-widest uppercase text-amber-300 backdrop-blur-md font-semibold shadow-sm">
-            <Sparkles className="w-3 h-3 text-amber-300" />
+          <span className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-white/10 border border-white/20 text-[11px] sm:text-xs font-mono tracking-widest uppercase text-red-400 backdrop-blur-md font-semibold shadow-sm">
+            <Sparkles className="w-3 h-3 text-red-400" />
             <span>FREELANCE MOBILE VIDEO EDITOR</span>
           </span>
           <span aria-hidden="true" className="text-zinc-400 hidden sm:inline">·</span>
@@ -95,7 +98,7 @@ export const Hero: React.FC<HeroProps> = ({
           className="text-3xl sm:text-5xl md:text-6xl lg:text-7xl font-extrabold font-display tracking-tight text-white max-w-4xl leading-[1.08] mb-5 text-balance drop-shadow-md"
         >
           Your moments. My vision.{' '}
-          <span className="block mt-1 sm:mt-2 text-transparent bg-clip-text bg-gradient-to-r from-amber-200 via-amber-300 to-amber-400 drop-shadow-sm">
+          <span className="block mt-1 sm:mt-2 text-transparent bg-clip-text bg-gradient-to-r from-red-300 via-red-400 to-red-500 drop-shadow-sm">
             One perfect edit.
           </span>
         </motion.h1>
@@ -122,7 +125,7 @@ export const Hero: React.FC<HeroProps> = ({
             whileHover={{ scale: 1.03, y: -2 }}
             whileTap={{ scale: 0.97 }}
             onClick={onWatchReel}
-            className="w-full sm:w-auto px-7 py-3.5 text-xs sm:text-sm font-bold uppercase tracking-wider text-black bg-gradient-to-r from-amber-400 via-amber-300 to-amber-500 hover:from-amber-300 hover:to-amber-400 transition-all rounded-xl shadow-xl shadow-amber-500/25 flex items-center justify-center gap-2.5 cursor-pointer"
+            className="w-full sm:w-auto px-7 py-3.5 text-xs sm:text-sm font-bold uppercase tracking-wider text-black bg-gradient-to-r from-red-500 via-red-400 to-red-600 hover:from-red-400 hover:to-red-500 transition-all rounded-xl shadow-xl shadow-red-600/25 flex items-center justify-center gap-2.5 cursor-pointer"
           >
             <div className="w-5 h-5 rounded-full bg-black/20 flex items-center justify-center">
               <Play className="w-2.5 h-2.5 fill-black translate-x-0.5" />
@@ -138,17 +141,17 @@ export const Hero: React.FC<HeroProps> = ({
             className="w-full sm:w-auto px-7 py-3.5 text-xs sm:text-sm font-semibold uppercase tracking-wider text-white bg-white/15 hover:bg-white/25 border border-white/20 rounded-xl transition-all flex items-center justify-center gap-2 backdrop-blur-md cursor-pointer shadow-md"
           >
             <span>Explore My Edits</span>
-            <ArrowDown className="w-4 h-4 text-amber-400" />
+            <ArrowDown className="w-4 h-4 text-red-500" />
           </motion.button>
 
           {/* Tertiary CTA: Contact */}
           <motion.button
             whileHover={{ x: 3 }}
             onClick={onContact}
-            className="hidden md:inline-flex items-center gap-1.5 px-4 py-3.5 text-xs font-semibold text-zinc-200 hover:text-amber-300 transition-colors cursor-pointer"
+            className="hidden md:inline-flex items-center gap-1.5 px-4 py-3.5 text-xs font-semibold text-zinc-200 hover:text-red-400 transition-colors cursor-pointer"
           >
             <span>Let's Collaborate</span>
-            <ArrowUpRight className="w-4 h-4 text-amber-400" />
+            <ArrowUpRight className="w-4 h-4 text-red-500" />
           </motion.button>
         </motion.div>
 
@@ -176,7 +179,7 @@ export const Hero: React.FC<HeroProps> = ({
             </span>
           </div>
           <div className="p-2 sm:p-0">
-            <span className="block text-xl sm:text-2xl md:text-3xl font-bold font-display text-amber-300 tabular-nums drop-shadow-sm">
+            <span className="block text-xl sm:text-2xl md:text-3xl font-bold font-display text-red-400 tabular-nums drop-shadow-sm">
               9:16 Ultra HD
             </span>
             <span className="text-[10px] sm:text-xs font-mono text-zinc-200 uppercase tracking-wider font-semibold">
@@ -205,7 +208,7 @@ export const Hero: React.FC<HeroProps> = ({
         <span className="text-[9px] font-mono tracking-widest uppercase opacity-70">
           Scroll to Edits
         </span>
-        <ArrowDown className="w-3.5 h-3.5 text-amber-400" />
+        <ArrowDown className="w-3.5 h-3.5 text-red-500" />
       </motion.button>
     </section>
   );

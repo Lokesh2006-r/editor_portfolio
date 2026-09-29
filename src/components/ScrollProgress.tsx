@@ -16,7 +16,7 @@ export const ScrollProgress: React.FC = () => {
       
       {/* Dynamic Animated Progress Bar */}
       <motion.div
-        className="h-full bg-gradient-to-r from-amber-500 via-amber-400 to-amber-300 origin-left shadow-[0_0_12px_rgba(251,191,36,0.7)]"
+        className="h-full bg-gradient-to-r from-red-600 via-red-500 to-red-400 origin-left shadow-[0_0_12px_rgba(251,191,36,0.7)]"
         style={{ scaleX }}
       />
     </div>

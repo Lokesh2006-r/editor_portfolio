@@ -41,9 +41,9 @@ export const AdminLogin: React.FC<AdminLoginProps> = ({ onLoginSuccess, onBackTo
   };
 
   return (
-    <div className="min-h-screen bg-[#09090b] text-[#f4f4f5] flex flex-col justify-between selection:bg-amber-400 selection:text-black relative overflow-hidden font-sans">
+    <div className="min-h-screen bg-[#050505] text-[#f4f4f5] flex flex-col justify-between selection:bg-red-500 selection:text-black relative overflow-hidden font-sans">
       {/* Background cinematic aura */}
-      <div className="absolute top-1/4 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] bg-gradient-to-tr from-amber-500/10 via-amber-600/5 to-transparent rounded-full blur-3xl pointer-events-none" />
+      <div className="absolute top-1/4 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] bg-gradient-to-tr from-red-600/10 via-red-700/5 to-transparent rounded-full blur-3xl pointer-events-none" />
       <div className="absolute -bottom-20 -right-20 w-96 h-96 bg-blue-500/5 rounded-full blur-3xl pointer-events-none" />
 
       {/* Top Bar */}
@@ -59,7 +59,7 @@ export const AdminLogin: React.FC<AdminLoginProps> = ({ onLoginSuccess, onBackTo
         <div className="flex items-center gap-3">
           <ThemeToggle variant="compact" />
           <div className="flex items-center gap-2 text-xs font-mono text-zinc-500">
-            <ShieldCheck className="w-4 h-4 text-amber-400" />
+            <ShieldCheck className="w-4 h-4 text-red-500" />
             <span className="hidden sm:inline">Protected Studio Access</span>
           </div>
         </div>
@@ -70,7 +70,7 @@ export const AdminLogin: React.FC<AdminLoginProps> = ({ onLoginSuccess, onBackTo
         <div className="w-full max-w-md bg-[#111116]/95 border border-white/10 rounded-2xl shadow-2xl shadow-black/80 p-8 backdrop-blur-xl space-y-6">
           {/* Header */}
           <div className="text-center space-y-2">
-            <div className="inline-flex p-3 rounded-xl bg-amber-400/10 border border-amber-500/20 text-amber-400 mb-1">
+            <div className="inline-flex p-3 rounded-xl bg-red-500/10 border border-red-600/20 text-red-500 mb-1">
               <Lock className="w-6 h-6" />
             </div>
             <h1 className="text-2xl font-bold font-display tracking-tight text-white">
@@ -82,16 +82,16 @@ export const AdminLogin: React.FC<AdminLoginProps> = ({ onLoginSuccess, onBackTo
           </div>
 
           {/* Demo Quick-Fill Helper Callout */}
-          <div className="bg-[#181822] border border-amber-500/25 rounded-xl p-3.5 space-y-2">
+          <div className="bg-[#120c0c] border border-red-600/25 rounded-xl p-3.5 space-y-2">
             <div className="flex items-center justify-between text-[11px] font-mono">
-              <span className="text-amber-400 flex items-center gap-1.5 font-semibold">
+              <span className="text-red-500 flex items-center gap-1.5 font-semibold">
                 <Sparkles className="w-3.5 h-3.5" />
                 Default Credentials
               </span>
               <button
                 type="button"
                 onClick={handleFillDemoCredentials}
-                className="text-[10px] text-amber-400 hover:text-amber-300 font-mono underline cursor-pointer"
+                className="text-[10px] text-red-500 hover:text-red-400 font-mono underline cursor-pointer"
               >
                 {autoFilled ? 'Filled!' : 'Auto-Fill Demo'}
               </button>
@@ -103,7 +103,7 @@ export const AdminLogin: React.FC<AdminLoginProps> = ({ onLoginSuccess, onBackTo
               </div>
               <div>
                 <span className="text-zinc-500 block text-[9px] uppercase">Password</span>
-                <span className="text-amber-300 font-mono block">{DEFAULT_ADMIN_CREDENTIALS.password}</span>
+                <span className="text-red-400 font-mono block">{DEFAULT_ADMIN_CREDENTIALS.password}</span>
               </div>
             </div>
           </div>
@@ -132,7 +132,7 @@ export const AdminLogin: React.FC<AdminLoginProps> = ({ onLoginSuccess, onBackTo
                   onChange={(e) => setIdentifier(e.target.value)}
                   required
                   placeholder="admin@kaienvance.com or admin"
-                  className="w-full bg-[#18181f] border border-white/10 rounded-xl pl-10 pr-3.5 py-2.5 text-xs text-white placeholder-zinc-600 focus:outline-none focus:border-amber-400 transition-colors"
+                  className="w-full bg-[#120c0c] border border-white/10 rounded-xl pl-10 pr-3.5 py-2.5 text-xs text-white placeholder-zinc-600 focus:outline-none focus:border-red-500 transition-colors"
                 />
               </div>
             </div>
@@ -153,7 +153,7 @@ export const AdminLogin: React.FC<AdminLoginProps> = ({ onLoginSuccess, onBackTo
                   onChange={(e) => setPassword(e.target.value)}
                   required
                   placeholder="Enter admin password"
-                  className="w-full bg-[#18181f] border border-white/10 rounded-xl pl-10 pr-10 py-2.5 text-xs text-white placeholder-zinc-600 focus:outline-none focus:border-amber-400 transition-colors font-mono"
+                  className="w-full bg-[#120c0c] border border-white/10 rounded-xl pl-10 pr-10 py-2.5 text-xs text-white placeholder-zinc-600 focus:outline-none focus:border-red-500 transition-colors font-mono"
                 />
                 <button
                   type="button"
@@ -170,7 +170,7 @@ export const AdminLogin: React.FC<AdminLoginProps> = ({ onLoginSuccess, onBackTo
             <button
               type="submit"
               disabled={loading}
-              className="w-full py-3 px-4 rounded-xl bg-amber-400 hover:bg-amber-300 text-black font-semibold text-xs uppercase tracking-wider transition-all duration-200 shadow-lg shadow-amber-500/20 active:scale-[0.99] disabled:opacity-50 cursor-pointer flex items-center justify-center gap-2"
+              className="w-full py-3 px-4 rounded-xl bg-red-500 hover:bg-red-400 text-black font-semibold text-xs uppercase tracking-wider transition-all duration-200 shadow-lg shadow-red-600/20 active:scale-[0.99] disabled:opacity-50 cursor-pointer flex items-center justify-center gap-2"
             >
               {loading ? (
                 <>

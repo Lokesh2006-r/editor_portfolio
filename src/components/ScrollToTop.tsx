@@ -36,7 +36,7 @@ export const ScrollToTop: React.FC = () => {
             onClick={scrollToTop}
             whileHover={{ scale: 1.08, y: -2 }}
             whileTap={{ scale: 0.94 }}
-            className="group relative w-12 h-12 rounded-full bg-[#121217]/90 backdrop-blur-md border border-white/10 hover:border-amber-400/50 shadow-xl shadow-black/80 flex items-center justify-center text-zinc-300 hover:text-amber-400 transition-colors cursor-pointer"
+            className="group relative w-12 h-12 rounded-full bg-[#0f0a0a]/90 backdrop-blur-md border border-white/10 hover:border-red-500/50 shadow-xl shadow-black/80 flex items-center justify-center text-zinc-300 hover:text-red-500 transition-colors cursor-pointer"
             aria-label="Scroll to top"
           >
             {/* SVG Circular Progress Track */}
@@ -57,7 +57,7 @@ export const ScrollToTop: React.FC = () => {
                 cx="20"
                 cy="20"
                 r="18"
-                className="text-amber-400"
+                className="text-red-500"
                 strokeWidth="2"
                 stroke="currentColor"
                 fill="transparent"

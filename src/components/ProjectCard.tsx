@@ -25,7 +25,7 @@ export const ProjectCard: React.FC<ProjectCardProps> = ({
       whileHover={{ y: -6, scale: 1.01 }}
       whileTap={{ scale: 0.98 }}
       onClick={(e) => onSelect(project, e)}
-      className="group relative bg-[#121216] border border-white/[0.08] hover:border-amber-500/40 rounded-xl overflow-hidden cursor-pointer transition-all duration-300 hover:shadow-2xl hover:shadow-black/80 flex flex-col focus-within:ring-2 focus-within:ring-amber-500"
+      className="group relative bg-[#0f0a0a] border border-white/[0.08] hover:border-red-600/40 rounded-xl overflow-hidden cursor-pointer transition-all duration-300 hover:shadow-2xl hover:shadow-black/80 flex flex-col focus-within:ring-2 focus-within:ring-red-600"
     >
       {/* 9:16 Vertical Video Frame */}
       <div className="relative w-full aspect-[9/16] overflow-hidden bg-black">
@@ -38,7 +38,7 @@ export const ProjectCard: React.FC<ProjectCardProps> = ({
         />
 
         {/* Gradient Scrim */}
-        <div className="absolute inset-0 bg-gradient-to-t from-[#121216] via-black/10 to-black/40 opacity-90 group-hover:opacity-75 transition-opacity" />
+        <div className="absolute inset-0 bg-gradient-to-t from-[#0f0a0a] via-black/10 to-black/40 opacity-90 group-hover:opacity-75 transition-opacity" />
 
         {/* Play Icon Centered with hover pulse */}
         <div className="absolute inset-0 flex items-center justify-center opacity-85 group-hover:opacity-100 transition-opacity">
@@ -50,7 +50,7 @@ export const ProjectCard: React.FC<ProjectCardProps> = ({
               e.stopPropagation();
               onPlayDirect(project, e);
             }}
-            className="w-11 h-11 sm:w-14 sm:h-14 rounded-full bg-amber-400 text-black flex items-center justify-center shadow-xl transition-all cursor-pointer"
+            className="w-11 h-11 sm:w-14 sm:h-14 rounded-full bg-red-500 text-black flex items-center justify-center shadow-xl transition-all cursor-pointer"
             aria-label={`Play vertical edit for ${project.title}`}
           >
             <Play className="w-5 h-5 sm:w-6 sm:h-6 fill-black translate-x-0.5" />
@@ -59,12 +59,12 @@ export const ProjectCard: React.FC<ProjectCardProps> = ({
 
         {/* Duration badge at bottom right */}
         <div className="absolute bottom-2 right-2 sm:bottom-3 sm:right-3 flex items-center gap-1 text-[10px] sm:text-xs font-mono tabular-nums text-zinc-200 bg-black/80 backdrop-blur-md px-2 py-0.5 rounded border border-white/10 shadow">
-          <Clock className="w-3 h-3 text-amber-400" />
+          <Clock className="w-3 h-3 text-red-500" />
           <span>{project.duration}</span>
         </div>
 
         {/* Category top badge */}
-        <div className="absolute top-2 left-2 sm:top-3 sm:left-3 text-[9px] sm:text-[10px] font-mono uppercase tracking-wider text-amber-300 bg-black/80 backdrop-blur-md px-2 py-0.5 rounded border border-amber-500/20">
+        <div className="absolute top-2 left-2 sm:top-3 sm:left-3 text-[9px] sm:text-[10px] font-mono uppercase tracking-wider text-red-400 bg-black/80 backdrop-blur-md px-2 py-0.5 rounded border border-red-600/20">
           {project.categoryLabel}
         </div>
       </div>
@@ -82,7 +82,7 @@ export const ProjectCard: React.FC<ProjectCardProps> = ({
             )}
           </div>
 
-          <h3 className="text-sm sm:text-base font-bold font-display tracking-tight text-white group-hover:text-amber-300 transition-colors line-clamp-1">
+          <h3 className="text-sm sm:text-base font-bold font-display tracking-tight text-white group-hover:text-red-400 transition-colors line-clamp-1">
             {project.title}
           </h3>
 
@@ -94,7 +94,7 @@ export const ProjectCard: React.FC<ProjectCardProps> = ({
         {/* View Edit CTA */}
         <div className="mt-3 pt-2.5 border-t border-white/[0.06] flex items-center justify-between text-[11px] sm:text-xs">
           <span className="text-zinc-500 truncate text-[10px] sm:text-[11px]">{project.role}</span>
-          <span className="text-amber-400 font-semibold group-hover:underline flex items-center gap-0.5 whitespace-nowrap">
+          <span className="text-red-500 font-semibold group-hover:underline flex items-center gap-0.5 whitespace-nowrap">
             <span>View Edit</span>
             <ArrowUpRight className="w-3 h-3 transition-transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
           </span>

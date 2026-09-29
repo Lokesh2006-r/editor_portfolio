@@ -54,7 +54,7 @@ export const Footer: React.FC<FooterProps> = ({ config, onNavigate, onOpenAdmin 
                 <li key={item.id}>
                   <button
                     onClick={() => onNavigate(item.id)}
-                    className="hover:text-amber-400 transition-colors cursor-pointer text-left"
+                    className="hover:text-red-500 transition-colors cursor-pointer text-left"
                   >
                     {item.label}
                   </button>
@@ -71,9 +71,9 @@ export const Footer: React.FC<FooterProps> = ({ config, onNavigate, onOpenAdmin 
             <div className="space-y-2">
               <a
                 href={`mailto:${config.contactEmail}`}
-                className="flex items-center gap-2 text-xs sm:text-sm text-zinc-200 hover:text-amber-400 transition-colors"
+                className="flex items-center gap-2 text-xs sm:text-sm text-zinc-200 hover:text-red-500 transition-colors"
               >
-                <Mail className="w-4 h-4 text-amber-400" />
+                <Mail className="w-4 h-4 text-red-500" />
                 <span>{config.contactEmail}</span>
               </a>
               <p className="text-[11px] text-zinc-500 leading-normal">
@@ -122,7 +122,7 @@ export const Footer: React.FC<FooterProps> = ({ config, onNavigate, onOpenAdmin 
             <span aria-hidden="true">·</span>
             <button
               onClick={onOpenAdmin}
-              className="text-zinc-500 hover:text-amber-400 transition-colors underline cursor-pointer"
+              className="text-zinc-500 hover:text-red-500 transition-colors underline cursor-pointer"
             >
               Admin Portal
             </button>
@@ -134,7 +134,7 @@ export const Footer: React.FC<FooterProps> = ({ config, onNavigate, onOpenAdmin 
             aria-label="Back to top"
           >
             <span>Back to top</span>
-            <ArrowUp className="w-3.5 h-3.5 text-zinc-400 group-hover:text-amber-400 transition-colors" />
+            <ArrowUp className="w-3.5 h-3.5 text-zinc-400 group-hover:text-red-500 transition-colors" />
           </button>
         </div>
       </div>

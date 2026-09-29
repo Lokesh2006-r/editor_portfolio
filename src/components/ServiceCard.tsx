@@ -13,14 +13,14 @@ export const ServiceCard: React.FC<ServiceCardProps> = ({ service, index = 0, on
   const getIcon = (iconName: string) => {
     switch (iconName) {
       case 'Film':
-        return <Film className="w-5 h-5 text-amber-400" />;
+        return <Film className="w-5 h-5 text-red-500" />;
       case 'Smartphone':
-        return <Smartphone className="w-5 h-5 text-amber-400" />;
+        return <Smartphone className="w-5 h-5 text-red-500" />;
       case 'Compass':
-        return <Compass className="w-5 h-5 text-amber-400" />;
+        return <Compass className="w-5 h-5 text-red-500" />;
       case 'Sparkles':
       default:
-        return <Sparkles className="w-5 h-5 text-amber-400" />;
+        return <Sparkles className="w-5 h-5 text-red-500" />;
     }
   };
 
@@ -32,21 +32,21 @@ export const ServiceCard: React.FC<ServiceCardProps> = ({ service, index = 0, on
       }}
       whileHover={{ y: -6, scale: 1.01 }}
       whileTap={{ scale: 0.98 }}
-      className="group relative bg-[#121216] border border-white/[0.08] hover:border-amber-500/40 rounded-xl p-5 sm:p-7 flex flex-col justify-between transition-all duration-300 hover:shadow-2xl hover:shadow-black/60"
+      className="group relative bg-[#0f0a0a] border border-white/[0.08] hover:border-red-600/40 rounded-xl p-5 sm:p-7 flex flex-col justify-between transition-all duration-300 hover:shadow-2xl hover:shadow-black/60"
     >
       <div>
         {/* Header with Editorial Numbering and Icon */}
         <div className="flex items-center justify-between mb-4 sm:mb-5">
-          <span className="font-mono text-xs text-zinc-500 group-hover:text-amber-400 transition-colors">
+          <span className="font-mono text-xs text-zinc-500 group-hover:text-red-500 transition-colors">
             {service.number}
           </span>
-          <div className="w-10 h-10 rounded-lg bg-white/5 border border-white/10 flex items-center justify-center group-hover:bg-amber-400/10 group-hover:border-amber-500/30 transition-colors">
+          <div className="w-10 h-10 rounded-lg bg-white/5 border border-white/10 flex items-center justify-center group-hover:bg-red-500/10 group-hover:border-red-600/30 transition-colors">
             {getIcon(service.icon)}
           </div>
         </div>
 
         {/* Title */}
-        <h3 className="text-lg font-bold font-display tracking-tight text-white mb-2 group-hover:text-amber-300 transition-colors">
+        <h3 className="text-lg font-bold font-display tracking-tight text-white mb-2 group-hover:text-red-400 transition-colors">
           {service.title}
         </h3>
 
@@ -59,7 +59,7 @@ export const ServiceCard: React.FC<ServiceCardProps> = ({ service, index = 0, on
         <ul className="space-y-2 mb-6 border-t border-white/[0.06] pt-4">
           {service.features.map((feature, idx) => (
             <li key={idx} className="flex items-start gap-2 text-xs text-zinc-300">
-              <span className="text-amber-400 mt-0.5">•</span>
+              <span className="text-red-500 mt-0.5">•</span>
               <span>{feature}</span>
             </li>
           ))}
@@ -70,10 +70,10 @@ export const ServiceCard: React.FC<ServiceCardProps> = ({ service, index = 0, on
       <button
         type="button"
         onClick={() => onSelectService(service.title)}
-        className="w-full pt-3 border-t border-white/[0.06] flex items-center justify-between text-xs font-semibold uppercase tracking-wider text-amber-400 hover:text-amber-300 transition-colors group/btn cursor-pointer"
+        className="w-full pt-3 border-t border-white/[0.06] flex items-center justify-between text-xs font-semibold uppercase tracking-wider text-red-500 hover:text-red-400 transition-colors group/btn cursor-pointer"
       >
         <span>Enquire Now</span>
-        <ArrowRight className="w-4 h-4 text-zinc-500 group-hover/btn:text-amber-400 group-hover/btn:translate-x-1.5 transition-all" />
+        <ArrowRight className="w-4 h-4 text-zinc-500 group-hover/btn:text-red-500 group-hover/btn:translate-x-1.5 transition-all" />
       </button>
     </motion.div>
   );

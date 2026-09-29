@@ -85,9 +85,9 @@ export const ContactSection: React.FC<ContactSectionProps> = ({
   )}`;
 
   return (
-    <section id="contact" className="py-20 sm:py-28 bg-[#09090b] relative overflow-hidden">
+    <section id="contact" className="py-20 sm:py-28 bg-[#050505] relative overflow-hidden">
       {/* Subtle ambient light glow */}
-      <div className="absolute top-1/2 left-0 w-80 h-80 rounded-full bg-amber-500/5 blur-3xl pointer-events-none" />
+      <div className="absolute top-1/2 left-0 w-80 h-80 rounded-full bg-red-600/5 blur-3xl pointer-events-none" />
 
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-14">
@@ -100,14 +100,14 @@ export const ContactSection: React.FC<ContactSectionProps> = ({
             className="lg:col-span-5 space-y-6 sm:space-y-8"
           >
             <div>
-              <div className="flex items-center gap-2 text-xs font-mono uppercase tracking-widest text-amber-400 mb-2 sm:mb-3">
+              <div className="flex items-center gap-2 text-xs font-mono uppercase tracking-widest text-red-500 mb-2 sm:mb-3">
                 <MessageSquare className="w-3.5 h-3.5" />
                 <span>Start An Edit</span>
               </div>
 
               <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold font-display tracking-tight text-white leading-tight">
                 Let's create something <br />
-                <span className="text-transparent bg-clip-text bg-gradient-to-r from-amber-200 via-amber-400 to-amber-500">
+                <span className="text-transparent bg-clip-text bg-gradient-to-r from-red-300 via-red-500 to-red-600">
                   worth replaying.
                 </span>
               </h2>
@@ -124,7 +124,7 @@ export const ContactSection: React.FC<ContactSectionProps> = ({
                 href={whatsappUrl}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="p-4 rounded-xl bg-[#121216] border border-white/[0.08] hover:border-emerald-500/40 transition-all flex items-center justify-between group active:scale-98"
+                className="p-4 rounded-xl bg-[#0f0a0a] border border-white/[0.08] hover:border-emerald-500/40 transition-all flex items-center justify-between group active:scale-98"
               >
                 <div className="flex items-center gap-3">
                   <div className="w-10 h-10 rounded-lg bg-emerald-500/10 border border-emerald-500/20 flex items-center justify-center text-emerald-400">
@@ -145,22 +145,22 @@ export const ContactSection: React.FC<ContactSectionProps> = ({
               {/* Email direct */}
               <a
                 href={`mailto:${config.contactEmail}?subject=Mobile%20Video%20Editing%20Inquiry`}
-                className="p-4 rounded-xl bg-[#121216] border border-white/[0.08] hover:border-amber-500/40 transition-all flex items-center justify-between group active:scale-98"
+                className="p-4 rounded-xl bg-[#0f0a0a] border border-white/[0.08] hover:border-red-600/40 transition-all flex items-center justify-between group active:scale-98"
               >
                 <div className="flex items-center gap-3">
-                  <div className="w-10 h-10 rounded-lg bg-white/5 border border-white/10 flex items-center justify-center text-amber-400">
+                  <div className="w-10 h-10 rounded-lg bg-white/5 border border-white/10 flex items-center justify-center text-red-500">
                     <Mail className="w-5 h-5" />
                   </div>
                   <div>
                     <span className="text-[10px] font-mono text-zinc-400 uppercase tracking-wider block">
                       Direct Email
                     </span>
-                    <span className="text-sm font-semibold text-white group-hover:text-amber-300 transition-colors">
+                    <span className="text-sm font-semibold text-white group-hover:text-red-400 transition-colors">
                       {config.contactEmail}
                     </span>
                   </div>
                 </div>
-                <ArrowUpRight className="w-4 h-4 text-zinc-500 group-hover:text-amber-400 transition-colors" />
+                <ArrowUpRight className="w-4 h-4 text-zinc-500 group-hover:text-red-500 transition-colors" />
               </a>
 
               {/* Instagram direct */}
@@ -168,7 +168,7 @@ export const ContactSection: React.FC<ContactSectionProps> = ({
                 href="https://instagram.com"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="p-4 rounded-xl bg-[#121216] border border-white/[0.08] hover:border-pink-500/40 transition-all flex items-center justify-between group active:scale-98"
+                className="p-4 rounded-xl bg-[#0f0a0a] border border-white/[0.08] hover:border-pink-500/40 transition-all flex items-center justify-between group active:scale-98"
               >
                 <div className="flex items-center gap-3">
                   <div className="w-10 h-10 rounded-lg bg-pink-500/10 border border-pink-500/20 flex items-center justify-center text-pink-400">
@@ -204,7 +204,7 @@ export const ContactSection: React.FC<ContactSectionProps> = ({
             whileInView={{ opacity: 1, x: 0 }}
             viewport={{ once: true, amount: 0.2 }}
             transition={{ duration: 0.7, delay: 0.1, ease: [0.16, 1, 0.3, 1] }}
-            className="lg:col-span-7 bg-[#121216] border border-white/[0.08] rounded-2xl p-5 sm:p-8 shadow-2xl"
+            className="lg:col-span-7 bg-[#0f0a0a] border border-white/[0.08] rounded-2xl p-5 sm:p-8 shadow-2xl"
           >
             {isSubmitted ? (
               <div className="py-12 text-center space-y-4 animate-in fade-in duration-300">
@@ -220,7 +220,7 @@ export const ContactSection: React.FC<ContactSectionProps> = ({
                 <button
                   type="button"
                   onClick={() => setIsSubmitted(false)}
-                  className="mt-4 px-6 py-2.5 text-xs font-semibold uppercase tracking-wider text-black bg-amber-400 hover:bg-amber-300 rounded-lg transition-colors cursor-pointer"
+                  className="mt-4 px-6 py-2.5 text-xs font-semibold uppercase tracking-wider text-black bg-red-500 hover:bg-red-400 rounded-lg transition-colors cursor-pointer"
                 >
                   Send Another Inquiry
                 </button>
@@ -255,7 +255,7 @@ export const ContactSection: React.FC<ContactSectionProps> = ({
                       placeholder="e.g. Liam Parker"
                       {...register('fullName')}
                       className={`w-full bg-[#18181e] border rounded-lg px-3.5 py-2.5 text-xs sm:text-sm text-white placeholder-zinc-500 focus:outline-none transition-colors ${
-                        errors.fullName ? 'border-red-500 focus:border-red-500' : 'border-white/10 focus:border-amber-500'
+                        errors.fullName ? 'border-red-500 focus:border-red-500' : 'border-white/10 focus:border-red-600'
                       }`}
                     />
                     {errors.fullName && (
@@ -273,7 +273,7 @@ export const ContactSection: React.FC<ContactSectionProps> = ({
                       placeholder="liam@creator.co"
                       {...register('email')}
                       className={`w-full bg-[#18181e] border rounded-lg px-3.5 py-2.5 text-xs sm:text-sm text-white placeholder-zinc-500 focus:outline-none transition-colors ${
-                        errors.email ? 'border-red-500 focus:border-red-500' : 'border-white/10 focus:border-amber-500'
+                        errors.email ? 'border-red-500 focus:border-red-500' : 'border-white/10 focus:border-red-600'
                       }`}
                     />
                     {errors.email && (
@@ -293,7 +293,7 @@ export const ContactSection: React.FC<ContactSectionProps> = ({
                       type="tel"
                       placeholder="+1 (555) 000-0000"
                       {...register('whatsappNumber')}
-                      className="w-full bg-[#18181e] border border-white/10 rounded-lg px-3.5 py-2.5 text-xs sm:text-sm text-white placeholder-zinc-500 focus:outline-none focus:border-amber-500 transition-colors"
+                      className="w-full bg-[#18181e] border border-white/10 rounded-lg px-3.5 py-2.5 text-xs sm:text-sm text-white placeholder-zinc-500 focus:outline-none focus:border-red-600 transition-colors"
                     />
                   </div>
 
@@ -304,7 +304,7 @@ export const ContactSection: React.FC<ContactSectionProps> = ({
                     <select
                       id="projectType"
                       {...register('projectType')}
-                      className="w-full bg-[#18181e] border border-white/10 rounded-lg px-3.5 py-2.5 text-xs sm:text-sm text-white focus:outline-none focus:border-amber-500 transition-colors cursor-pointer"
+                      className="w-full bg-[#18181e] border border-white/10 rounded-lg px-3.5 py-2.5 text-xs sm:text-sm text-white focus:outline-none focus:border-red-600 transition-colors cursor-pointer"
                     >
                       <option value="Cinematic Reels">Cinematic Reels</option>
                       <option value="Travel & Lifestyle">Travel & Lifestyle</option>
@@ -328,7 +328,7 @@ export const ContactSection: React.FC<ContactSectionProps> = ({
                       type="text"
                       placeholder="e.g. $500 – $1,200 per Reel"
                       {...register('estimatedBudget')}
-                      className="w-full bg-[#18181e] border border-white/10 rounded-lg px-3.5 py-2.5 text-xs sm:text-sm text-white placeholder-zinc-500 focus:outline-none focus:border-amber-500 transition-colors"
+                      className="w-full bg-[#18181e] border border-white/10 rounded-lg px-3.5 py-2.5 text-xs sm:text-sm text-white placeholder-zinc-500 focus:outline-none focus:border-red-600 transition-colors"
                     />
                   </div>
 
@@ -341,7 +341,7 @@ export const ContactSection: React.FC<ContactSectionProps> = ({
                       type="text"
                       placeholder="e.g. In 4 days / ASAP"
                       {...register('preferredDeliveryDate')}
-                      className="w-full bg-[#18181e] border border-white/10 rounded-lg px-3.5 py-2.5 text-xs sm:text-sm text-white placeholder-zinc-500 focus:outline-none focus:border-amber-500 transition-colors"
+                      className="w-full bg-[#18181e] border border-white/10 rounded-lg px-3.5 py-2.5 text-xs sm:text-sm text-white placeholder-zinc-500 focus:outline-none focus:border-red-600 transition-colors"
                     />
                   </div>
                 </div>
@@ -356,7 +356,7 @@ export const ContactSection: React.FC<ContactSectionProps> = ({
                     type="url"
                     placeholder="e.g. Instagram Reel, TikTok, Drive or Dropbox folder"
                     {...register('referenceLink')}
-                    className="w-full bg-[#18181e] border border-white/10 rounded-lg px-3.5 py-2.5 text-xs sm:text-sm text-white placeholder-zinc-500 focus:outline-none focus:border-amber-500 transition-colors"
+                    className="w-full bg-[#18181e] border border-white/10 rounded-lg px-3.5 py-2.5 text-xs sm:text-sm text-white placeholder-zinc-500 focus:outline-none focus:border-red-600 transition-colors"
                   />
                 </div>
 
@@ -371,7 +371,7 @@ export const ContactSection: React.FC<ContactSectionProps> = ({
                     placeholder="Tell me about your footage source (iPhone 15/16 Pro, Sony camera, drone), preferred music or audio style, target duration, and any specific transitions..."
                     {...register('projectDescription')}
                     className={`w-full bg-[#18181e] border rounded-lg px-3.5 py-2.5 text-xs sm:text-sm text-white placeholder-zinc-500 focus:outline-none transition-colors resize-y ${
-                      errors.projectDescription ? 'border-red-500 focus:border-red-500' : 'border-white/10 focus:border-amber-500'
+                      errors.projectDescription ? 'border-red-500 focus:border-red-500' : 'border-white/10 focus:border-red-600'
                     }`}
                   />
                   {errors.projectDescription && (
@@ -385,7 +385,7 @@ export const ContactSection: React.FC<ContactSectionProps> = ({
                     <input
                       type="checkbox"
                       {...register('consent')}
-                      className="mt-0.5 rounded border-white/20 bg-white/5 text-amber-500 focus:ring-amber-500"
+                      className="mt-0.5 rounded border-white/20 bg-white/5 text-red-600 focus:ring-red-600"
                     />
                     <span>
                       I consent to storing this inquiry information so we can discuss and schedule the edit.
@@ -400,7 +400,7 @@ export const ContactSection: React.FC<ContactSectionProps> = ({
                 <button
                   type="submit"
                   disabled={isSubmitting}
-                  className="w-full py-3.5 text-xs font-semibold uppercase tracking-wider text-black bg-amber-400 hover:bg-amber-300 active:scale-95 disabled:opacity-50 transition-all rounded-lg flex items-center justify-center gap-2 cursor-pointer shadow-md"
+                  className="w-full py-3.5 text-xs font-semibold uppercase tracking-wider text-black bg-red-500 hover:bg-red-400 active:scale-95 disabled:opacity-50 transition-all rounded-lg flex items-center justify-center gap-2 cursor-pointer shadow-md"
                 >
                   {isSubmitting ? (
                     <>

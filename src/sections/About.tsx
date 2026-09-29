@@ -26,9 +26,9 @@ export const About: React.FC<AboutProps> = ({ config, onContact }) => {
   ];
 
   return (
-    <section id="about" className="py-20 sm:py-28 bg-[#09090b] relative overflow-hidden">
+    <section id="about" className="py-20 sm:py-28 bg-[#050505] relative overflow-hidden">
       {/* Subtle ambient light glow */}
-      <div className="absolute top-1/3 left-10 w-96 h-96 rounded-full bg-amber-500/5 blur-3xl pointer-events-none" />
+      <div className="absolute top-1/3 left-10 w-96 h-96 rounded-full bg-red-600/5 blur-3xl pointer-events-none" />
 
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
         {/* Split Layout: Portrait on Left, Story on Right */}
@@ -53,7 +53,7 @@ export const About: React.FC<AboutProps> = ({ config, onContact }) => {
               <div className="absolute bottom-4 left-4 right-4 p-4 rounded-xl bg-black/75 backdrop-blur-md border border-white/10 text-xs">
                 <div className="flex items-center justify-between text-zinc-200 font-mono">
                   <span className="font-bold">{config.editorName}</span>
-                  <span className="text-amber-400">Mobile Video Creator</span>
+                  <span className="text-red-500">Mobile Video Creator</span>
                 </div>
                 <div className="text-[11px] text-zinc-400 mt-1 flex items-center justify-between">
                   <span>{config.location}</span>
@@ -63,14 +63,14 @@ export const About: React.FC<AboutProps> = ({ config, onContact }) => {
             </div>
 
             {/* Social Profile Links */}
-            <div className="p-4 rounded-xl bg-[#121216] border border-white/[0.08] flex items-center justify-between">
+            <div className="p-4 rounded-xl bg-[#0f0a0a] border border-white/[0.08] flex items-center justify-between">
               <span className="text-xs font-mono text-zinc-400">Find me on social:</span>
               <div className="flex items-center gap-3">
                 <a
                   href="https://instagram.com"
                   target="_blank"
                   rel="noreferrer"
-                  className="p-2 rounded-lg bg-white/5 hover:bg-white/15 text-zinc-300 hover:text-amber-400 transition-colors"
+                  className="p-2 rounded-lg bg-white/5 hover:bg-white/15 text-zinc-300 hover:text-red-500 transition-colors"
                   aria-label="Instagram Profile"
                 >
                   <Instagram className="w-4 h-4" />
@@ -79,7 +79,7 @@ export const About: React.FC<AboutProps> = ({ config, onContact }) => {
                   href="https://youtube.com"
                   target="_blank"
                   rel="noreferrer"
-                  className="p-2 rounded-lg bg-white/5 hover:bg-white/15 text-zinc-300 hover:text-amber-400 transition-colors"
+                  className="p-2 rounded-lg bg-white/5 hover:bg-white/15 text-zinc-300 hover:text-red-500 transition-colors"
                   aria-label="YouTube Shorts"
                 >
                   <Youtube className="w-4 h-4" />
@@ -88,7 +88,7 @@ export const About: React.FC<AboutProps> = ({ config, onContact }) => {
                   href="https://vimeo.com"
                   target="_blank"
                   rel="noreferrer"
-                  className="p-2 rounded-lg bg-white/5 hover:bg-white/15 text-zinc-300 hover:text-amber-400 transition-colors"
+                  className="p-2 rounded-lg bg-white/5 hover:bg-white/15 text-zinc-300 hover:text-red-500 transition-colors"
                   aria-label="Vimeo Portfolio"
                 >
                   <Video className="w-4 h-4" />
@@ -106,7 +106,7 @@ export const About: React.FC<AboutProps> = ({ config, onContact }) => {
             className="lg:col-span-7 space-y-8"
           >
             <div>
-              <div className="flex items-center gap-2 text-xs font-mono uppercase tracking-widest text-amber-400 mb-2 sm:mb-3">
+              <div className="flex items-center gap-2 text-xs font-mono uppercase tracking-widest text-red-500 mb-2 sm:mb-3">
                 <User className="w-3.5 h-3.5" />
                 <span>Behind The Edits</span>
               </div>
@@ -123,7 +123,7 @@ export const About: React.FC<AboutProps> = ({ config, onContact }) => {
             {/* Philosophy & Approach */}
             <div className="grid grid-cols-1 sm:grid-cols-2 gap-5 pt-3 border-t border-white/[0.08]">
               <div className="space-y-2">
-                <h4 className="flex items-center gap-2 text-xs font-mono uppercase tracking-wider text-amber-400">
+                <h4 className="flex items-center gap-2 text-xs font-mono uppercase tracking-wider text-red-500">
                   <Film className="w-3.5 h-3.5" />
                   <span>Editing Philosophy</span>
                 </h4>
@@ -133,7 +133,7 @@ export const About: React.FC<AboutProps> = ({ config, onContact }) => {
               </div>
 
               <div className="space-y-2">
-                <h4 className="flex items-center gap-2 text-xs font-mono uppercase tracking-wider text-amber-400">
+                <h4 className="flex items-center gap-2 text-xs font-mono uppercase tracking-wider text-red-500">
                   <Compass className="w-3.5 h-3.5" />
                   <span>Mobile Pacing Approach</span>
                 </h4>
@@ -146,7 +146,7 @@ export const About: React.FC<AboutProps> = ({ config, onContact }) => {
             {/* Creative Interests */}
             <div className="space-y-3 pt-3 border-t border-white/[0.08]">
               <h4 className="flex items-center gap-2 text-xs font-mono uppercase tracking-wider text-zinc-400">
-                <Sparkles className="w-3.5 h-3.5 text-amber-400" />
+                <Sparkles className="w-3.5 h-3.5 text-red-500" />
                 <span>Creative Passions & Visual Obsessions</span>
               </h4>
 
@@ -155,7 +155,7 @@ export const About: React.FC<AboutProps> = ({ config, onContact }) => {
                   <motion.div
                     key={idx}
                     whileHover={{ scale: 1.02 }}
-                    className="p-3 rounded-lg bg-[#121216] border border-white/[0.06] hover:border-amber-500/20 text-xs transition-colors"
+                    className="p-3 rounded-lg bg-[#0f0a0a] border border-white/[0.06] hover:border-red-600/20 text-xs transition-colors"
                   >
                     <span className="font-semibold text-white block mb-0.5">{item.label}</span>
                     <span className="text-zinc-400 text-[11px] leading-relaxed">{item.desc}</span>
@@ -167,7 +167,7 @@ export const About: React.FC<AboutProps> = ({ config, onContact }) => {
             {/* Post-Production Editing Suite */}
             <div className="space-y-3 pt-3 border-t border-white/[0.08]">
               <h4 className="flex items-center gap-2 text-xs font-mono uppercase tracking-wider text-zinc-400">
-                <Cpu className="w-3.5 h-3.5 text-amber-400" />
+                <Cpu className="w-3.5 h-3.5 text-red-500" />
                 <span>Post-Production Suite & Mobile Workflow</span>
               </h4>
 
@@ -176,7 +176,7 @@ export const About: React.FC<AboutProps> = ({ config, onContact }) => {
                   <motion.div
                     key={idx}
                     whileHover={{ scale: 1.02 }}
-                    className="p-3 rounded-lg bg-[#121216] border border-white/[0.06] hover:border-amber-500/20 flex flex-col justify-between transition-colors"
+                    className="p-3 rounded-lg bg-[#0f0a0a] border border-white/[0.06] hover:border-red-600/20 flex flex-col justify-between transition-colors"
                   >
                     <span className="text-xs font-semibold text-white">{t.name}</span>
                     <span className="text-[11px] text-zinc-400 mt-1">{t.role}</span>
@@ -191,7 +191,7 @@ export const About: React.FC<AboutProps> = ({ config, onContact }) => {
                 whileHover={{ scale: 1.03 }}
                 whileTap={{ scale: 0.97 }}
                 onClick={onContact}
-                className="inline-flex items-center gap-2 px-6 py-3 text-xs font-semibold uppercase tracking-wider text-black bg-amber-400 hover:bg-amber-300 rounded-lg transition-colors cursor-pointer active:scale-95"
+                className="inline-flex items-center gap-2 px-6 py-3 text-xs font-semibold uppercase tracking-wider text-black bg-red-500 hover:bg-red-400 rounded-lg transition-colors cursor-pointer active:scale-95"
               >
                 <span>Let's Create Together</span>
                 <ArrowUpRight className="w-4 h-4" />

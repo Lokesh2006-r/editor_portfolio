@@ -6,37 +6,26 @@
   --font-mono: 'JetBrains Mono', monospace;
   --font-grotesk: 'Space Grotesk', sans-serif;
   --font-outfit: 'Outfit', sans-serif;
-  --color-cinema-bg: #09090b;
-  --color-cinema-surface: #121216;
-  --color-cinema-border: rgba(255, 255, 255, 0.08);
-  --color-cinema-accent: #f59e0b;
+  --color-cinema-bg: #050505;
+  --color-cinema-surface: #0f0a0a;
+  --color-cinema-border: rgba(239, 68, 68, 0.12);
+  --color-cinema-accent: #ef4444;
 }
 
-.font-grotesk {
-  font-family: 'Space Grotesk', 'Plus Jakarta Sans', sans-serif;
-}
-
-.font-outfit {
-  font-family: 'Outfit', 'Plus Jakarta Sans', sans-serif;
-}
-
-.font-display {
-  font-family: 'Syne', sans-serif;
-}
-
-.font-sans {
-  font-family: 'Plus Jakarta Sans', sans-serif;
-}
-
-.font-mono {
-  font-family: 'JetBrains Mono', monospace;
-}
+.font-grotesk { font-family: 'Space Grotesk', 'Plus Jakarta Sans', sans-serif; }
+.font-outfit  { font-family: 'Outfit', 'Plus Jakarta Sans', sans-serif; }
+.font-display { font-family: 'Syne', sans-serif; }
+.font-sans    { font-family: 'Plus Jakarta Sans', sans-serif; }
+.font-mono    { font-family: 'JetBrains Mono', monospace; }
 
 :root {
   color-scheme: dark;
-  --bg-cinema: #09090b;
-  --bg-surface: #121217;
-  --text-main: #f4f4f5;
+  --bg-cinema: #050505;
+  --bg-surface: #0f0a0a;
+  --text-main: #f1f0ee;
+  --accent-red: #ef4444;
+  --accent-crimson: #9a3412;
+  --accent-ember: #b91c1c;
 }
 
 html {
@@ -46,14 +35,145 @@ html {
 
 body {
   font-family: var(--font-sans);
-  background-color: #09090b;
-  color: #f4f4f5;
+  background-color: #050505;
+  color: #f1f0ee;
   overflow-x: hidden;
   transition: background-color 0.25s cubic-bezier(0.4, 0, 0.2, 1), color 0.25s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
 /* ==========================================================================
-   THEME: NIGHT (OLED CINEMA PITCH BLACK)
+   CINEMATIC RED GLOW SYSTEM — #050505 → #9A3412 → #EF4444
+   ========================================================================== */
+
+/* The signature red gradient sweep — base background for every section */
+.theme-bg-sweep {
+  background:
+    radial-gradient(ellipse 70% 60% at 20% 20%, rgba(154, 52, 18, 0.18) 0%, transparent 60%),
+    radial-gradient(ellipse 50% 70% at 85% 80%, rgba(239, 68, 68, 0.14) 0%, transparent 55%),
+    radial-gradient(ellipse 40% 30% at 60% 10%,  rgba(185, 28, 28, 0.08) 0%, transparent 50%),
+    #050505;
+}
+
+/* Glow orbs */
+.glow-orb-red {
+  background: radial-gradient(circle, rgba(239, 68, 68, 0.30) 0%, rgba(185, 28, 28, 0.12) 40%, transparent 70%);
+  filter: blur(50px);
+}
+
+.glow-orb-crimson {
+  background: radial-gradient(circle, rgba(154, 52, 18, 0.35) 0%, rgba(127, 29, 29, 0.15) 40%, transparent 70%);
+  filter: blur(60px);
+}
+
+.glow-orb-ember {
+  background: radial-gradient(circle, rgba(239, 68, 68, 0.22) 0%, rgba(153, 27, 27, 0.10) 50%, transparent 70%);
+  filter: blur(80px);
+}
+
+/* ==========================================================================
+   FLOATING ANIMATIONS
+   ========================================================================== */
+@keyframes floatOrb1 {
+  0%, 100% { transform: translate(0px, 0px) scale(1); }
+  33%       { transform: translate(70px, -60px) scale(1.18); }
+  66%       { transform: translate(-50px, 40px) scale(0.92); }
+}
+
+@keyframes floatOrb2 {
+  0%, 100% { transform: translate(0px, 0px) scale(1); }
+  33%       { transform: translate(-80px, 50px) scale(1.12); }
+  66%       { transform: translate(60px, -50px) scale(0.95); }
+}
+
+@keyframes floatOrb3 {
+  0%, 100% { transform: translate(0px, 0px) scale(1); }
+  50%       { transform: translate(90px, 50px) scale(1.22); }
+}
+
+@keyframes pulseGlow {
+  0%, 100% { opacity: 0.5; }
+  50%       { opacity: 1; }
+}
+
+@keyframes scanline {
+  0%   { transform: translateY(-100%); }
+  100% { transform: translateY(100vh); }
+}
+
+@keyframes flicker {
+  0%, 100% { opacity: 1; }
+  92%       { opacity: 1; }
+  93%       { opacity: 0.85; }
+  94%       { opacity: 1; }
+  97%       { opacity: 0.9; }
+  98%       { opacity: 1; }
+}
+
+.animate-float-orb1  { animation: floatOrb1 18s ease-in-out infinite; }
+.animate-float-orb2  { animation: floatOrb2 22s ease-in-out infinite; }
+.animate-float-orb3  { animation: floatOrb3 25s ease-in-out infinite; }
+.animate-pulse-glow  { animation: pulseGlow 4s ease-in-out infinite; }
+.animate-flicker     { animation: flicker 8s ease-in-out infinite; }
+
+/* ==========================================================================
+   AESTHETIC TYPOGRAPHIC EFFECTS
+   ========================================================================== */
+
+/* Gradient text — red fire effect */
+.text-gradient-red {
+  background: linear-gradient(135deg, #ef4444 0%, #f87171 40%, #fca5a5 70%, #ef4444 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+/* Gradient text — ember/crimson */
+.text-gradient-ember {
+  background: linear-gradient(135deg, #9a3412 0%, #ef4444 50%, #fca5a5 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+/* Large display text with glow */
+.text-glow-red {
+  text-shadow:
+    0 0 20px rgba(239, 68, 68, 0.5),
+    0 0 60px rgba(239, 68, 68, 0.2),
+    0 0 100px rgba(154, 52, 18, 0.15);
+}
+
+/* Subtle letter-spacing for aesthetic headers */
+.tracking-cinematic { letter-spacing: -0.03em; }
+.tracking-wide-display { letter-spacing: 0.08em; }
+
+/* ==========================================================================
+   GRID & DOT PATTERNS
+   ========================================================================== */
+.bg-grid-pattern {
+  background-size: 40px 40px;
+  background-image:
+    linear-gradient(to right, rgba(239, 68, 68, 0.04) 1px, transparent 1px),
+    linear-gradient(to bottom, rgba(154, 52, 18, 0.04) 1px, transparent 1px);
+}
+
+.bg-dots-pattern {
+  background-size: 24px 24px;
+  background-image: radial-gradient(circle, rgba(239, 68, 68, 0.10) 1.2px, transparent 1.2px);
+}
+
+.bg-radial-vignette {
+  background: radial-gradient(circle at 50% 50%, transparent 20%, rgba(5, 5, 5, 0.80) 100%);
+}
+
+/* Film grain overlay */
+.film-grain {
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.75' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)' opacity='0.04'/%3E%3C/svg%3E");
+  pointer-events: none;
+}
+
+/* ==========================================================================
+   THEME: NIGHT MODE (maintain pure black base)
    ========================================================================== */
 html[data-theme="night"],
 html.theme-night {
@@ -62,278 +182,55 @@ html.theme-night {
 
 html[data-theme="night"] body,
 html.theme-night body {
-  background-color: #000000 !important;
-  color: #ffffff !important;
+  background-color: #020202 !important;
+  color: #f1f0ee !important;
 }
 
-html[data-theme="night"] .bg-\[\#09090b\] {
-  background-color: #000000 !important;
-}
-
-html[data-theme="night"] .bg-\[\#0c0c0f\],
-html[data-theme="night"] .bg-\[\#0c0c10\] {
-  background-color: #050508 !important;
-}
-
-html[data-theme="night"] .bg-\[\#121217\],
-html[data-theme="night"] .bg-\[\#121216\] {
-  background-color: #0a0a0d !important;
-  border-color: rgba(245, 158, 11, 0.15) !important;
-  box-shadow: 0 4px 20px -2px rgba(0, 0, 0, 0.8) !important;
-}
-
-html[data-theme="night"] .bg-\[\#050507\],
-html[data-theme="night"] .bg-\[\#0f0f14\] {
-  background-color: #020203 !important;
+html[data-theme="night"] .bg-\[\#050505\] {
+  background-color: #020202 !important;
 }
 
 /* ==========================================================================
-   THEME: LIGHT (DAYLIGHT EDITORIAL STUDIO)
+   VIDEO / CINEMA DARK ZONES (always forced dark regardless of theme)
    ========================================================================== */
-html[data-theme="light"],
-html.theme-light {
-  color-scheme: light;
-}
-
-html[data-theme="light"] body {
-  background-color: #f8fafc !important;
-  color: #0f172a !important;
-}
-
-html[data-theme="light"] .bg-\[\#09090b\] {
-  background-color: #f8fafc !important;
-}
-
-html[data-theme="light"] .bg-\[\#0c0c0f\],
-html[data-theme="light"] .bg-\[\#0c0c10\] {
-  background-color: #f1f5f9 !important;
-}
-
-html[data-theme="light"] .bg-\[\#121217\],
-html[data-theme="light"] .bg-\[\#121216\],
-html[data-theme="light"] .bg-\[\#141419\],
-html[data-theme="light"] .bg-\[\#14141a\] {
-  background-color: #ffffff !important;
-  border-color: rgba(15, 23, 42, 0.08) !important;
-  box-shadow: 0 4px 12px -2px rgba(15, 23, 42, 0.05) !important;
-}
-
-html[data-theme="light"] .bg-\[\#18181f\],
-html[data-theme="light"] .bg-\[\#181820\],
-html[data-theme="light"] .bg-\[\#181822\] {
-  background-color: #f8fafc !important;
-  border-color: rgba(15, 23, 42, 0.08) !important;
-}
-
-html[data-theme="light"] .bg-\[\#050507\] {
-  background-color: #e2e8f0 !important;
-}
-
-html[data-theme="light"] .bg-\[\#0f0f14\] {
-  background-color: #ffffff !important;
-  border-color: rgba(15, 23, 42, 0.1) !important;
-}
-
-html[data-theme="light"] header.bg-\[\#09090b\]\/92,
-html[data-theme="light"] header.bg-\[\#0f0f14\]\/95 {
-  background-color: rgba(255, 255, 255, 0.94) !important;
-  border-bottom-color: rgba(15, 23, 42, 0.08) !important;
-  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.04) !important;
-}
-
-html[data-theme="light"] .from-\[\#09090b\]\/90 {
-  --tw-gradient-from: rgba(255, 255, 255, 0.92) var(--tw-gradient-from-position) !important;
-}
-
-/* Text overrides in Light Theme (excluding video player and hero banner) */
-html[data-theme="light"] :not(.cinema-force-dark):not(.cinema-force-dark *) > .text-white {
-  color: #0f172a !important;
-}
-
-html[data-theme="light"] .text-white {
-  color: #0f172a !important;
-}
-
-/* Maintain crisp dark headers in light mode */
-html[data-theme="light"] h1.text-white,
-html[data-theme="light"] h2.text-white,
-html[data-theme="light"] h3.text-white {
-  color: #0f172a !important;
-}
-
-html[data-theme="light"] .text-zinc-200,
-html[data-theme="light"] .text-zinc-300 {
-  color: #334155 !important;
-}
-
-html[data-theme="light"] .text-zinc-400 {
-  color: #64748b !important;
-}
-
-html[data-theme="light"] .text-zinc-500 {
-  color: #94a3b8 !important;
-}
-
-/* Borders & subtle backgrounds in Light Theme */
-html[data-theme="light"] .border-white\/\[0\.08\],
-html[data-theme="light"] .border-white\/\[0\.06\],
-html[data-theme="light"] .border-white\/10,
-html[data-theme="light"] .border-white\/5 {
-  border-color: rgba(15, 23, 42, 0.08) !important;
-}
-
-html[data-theme="light"] .border-white\/20 {
-  border-color: rgba(15, 23, 42, 0.16) !important;
-}
-
-html[data-theme="light"] .bg-white\/5 {
-  background-color: rgba(15, 23, 42, 0.04) !important;
-}
-
-html[data-theme="light"] .bg-white\/10 {
-  background-color: rgba(15, 23, 42, 0.08) !important;
-}
-
-html[data-theme="light"] .bg-black\/40,
-html[data-theme="light"] .bg-black\/60,
-html[data-theme="light"] .bg-black\/80 {
-  background-color: rgba(241, 245, 249, 0.85) !important;
-  color: #0f172a !important;
-}
-
-/* Ensure Video Lightbox and Project Modal remain pure cinema black for video screening */
 #video-lightbox,
 .cinema-force-dark,
 .cinema-force-dark * {
   color-scheme: dark !important;
 }
 
-html[data-theme="light"] #video-lightbox .text-white,
-html[data-theme="light"] .cinema-force-dark .text-white {
-  color: #ffffff !important;
-}
-
-html[data-theme="light"] #video-lightbox .bg-black\/95,
-html[data-theme="light"] .cinema-force-dark .bg-black {
-  background-color: rgba(0, 0, 0, 0.95) !important;
-}
-
 h1, h2, h3, .font-display {
   font-family: var(--font-display);
 }
 
-/* Subtle cinematic film grain overlay (SVG based, GPU light) */
-.film-grain {
-  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.8' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)' opacity='0.035'/%3E%3C/svg%3E");
-}
-
 /* ==========================================================================
-   AESTHETIC BACKGROUND ANIMATIONS & MESH PATTERNS
+   SCROLLBAR — crimson accent
    ========================================================================== */
-@keyframes floatOrb1 {
-  0%, 100% {
-    transform: translate(0px, 0px) scale(1);
-  }
-  33% {
-    transform: translate(70px, -60px) scale(1.18);
-  }
-  66% {
-    transform: translate(-50px, 40px) scale(0.92);
-  }
-}
-
-@keyframes floatOrb2 {
-  0%, 100% {
-    transform: translate(0px, 0px) scale(1);
-  }
-  33% {
-    transform: translate(-80px, 50px) scale(1.12);
-  }
-  66% {
-    transform: translate(60px, -50px) scale(0.95);
-  }
-}
-
-@keyframes floatOrb3 {
-  0%, 100% {
-    transform: translate(0px, 0px) scale(1);
-  }
-  50% {
-    transform: translate(90px, 50px) scale(1.22);
-  }
-}
-
-.animate-float-orb1 {
-  animation: floatOrb1 18s ease-in-out infinite;
-}
-
-.animate-float-orb2 {
-  animation: floatOrb2 22s ease-in-out infinite;
-}
-
-.animate-float-orb3 {
-  animation: floatOrb3 25s ease-in-out infinite;
-}
-
-.bg-grid-pattern {
-  background-size: 40px 40px;
-  background-image: 
-    linear-gradient(to right, rgba(255, 255, 255, 0.04) 1px, transparent 1px),
-    linear-gradient(to bottom, rgba(255, 255, 255, 0.04) 1px, transparent 1px);
-}
-
-.bg-dots-pattern {
-  background-size: 24px 24px;
-  background-image: radial-gradient(circle, rgba(255, 255, 255, 0.09) 1.2px, transparent 1.2px);
-}
-
-.bg-radial-vignette {
-  background: radial-gradient(circle at 50% 50%, transparent 20%, rgba(9, 9, 11, 0.75) 100%);
-}
-
-/* Theme canvas background adaptors */
-html[data-theme="aurora"] .dark-canvas-theme {
-  background-color: #0b0914 !important;
-}
-
-html[data-theme="emerald"] .dark-canvas-theme {
-  background-color: #06110d !important;
-}
-
-html[data-theme="sunset"] .dark-canvas-theme {
-  background-color: #12090e !important;
-}
-
-html[data-theme="night"] .dark-canvas-theme {
-  background-color: #050507 !important;
-}
-
-html[data-theme="light"] .dark-canvas-theme {
-  background-color: #f8fafc !important;
-}
-
-/* Smooth custom scrollbar */
-::-webkit-scrollbar {
-  width: 6px;
-  height: 6px;
-}
-
-::-webkit-scrollbar-track {
-  background: #09090b;
-}
-
-::-webkit-scrollbar-thumb {
-  background: #27272a;
+::-webkit-scrollbar        { width: 5px; height: 5px; }
+::-webkit-scrollbar-track  { background: #050505; }
+::-webkit-scrollbar-thumb  {
+  background: rgba(154, 52, 18, 0.5);
   border-radius: 9999px;
 }
-
 ::-webkit-scrollbar-thumb:hover {
-  background: #3f3f46;
+  background: rgba(239, 68, 68, 0.7);
 }
 
-/* Accessible focus visible rings */
+/* Focus ring — red */
 :focus-visible {
-  outline: 2px solid #f59e0b;
+  outline: 2px solid #ef4444;
   outline-offset: 2px;
 }
 
+/* ==========================================================================
+   CARD / SURFACE BORDERS — warm ember tint
+   ========================================================================== */
+.border-theme {
+  border-color: rgba(239, 68, 68, 0.12);
+}
+
+.surface-card {
+  background: rgba(15, 10, 10, 0.8);
+  border: 1px solid rgba(239, 68, 68, 0.10);
+  backdrop-filter: blur(12px);
+}

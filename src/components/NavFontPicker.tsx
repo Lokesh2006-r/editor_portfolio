@@ -66,14 +66,14 @@ export const NavFontPicker: React.FC<NavFontPickerProps> = ({
         <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-2 border-b border-white/5 pb-3">
           <div>
             <div className="flex items-center gap-2 text-sm font-bold text-white">
-              <Type className="w-4 h-4 text-amber-400" />
+              <Type className="w-4 h-4 text-red-500" />
               <span>Navbar Font & Typography</span>
             </div>
             <p className="text-xs text-zinc-400 mt-0.5">
               Select the typography family used for the portfolio navigation bar and menus.
             </p>
           </div>
-          <span className={`text-xs text-amber-400 ${activeOpt.cssClass} font-semibold px-2.5 py-1 rounded bg-amber-400/10 border border-amber-500/20 self-start sm:self-auto`}>
+          <span className={`text-xs text-red-500 ${activeOpt.cssClass} font-semibold px-2.5 py-1 rounded bg-red-500/10 border border-red-600/20 self-start sm:self-auto`}>
             Active: {activeOpt.name}
           </span>
         </div>
@@ -89,15 +89,15 @@ export const NavFontPicker: React.FC<NavFontPickerProps> = ({
                 onClick={() => handleSelectFont(opt.id)}
                 className={`p-3 rounded-xl text-left transition-all cursor-pointer border ${
                   isSelected
-                    ? 'bg-amber-400/15 border-amber-400/40 text-amber-400 shadow-md shadow-amber-500/10'
-                    : 'bg-[#181820] border-white/5 text-zinc-300 hover:text-white hover:border-white/20'
+                    ? 'bg-red-500/15 border-red-500/40 text-red-500 shadow-md shadow-red-600/10'
+                    : 'bg-[#120c0c] border-white/5 text-zinc-300 hover:text-white hover:border-white/20'
                 }`}
               >
                 <div className="flex items-center justify-between">
                   <span className={`text-sm ${opt.cssClass} font-semibold`}>
                     {opt.name}
                   </span>
-                  {isSelected && <Check className="w-4 h-4 text-amber-400" />}
+                  {isSelected && <Check className="w-4 h-4 text-red-500" />}
                 </div>
                 <div className="text-[11px] text-zinc-400 mt-1">{opt.sub}</div>
                 <div className={`text-xs mt-2 px-2 py-1 rounded bg-black/40 text-zinc-300 truncate ${opt.cssClass}`}>
@@ -121,7 +121,7 @@ export const NavFontPicker: React.FC<NavFontPickerProps> = ({
               onClick={() => handleSelectCasing('normal')}
               className={`px-3 py-1.5 text-xs rounded transition-colors cursor-pointer font-medium ${
                 currentCasing === 'normal'
-                  ? 'bg-amber-400 text-black font-semibold shadow-sm'
+                  ? 'bg-red-500 text-black font-semibold shadow-sm'
                   : 'text-zinc-400 hover:text-white'
               }`}
             >
@@ -132,7 +132,7 @@ export const NavFontPicker: React.FC<NavFontPickerProps> = ({
               onClick={() => handleSelectCasing('uppercase')}
               className={`px-3 py-1.5 text-xs rounded transition-colors cursor-pointer font-medium uppercase tracking-wider ${
                 currentCasing === 'uppercase'
-                  ? 'bg-amber-400 text-black font-semibold shadow-sm'
+                  ? 'bg-red-500 text-black font-semibold shadow-sm'
                   : 'text-zinc-400 hover:text-white'
               }`}
             >
@@ -152,13 +152,13 @@ export const NavFontPicker: React.FC<NavFontPickerProps> = ({
         onClick={() => setMenuOpen(!menuOpen)}
         className={`flex items-center gap-1.5 px-2.5 py-1.5 rounded-lg border transition-all duration-200 cursor-pointer ${
           menuOpen
-            ? 'bg-amber-400/15 border-amber-400/40 text-amber-400 shadow-sm shadow-amber-500/10'
-            : 'bg-white/5 border-white/10 hover:border-amber-400/40 text-zinc-300 hover:text-white'
+            ? 'bg-red-500/15 border-red-500/40 text-red-500 shadow-sm shadow-red-600/10'
+            : 'bg-white/5 border-white/10 hover:border-red-500/40 text-zinc-300 hover:text-white'
         }`}
         title={`Change Navbar Font (Current: ${activeOpt.name})`}
         aria-label="Change Navbar Font"
       >
-        <Type className="w-3.5 h-3.5 text-amber-400" />
+        <Type className="w-3.5 h-3.5 text-red-500" />
         <span className={`text-xs font-medium tracking-wide ${activeOpt.cssClass}`}>
           {activeOpt.name.split(' ')[0]}
         </span>
@@ -171,13 +171,13 @@ export const NavFontPicker: React.FC<NavFontPickerProps> = ({
 
       {/* Dropdown Menu */}
       {menuOpen && (
-        <div className="absolute right-0 top-full mt-2 w-64 rounded-xl bg-[#14141a]/98 backdrop-blur-xl border border-white/10 shadow-2xl shadow-black/80 py-2 z-50 animate-in fade-in zoom-in-95 duration-150">
+        <div className="absolute right-0 top-full mt-2 w-64 rounded-xl bg-[#100b0b]/98 backdrop-blur-xl border border-white/10 shadow-2xl shadow-black/80 py-2 z-50 animate-in fade-in zoom-in-95 duration-150">
           <div className="px-3.5 py-1.5 border-b border-white/5 flex items-center justify-between">
             <span className="text-[10px] font-sans font-semibold uppercase tracking-wider text-zinc-400 flex items-center gap-1.5">
-              <Type className="w-3 h-3 text-amber-400" />
+              <Type className="w-3 h-3 text-red-500" />
               Navbar Font
             </span>
-            <span className="text-[10px] text-amber-400/90 font-sans font-medium">Site Navbar</span>
+            <span className="text-[10px] text-red-500/90 font-sans font-medium">Site Navbar</span>
           </div>
 
           <div className="p-1 space-y-0.5">
@@ -190,7 +190,7 @@ export const NavFontPicker: React.FC<NavFontPickerProps> = ({
                   onClick={() => handleSelectFont(opt.id)}
                   className={`w-full flex items-center justify-between px-3 py-2 rounded-lg text-left transition-colors cursor-pointer ${
                     isSelected
-                      ? 'bg-amber-400/10 text-amber-400 font-semibold border border-amber-500/20'
+                      ? 'bg-red-500/10 text-red-500 font-semibold border border-red-600/20'
                       : 'text-zinc-300 hover:text-white hover:bg-white/5 border border-transparent'
                   }`}
                 >
@@ -198,7 +198,7 @@ export const NavFontPicker: React.FC<NavFontPickerProps> = ({
                     <span className={`text-xs ${opt.cssClass} font-medium`}>{opt.name}</span>
                     <span className="text-[10px] text-zinc-500 font-sans">{opt.sub}</span>
                   </div>
-                  {isSelected && <Check className="w-3.5 h-3.5 text-amber-400 shrink-0 ml-2" />}
+                  {isSelected && <Check className="w-3.5 h-3.5 text-red-500 shrink-0 ml-2" />}
                 </button>
               );
             })}
@@ -214,7 +214,7 @@ export const NavFontPicker: React.FC<NavFontPickerProps> = ({
                 onClick={() => handleSelectCasing('normal')}
                 className={`py-1 text-[11px] rounded transition-colors cursor-pointer font-medium ${
                   currentCasing === 'normal'
-                    ? 'bg-amber-400 text-black font-semibold'
+                    ? 'bg-red-500 text-black font-semibold'
                     : 'text-zinc-400 hover:text-white'
                 }`}
               >
@@ -225,7 +225,7 @@ export const NavFontPicker: React.FC<NavFontPickerProps> = ({
                 onClick={() => handleSelectCasing('uppercase')}
                 className={`py-1 text-[11px] rounded transition-colors cursor-pointer font-medium uppercase tracking-wider ${
                   currentCasing === 'uppercase'
-                    ? 'bg-amber-400 text-black font-semibold'
+                    ? 'bg-red-500 text-black font-semibold'
                     : 'text-zinc-400 hover:text-white'
                 }`}
               >
