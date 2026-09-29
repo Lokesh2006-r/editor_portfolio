@@ -110,6 +110,12 @@ export const AdminPage: React.FC<AdminPageProps> = ({ onNavigateToHome }) => {
   const [mongoSyncLog, setMongoSyncLog] = useState<string[]>([]);
   const [mongoPulling, setMongoPulling] = useState(false);
 
+  // Category dropdown
+  const [categoryDropdownOpen, setCategoryDropdownOpen] = useState(false);
+  const [selectedCategory, setSelectedCategory] = useState<string>(
+    editingProject?.category || 'reels'
+  );
+
   // ── Video Upload Overlay State ──────────────────────────────────────────
   const [videoUploadOverlay, setVideoUploadOverlay] = useState<{
     active: boolean;
@@ -232,10 +238,17 @@ export const AdminPage: React.FC<AdminPageProps> = ({ onNavigateToHome }) => {
     };
   }, []);
 
+  // Sync category dropdown when switching projects
+  useEffect(() => {
+    setSelectedCategory(editingProject?.category || 'reels');
+    setCategoryDropdownOpen(false);
+  }, [editingProject]);
+
   const showNotification = (msg: string) => {
     setNotice(msg);
     setTimeout(() => setNotice(null), 3500);
   };
+
 
   // ── MongoDB Atlas Sync Functions ──────────────────────────────────────────
 
@@ -1177,25 +1190,100 @@ export const AdminPage: React.FC<AdminPageProps> = ({ onNavigateToHome }) => {
                         className="w-full bg-[#181820] border border-white/10 rounded-xl px-3.5 py-2 text-xs text-white"
                       />
                     </div>
-                    <div>
+                    <div className="relative">
                       <label className="block text-xs font-mono uppercase tracking-wider text-zinc-300 mb-1.5">
                         Category
                       </label>
-                      <select
-                        name="category"
-                        defaultValue={editingProject?.category || 'reels'}
-                        className="w-full bg-[#181820] border border-white/10 rounded-xl px-3.5 py-2 text-xs text-white"
+                      {/* Hidden input keeps form submission working */}
+                      <input type="hidden" name="category" value={selectedCategory} />
+
+                      {/* Trigger button */}
+                      <button
+                        type="button"
+                        onClick={() => setCategoryDropdownOpen(prev => !prev)}
+                        className="w-full flex items-center justify-between bg-[#181820] border border-white/10 hover:border-amber-400/40 rounded-xl px-3.5 py-2 text-xs text-white transition-all cursor-pointer"
                       >
-                        <option value="reels">Instagram Reels & Short-Form</option>
-                        <option value="cinematic">Cinematic</option>
-                        <option value="travel">Travel & Lifestyle</option>
-                        <option value="beat-sync">Beat Sync & Sound Design</option>
-                        <option value="transitions">Aesthetic Transitions</option>
-                        <option value="night-day">Night & Day Edits</option>
-                        <option value="lifestyle">Lifestyle</option>
-                        <option value="music-edits">Music & Experimental</option>
-                      </select>
+                        <span className="truncate">
+                          {[
+                            { value: 'reels', label: 'Instagram Reels & Short-Form' },
+                            { value: 'cinematic', label: 'Cinematic' },
+                            { value: 'travel', label: 'Travel & Lifestyle' },
+                            { value: 'beat-sync', label: 'Beat Sync & Sound Design' },
+                            { value: 'transitions', label: 'Aesthetic Transitions' },
+                            { value: 'night-day', label: 'Night & Day Edits' },
+                            { value: 'lifestyle', label: 'Lifestyle' },
+                            { value: 'music-edits', label: 'Music & Experimental' },
+                          ].find(c => c.value === selectedCategory)?.label || 'Select category'}
+                        </span>
+                        <svg
+                          className={`w-3.5 h-3.5 text-zinc-400 flex-shrink-0 ml-2 transition-transform duration-200 ${categoryDropdownOpen ? 'rotate-180' : ''}`}
+                          fill="none" viewBox="0 0 24 24" stroke="currentColor"
+                        >
+                          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
+                        </svg>
+                      </button>
+
+                      {/* Dropdown panel */}
+                      {categoryDropdownOpen && (
+                        <>
+                          {/* Backdrop */}
+                          <div
+                            className="fixed inset-0 z-40"
+                            onClick={() => setCategoryDropdownOpen(false)}
+                          />
+                          <div
+                            className="absolute z-50 top-full mt-1.5 left-0 right-0 bg-[#141418] border border-white/10 rounded-xl shadow-2xl overflow-hidden"
+                            style={{ boxShadow: '0 20px 60px rgba(0,0,0,0.7)' }}
+                          >
+                            {[
+                              { value: 'reels', label: 'Instagram Reels & Short-Form', icon: '📱' },
+                              { value: 'cinematic', label: 'Cinematic', icon: '🎬' },
+                              { value: 'travel', label: 'Travel & Lifestyle', icon: '✈️' },
+                              { value: 'beat-sync', label: 'Beat Sync & Sound Design', icon: '🎵' },
+                              { value: 'transitions', label: 'Aesthetic Transitions', icon: '✨' },
+                              { value: 'night-day', label: 'Night & Day Edits', icon: '🌓' },
+                              { value: 'lifestyle', label: 'Lifestyle', icon: '🌿' },
+                              { value: 'music-edits', label: 'Music & Experimental', icon: '🎸' },
+                            ].map((cat) => {
+                              const isSelected = selectedCategory === cat.value;
+                              return (
+                                <button
+                                  key={cat.value}
+                                  type="button"
+                                  onClick={() => {
+                                    setSelectedCategory(cat.value);
+                                    setCategoryDropdownOpen(false);
+                                  }}
+                                  className={`w-full flex items-center gap-3 px-4 py-2.5 text-xs text-left transition-all cursor-pointer ${
+                                    isSelected
+                                      ? 'bg-amber-400/10 text-amber-300'
+                                      : 'text-zinc-300 hover:bg-white/[0.04] hover:text-white'
+                                  }`}
+                                >
+                                  {/* Checkbox */}
+                                  <span
+                                    className={`flex-shrink-0 w-4 h-4 rounded flex items-center justify-center border transition-all ${
+                                      isSelected
+                                        ? 'bg-amber-400 border-amber-400'
+                                        : 'border-white/25 bg-white/5'
+                                    }`}
+                                  >
+                                    {isSelected && (
+                                      <svg className="w-2.5 h-2.5 text-black" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={3.5} d="M5 13l4 4L19 7" />
+                                      </svg>
+                                    )}
+                                  </span>
+                                  <span className="text-sm leading-none">{cat.icon}</span>
+                                  <span className="flex-1 font-medium">{cat.label}</span>
+                                </button>
+                              );
+                            })}
+                          </div>
+                        </>
+                      )}
                     </div>
+
                   </div>
 
                   <div className="grid grid-cols-1 sm:grid-cols-3 gap-4">
