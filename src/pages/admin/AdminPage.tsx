@@ -146,14 +146,23 @@ export const AdminPage: React.FC<AdminPageProps> = ({ onNavigateToHome }) => {
         setVideoUploadOverlay(prev => ({ ...prev, progress: 90, phase: 'processing' }));
         setTimeout(() => {
           setVideoUploadOverlay(prev => ({ ...prev, progress: 100, phase: 'done' }));
-          // Set video URL in the form input
-          const input = document.getElementById('project-video-input') as HTMLInputElement;
-          if (input) input.value = blobUrl;
+          applyUploadedVideoUrl(blobUrl);
         }, 1200);
         return;
       }
       setVideoUploadOverlay(prev => ({ ...prev, progress: Math.min(prog, 89) }));
     }, 180);
+  };
+
+  // Route the completed upload blob URL to the right input
+  const applyUploadedVideoUrl = (blobUrl: string) => {
+    if ((window as any).__showreelUpload) {
+      delete (window as any).__showreelUpload;
+      setSiteForm(prev => ({ ...prev, showreelVideoUrl: blobUrl }));
+    } else {
+      const input = document.getElementById('project-video-input') as HTMLInputElement;
+      if (input) input.value = blobUrl;
+    }
   };
 
   // Extract canvas frame from video scrubber
@@ -173,10 +182,20 @@ export const AdminPage: React.FC<AdminPageProps> = ({ onNavigateToHome }) => {
   const applyFrameAsThumbnail = () => {
     const { capturedFrame } = thumbFramePicker;
     if (!capturedFrame) return;
-    const input = document.getElementById('project-thumbnail-input') as HTMLInputElement;
-    if (input) input.value = capturedFrame;
-    setThumbFramePicker(prev => ({ ...prev, open: false }));
-    showNotification('✅ Video frame set as thumbnail!');
+
+    if ((window as any).__showreelFramePick) {
+      // Route frame to showreel cover
+      delete (window as any).__showreelFramePick;
+      setSiteForm(prev => ({ ...prev, showreelCover: capturedFrame }));
+      setThumbFramePicker(prev => ({ ...prev, open: false }));
+      showNotification('✅ Video frame set as showreel cover!');
+    } else {
+      // Route frame to project thumbnail input
+      const input = document.getElementById('project-thumbnail-input') as HTMLInputElement;
+      if (input) input.value = capturedFrame;
+      setThumbFramePicker(prev => ({ ...prev, open: false }));
+      showNotification('✅ Video frame set as thumbnail!');
+    }
   };
 
   const openFramePicker = (videoSrc: string) => {
@@ -2170,15 +2189,116 @@ export const AdminPage: React.FC<AdminPageProps> = ({ onNavigateToHome }) => {
                   </div>
                 </div>
 
+                {/* ── Video URL + Upload ── */}
                 <div>
-                  <label className="block text-xs font-mono text-zinc-400 mb-1">Video MP4 URL</label>
+                  <label className="block text-xs font-mono text-zinc-400 mb-1">Showreel Video URL or Upload</label>
+                  <div className="flex gap-2">
+                    <input
+                      id="showreel-video-input"
+                      value={siteForm.showreelVideoUrl}
+                      onChange={(e) => setSiteForm({ ...siteForm, showreelVideoUrl: e.target.value })}
+                      placeholder="https://youtube.com/... or https://vimeo.com/... or .mp4 URL"
+                      className="flex-1 bg-[#181820] border border-white/10 rounded-xl px-3 py-2 text-xs text-white font-mono"
+                    />
+                    {/* Upload local video */}
+                    <label className="flex items-center gap-1.5 px-3 py-2 bg-amber-400 hover:bg-amber-300 border border-amber-400/80 rounded-xl text-xs font-bold text-black cursor-pointer transition-all shadow-lg shadow-amber-400/20 whitespace-nowrap">
+                      <svg className="w-3.5 h-3.5" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2.5} d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-8l-4-4m0 0L8 8m4-4v12"/></svg>
+                      Upload
+                      <input
+                        type="file"
+                        accept="video/*"
+                        className="hidden"
+                        onChange={(e) => {
+                          const file = e.target.files?.[0];
+                          if (file) {
+                            handleVideoFileUpload(file);
+                            // After upload completes, the overlay will set project-video-input
+                            // We also need to watch for the showreel case — use a flag
+                            (window as any).__showreelUpload = true;
+                          }
+                        }}
+                      />
+                    </label>
+                  </div>
+                  <p className="text-[10px] text-zinc-500 mt-1 font-mono">
+                    Paste a YouTube / Vimeo link for persistent playback, or upload a local MP4 (session-only).
+                  </p>
+                </div>
+
+                {/* ── Cover Image + Upload + From Video ── */}
+                <div>
+                  <label className="block text-xs font-mono text-zinc-400 mb-1">Showreel Cover / Poster</label>
+                  <div className="flex gap-2 items-start">
+                    {/* Live cover preview */}
+                    {siteForm.showreelCover && (
+                      <img
+                        src={siteForm.showreelCover}
+                        alt="Showreel cover"
+                        className="w-16 h-10 object-cover rounded-lg border border-white/10 flex-shrink-0"
+                        onError={(e) => { (e.target as HTMLImageElement).style.display = 'none'; }}
+                      />
+                    )}
+                    <div className="flex-1 flex gap-2">
+                      <input
+                        id="showreel-cover-input"
+                        value={siteForm.showreelCover}
+                        onChange={(e) => setSiteForm({ ...siteForm, showreelCover: e.target.value })}
+                        placeholder="/src/assets/images/... or URL"
+                        className="flex-1 bg-[#181820] border border-white/10 rounded-xl px-3 py-2 text-xs text-white font-mono"
+                      />
+                      {/* Upload photo */}
+                      <label className="flex items-center gap-1 px-3 py-2 bg-white/10 border border-white/10 hover:bg-amber-400/20 hover:border-amber-400/40 hover:text-amber-300 rounded-xl text-xs font-medium text-zinc-300 cursor-pointer transition-all whitespace-nowrap">
+                        <svg className="w-3.5 h-3.5" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z"/></svg>
+                        Photo
+                        <input
+                          type="file"
+                          accept="image/*"
+                          className="hidden"
+                          onChange={(e) => {
+                            const file = e.target.files?.[0];
+                            if (file) {
+                              const url = URL.createObjectURL(file);
+                              setSiteForm(prev => ({ ...prev, showreelCover: url }));
+                              showNotification('✅ Showreel cover updated!');
+                            }
+                          }}
+                        />
+                      </label>
+                      {/* Pick frame from showreel video */}
+                      <button
+                        type="button"
+                        title="Extract cover from showreel video timeline"
+                        onClick={() => {
+                          const videoSrc = siteForm.showreelVideoUrl;
+                          if (!videoSrc) {
+                            showNotification('⚠️ Enter or upload the showreel video first');
+                            return;
+                          }
+                          // Custom frame picker for showreel — set a flag so applyFrame goes to showreelCover
+                          (window as any).__showreelFramePick = true;
+                          openFramePicker(videoSrc);
+                        }}
+                        className="flex items-center gap-1 px-3 py-2 bg-white/10 border border-white/10 hover:bg-purple-500/20 hover:border-purple-400/40 hover:text-purple-300 rounded-xl text-xs font-medium text-zinc-300 cursor-pointer transition-all whitespace-nowrap"
+                      >
+                        <svg className="w-3.5 h-3.5" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 10l4.553-2.069A1 1 0 0121 8.876V15.124a1 1 0 01-1.447.894L15 14M5 18h8a2 2 0 002-2V8a2 2 0 00-2-2H5a2 2 0 00-2 2v8a2 2 0 002 2z"/></svg>
+                        Frame
+                      </button>
+                    </div>
+                  </div>
+                </div>
+
+                {/* ── Subtitle ── */}
+                <div>
+                  <label className="block text-xs font-mono text-zinc-400 mb-1">Showreel Subtitle (optional)</label>
                   <input
-                    value={siteForm.showreelVideoUrl}
-                    onChange={(e) => setSiteForm({ ...siteForm, showreelVideoUrl: e.target.value })}
-                    className="w-full bg-[#181820] border border-white/10 rounded-xl px-3 py-2 text-xs text-white font-mono"
+                    value={siteForm.showreelSubtitle || ''}
+                    onChange={(e) => setSiteForm({ ...siteForm, showreelSubtitle: e.target.value })}
+                    placeholder="e.g. A few seconds. A whole story. Mastered for mobile screens."
+                    className="w-full bg-[#181820] border border-white/10 rounded-xl px-3 py-2 text-xs text-white"
                   />
                 </div>
               </div>
+
 
               <div>
                 <button
