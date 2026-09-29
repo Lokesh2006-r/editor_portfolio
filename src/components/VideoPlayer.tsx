@@ -32,7 +32,14 @@ export const VideoPlayer: React.FC<VideoPlayerProps> = ({
   const [showControls, setShowControls] = useState(false);
   const [showPoster, setShowPoster] = useState(true);
 
-  const parsedVideo = useMemo(() => parseVideoUrl(videoUrl), [videoUrl]);
+  // Blob URLs are session-only — they become invalid after a page refresh.
+  // Detect this upfront so we never try to play a dead blob URL.
+  const isStaleBlobUrl = useMemo(() => {
+    if (!videoUrl) return false;
+    return videoUrl.startsWith('blob:');
+  }, [videoUrl]);
+
+  const parsedVideo = useMemo(() => parseVideoUrl(isStaleBlobUrl ? undefined : videoUrl), [videoUrl, isStaleBlobUrl]);
 
   // Format seconds to mm:ss
   const formatTime = (secs: number) => {
@@ -178,8 +185,8 @@ export const VideoPlayer: React.FC<VideoPlayerProps> = ({
         </div>
       )}
 
-      {/* Video Element */}
-      {videoUrl && !hasError ? (
+      {/* Video Element — only rendered for valid, non-blob URLs */}
+      {videoUrl && !hasError && !isStaleBlobUrl ? (
         parsedVideo.provider === 'direct' ? (
           <video
             ref={videoRef}
@@ -207,7 +214,7 @@ export const VideoPlayer: React.FC<VideoPlayerProps> = ({
           />
         )
       ) : (
-        /* Fallback if no stream or error */
+        /* Clean poster fallback — shown for: no URL, blob URL, or stream error */
         <div className="relative w-full h-full">
           <img
             src={posterUrl || 'https://images.unsplash.com/photo-1618005182384-a83a8bd57fbe?q=80&w=2564&auto=format&fit=crop'}
@@ -218,11 +225,12 @@ export const VideoPlayer: React.FC<VideoPlayerProps> = ({
               (e.target as HTMLImageElement).src = 'https://images.unsplash.com/photo-1618005182384-a83a8bd57fbe?q=80&w=2564&auto=format&fit=crop';
             }}
           />
-          {hasError && (
+          {/* Only show error badge for real stream failures (not blob or missing URL) */}
+          {hasError && !isStaleBlobUrl && (
             <div className="absolute inset-0 bg-black/60 flex items-center justify-center p-4">
               <div className="flex items-center gap-2 text-xs text-amber-400 bg-black/80 px-3 py-2 rounded border border-amber-500/20">
                 <AlertCircle className="w-4 h-4" />
-                <span>Media stream unavailable · Displaying cinematic master frame</span>
+                <span>Stream unavailable · Displaying thumbnail</span>
               </div>
             </div>
           )}

@@ -2577,6 +2577,18 @@ export const AdminPage: React.FC<AdminPageProps> = ({ onNavigateToHome }) => {
 
             {videoUploadOverlay.phase === 'done' && (
               <div className="flex flex-col gap-3">
+                {/* Blob URL warning */}
+                <div className="flex items-start gap-2.5 px-4 py-3 bg-amber-400/10 border border-amber-400/30 rounded-xl text-left">
+                  <svg className="w-4 h-4 text-amber-400 flex-shrink-0 mt-0.5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 9v2m0 4h.01M10.29 3.86L1.82 18a2 2 0 001.71 3h16.94a2 2 0 001.71-3L13.71 3.86a2 2 0 00-3.42 0z" />
+                  </svg>
+                  <div>
+                    <p className="text-amber-300 text-xs font-semibold mb-0.5">Temporary session video</p>
+                    <p className="text-amber-200/70 text-[11px] font-mono leading-relaxed">
+                      This local file is only available until you refresh the page. For persistent playback, host the video on YouTube, Vimeo, or a CDN and paste the URL instead.
+                    </p>
+                  </div>
+                </div>
                 <button
                   onClick={() => {
                     setVideoUploadOverlay(prev => ({ ...prev, active: false }));
@@ -2597,6 +2609,7 @@ export const AdminPage: React.FC<AdminPageProps> = ({ onNavigateToHome }) => {
                 </button>
               </div>
             )}
+
           </div>
         </div>
       )}
