@@ -2131,6 +2131,104 @@ export const AdminPage: React.FC<AdminPageProps> = ({ onNavigateToHome }) => {
                 </p>
               </div>
 
+              {/* ── CINEMATIC HERO BANNER EDITOR ── */}
+              <div className="p-5 rounded-2xl bg-black/50 border border-orange-500/15 space-y-4">
+                <div className="flex items-center gap-2 mb-1">
+                  <span className="text-xs font-bold font-mono uppercase text-orange-400">
+                    🎬 Cinematic Hero Banner
+                  </span>
+                  <span className="text-[10px] font-mono text-zinc-500 ml-auto">Shadow-style full-bleed portrait</span>
+                </div>
+
+                {/* Live mini preview */}
+                {siteForm.heroPhoto && (
+                  <div className="relative w-full h-36 rounded-xl overflow-hidden border border-white/10 group">
+                    <img
+                      src={siteForm.heroPhoto}
+                      alt="Hero preview"
+                      className="w-full h-full object-cover object-[70%_20%] brightness-50"
+                    />
+                    <div className="absolute inset-0 bg-gradient-to-r from-black/80 via-black/40 to-transparent" />
+                    <div className="absolute inset-0 flex items-end p-4">
+                      <div>
+                        <p className="text-white font-display font-bold text-xl leading-tight drop-shadow">
+                          {(siteForm.heroTagline || 'Every Frame,\nTells a Story.').split('\n')[0]}
+                        </p>
+                        <p className="text-orange-400 font-display font-bold text-xl leading-tight drop-shadow">
+                          {(siteForm.heroTagline || 'Every Frame,\nTells a Story.').split('\n')[1] || ''}
+                        </p>
+                        <p className="text-zinc-300 text-[10px] mt-1 font-mono line-clamp-1 opacity-80">
+                          {siteForm.heroSubcopy || siteForm.shortBio}
+                        </p>
+                      </div>
+                    </div>
+                    <div className="absolute top-2 right-2 text-[9px] font-mono uppercase text-zinc-500 bg-black/60 px-2 py-0.5 rounded">
+                      Preview
+                    </div>
+                  </div>
+                )}
+
+                {/* Hero Photo URL + Upload */}
+                <div>
+                  <label className="block text-xs font-mono text-zinc-400 mb-1">Hero Portrait Photo</label>
+                  <div className="flex gap-2">
+                    <input
+                      id="hero-photo-input"
+                      value={siteForm.heroPhoto || ''}
+                      onChange={(e) => setSiteForm(prev => ({ ...prev, heroPhoto: e.target.value }))}
+                      placeholder="/src/assets/images/... or https://..."
+                      className="flex-1 bg-[#141008] border border-white/10 rounded-xl px-3 py-2 text-xs text-white font-mono"
+                    />
+                    <label className="flex items-center gap-1.5 px-3 py-2 bg-orange-500 hover:bg-orange-400 rounded-xl text-xs font-bold text-black cursor-pointer transition-all whitespace-nowrap shadow-lg shadow-orange-600/20">
+                      <svg className="w-3.5 h-3.5" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2.5} d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z"/></svg>
+                      Upload Photo
+                      <input
+                        type="file"
+                        accept="image/*"
+                        className="hidden"
+                        onChange={(e) => {
+                          const file = e.target.files?.[0];
+                          if (file) {
+                            const url = URL.createObjectURL(file);
+                            setSiteForm(prev => ({ ...prev, heroPhoto: url }));
+                            showNotification('✅ Hero photo updated! Save to apply.');
+                          }
+                        }}
+                      />
+                    </label>
+                  </div>
+                  <p className="text-[10px] text-zinc-600 mt-1 font-mono">
+                    Best: high-contrast portrait with subject on the right half.
+                  </p>
+                </div>
+
+                {/* Hero Tagline — supports two lines via \n */}
+                <div>
+                  <label className="block text-xs font-mono text-zinc-400 mb-1">
+                    Headline Tagline <span className="text-zinc-600">(use new line for 2nd line in amber gradient)</span>
+                  </label>
+                  <textarea
+                    rows={2}
+                    value={siteForm.heroTagline || ''}
+                    onChange={(e) => setSiteForm(prev => ({ ...prev, heroTagline: e.target.value }))}
+                    placeholder={'Every Frame,\nTells a Story.'}
+                    className="w-full bg-[#141008] border border-white/10 rounded-xl px-3 py-2 text-xs text-white font-mono resize-none"
+                  />
+                </div>
+
+                {/* Hero Subcopy */}
+                <div>
+                  <label className="block text-xs font-mono text-zinc-400 mb-1">Supporting Copy</label>
+                  <textarea
+                    rows={2}
+                    value={siteForm.heroSubcopy || ''}
+                    onChange={(e) => setSiteForm(prev => ({ ...prev, heroSubcopy: e.target.value }))}
+                    placeholder="Cinematic video editing built with depth, drama, and emotion."
+                    className="w-full bg-[#141008] border border-white/10 rounded-xl px-3 py-2 text-xs text-white resize-none"
+                  />
+                </div>
+              </div>
+
               {/* Creator Name & Tagline */}
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                 <div>

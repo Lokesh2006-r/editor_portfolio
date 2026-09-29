@@ -93,11 +93,15 @@ export interface SiteConfig {
   availableForProjects: boolean;
   availabilityNote: string;
   contactEmail: string;
-  whatsappNumber: string; // E.164 without plus or formatted for wa.me
+  whatsappNumber: string;
   instagramHandle: string;
   vimeoHandle?: string;
   youtubeHandle?: string;
   location: string;
+  // Cinematic Hero Banner
+  heroPhoto?: string;       // Full-bleed portrait image
+  heroTagline?: string;     // Italic accent line e.g. "Light and Shadow."
+  heroSubcopy?: string;     // Supporting paragraph
   showreelTitle: string;
   showreelSubtitle: string;
   showreelDuration: string;

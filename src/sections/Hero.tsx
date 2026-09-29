@@ -1,5 +1,5 @@
 import React, { useRef } from 'react';
-import { ArrowDown, ArrowUpRight, Play, Sparkles } from 'lucide-react';
+import { ArrowDown, ArrowUpRight, Play } from 'lucide-react';
 import { motion, useScroll, useTransform } from 'motion/react';
 import { SiteConfig } from '../types';
 
@@ -22,196 +22,205 @@ export const Hero: React.FC<HeroProps> = ({
     offset: ['start start', 'end start'],
   });
 
-  // Parallax background transform on scroll
-  const backgroundY = useTransform(scrollYProgress, [0, 1], ['0%', '22%']);
-  const backgroundScale = useTransform(scrollYProgress, [0, 1], [1.02, 1.14]);
-  const heroOpacity = useTransform(scrollYProgress, [0, 0.8], [1, 0.15]);
+  const bgY     = useTransform(scrollYProgress, [0, 1], ['0%', '18%']);
+  const bgScale = useTransform(scrollYProgress, [0, 1], [1.0, 1.12]);
+  const textY   = useTransform(scrollYProgress, [0, 1], ['0%', '30%']);
+  const opacity = useTransform(scrollYProgress, [0, 0.75], [1, 0]);
+
+  const lines = (config.heroTagline ?? 'Every Frame,\nTells a Story.').split('\n');
 
   return (
     <section
       ref={containerRef}
       id="hero"
-      className="cinema-force-dark relative min-h-[92vh] sm:min-h-screen flex items-center justify-center pt-24 pb-14 px-4 sm:px-6 lg:px-8 overflow-hidden"
+      className="cinema-force-dark relative min-h-screen flex items-end overflow-hidden bg-[#080604]"
     >
-      {/* Cinematic Background with Scroll Parallax & Scrim */}
+      {/* ── FULL-BLEED PHOTO (right-side portrait, parallax) ── */}
       <motion.div
-        style={{ y: backgroundY, scale: backgroundScale }}
-        className="absolute inset-0 z-0 overflow-hidden will-change-transform"
+        style={{ y: bgY, scale: bgScale }}
+        className="absolute inset-0 z-0 will-change-transform"
       >
         <img
-          src="/src/assets/images/hero_cinematic_director_1790323945101.jpg"
-          alt="Cinematic mobile editing suite"
-          referrerPolicy="no-referrer"
-          className="w-full h-full object-cover object-center filter brightness-[0.35] contrast-[1.12]"
+          src={config.heroPhoto || '/src/assets/images/hero_cinematic_director_1790323945101.jpg'}
+          alt={config.editorName}
+          className="w-full h-full object-cover object-[70%_20%]"
         />
-        {/* Gradients: top nav fade + deep bottom fade + radial dark vignette */}
-        <div className="absolute inset-0 bg-gradient-to-b from-[#080604]/85 via-[#080604]/40 to-[#080604]" />
-        <div className="absolute inset-0 bg-radial-at-c from-transparent via-black/50 to-black/90" />
-        {/* EMBER NOIR glow — molten orange-amber sweep, #080604 → #B45309 → #F97316 */}
-        <div className="absolute bottom-0 right-0 w-[65%] h-[60%] bg-gradient-to-tl from-orange-900/30 via-orange-950/12 to-transparent blur-[90px] rounded-full" />
-        <div className="absolute top-0 left-0 w-[40%] h-[45%] bg-orange-950/12 blur-[80px] rounded-full" />
-        <div className="absolute bottom-10 left-1/3 w-[30%] h-[30%] bg-amber-900/10 blur-[60px] rounded-full" />
+
+        {/* ── LAYERED CINEMATIC SCRIMS ── */}
+        {/* Left vignette — darkens left so text is legible */}
+        <div className="absolute inset-0 bg-gradient-to-r from-[#080604] via-[#080604]/80 to-transparent" />
+        {/* Bottom fade to brand name area */}
+        <div className="absolute inset-0 bg-gradient-to-t from-[#080604] via-[#080604]/30 to-transparent" />
+        {/* Top fade for nav area */}
+        <div className="absolute inset-0 bg-gradient-to-b from-[#080604]/70 via-transparent to-transparent" />
+
+        {/* ── EMBER GLOW — warm orange behind subject ── */}
+        <div className="absolute inset-0 bg-gradient-to-tr from-transparent via-orange-900/10 to-orange-800/20" />
+        <div className="absolute bottom-0 right-[5%] w-[55%] h-[65%]
+          bg-gradient-to-tl from-orange-700/20 via-amber-900/10 to-transparent
+          blur-[110px] rounded-full" />
+        <div className="absolute top-[10%] right-[20%] w-[30%] h-[40%]
+          bg-orange-900/12 blur-[80px] rounded-full" />
       </motion.div>
 
-      {/* Ambient drifting bokeh light (subtle organic movement) */}
+      {/* ── CONTENT LAYER ── */}
       <motion.div
-        animate={{
-          x: [-20, 20, -20],
-          y: [-15, 15, -15],
-          opacity: [0.15, 0.28, 0.15],
-        }}
-        transition={{
-          duration: 10,
-          repeat: Infinity,
-          ease: 'easeInOut',
-        }}
-        className="absolute top-1/3 left-1/4 w-80 h-80 rounded-full bg-orange-600/10 blur-3xl pointer-events-none z-0"
-      />
-
-      {/* Hero Content Container inside a Frosted White Fade Card */}
-      <motion.div
-        style={{ opacity: heroOpacity }}
-        className="relative z-10 max-w-4xl mx-auto text-center flex flex-col items-center bg-gradient-to-b from-white/[0.07] via-white/[0.04] to-white/[0.07] backdrop-blur-md border border-white/15 p-6 sm:p-10 md:p-12 rounded-3xl shadow-2xl shadow-black/80"
+        style={{ y: textY, opacity }}
+        className="relative z-10 w-full max-w-7xl mx-auto px-6 sm:px-10 lg:px-16 pb-28 sm:pb-36"
       >
-        {/* Creator Label & Availability Indicator */}
+        {/* ── SUPER-LABEL ── */}
         <motion.div
-          initial={{ opacity: 0, y: -16 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.6, ease: [0.16, 1, 0.3, 1] }}
-          className="flex items-center gap-2 sm:gap-3 mb-5 flex-wrap justify-center"
+          initial={{ opacity: 0, x: -24 }}
+          animate={{ opacity: 1, x: 0 }}
+          transition={{ duration: 0.7, ease: [0.16, 1, 0.3, 1] }}
+          className="flex items-center gap-3 mb-8"
         >
-          <span className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-white/10 border border-white/20 text-[11px] sm:text-xs font-mono tracking-widest uppercase text-orange-400 backdrop-blur-md font-semibold shadow-sm">
-            <Sparkles className="w-3 h-3 text-orange-400" />
-            <span>FREELANCE MOBILE VIDEO EDITOR</span>
+          {config.availableForProjects && (
+            <span className="flex items-center gap-2 px-3 py-1 rounded-full
+              bg-emerald-500/10 border border-emerald-400/30
+              text-[11px] font-mono tracking-widest uppercase text-emerald-300 font-semibold">
+              <span className="relative flex h-1.5 w-1.5">
+                <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-75" />
+                <span className="relative inline-flex rounded-full h-1.5 w-1.5 bg-emerald-400" />
+              </span>
+              Available
+            </span>
+          )}
+          <span className="text-[11px] font-mono tracking-widest uppercase text-orange-400/80 font-medium">
+            {config.tagline}
           </span>
-          <span aria-hidden="true" className="text-zinc-400 hidden sm:inline">·</span>
-          <div className="flex items-center gap-1.5 text-[11px] sm:text-xs font-mono text-zinc-200 font-medium">
-            <span className="w-2 h-2 rounded-full bg-emerald-400 animate-pulse" />
-            <span>Available for select projects</span>
-          </div>
         </motion.div>
 
-        {/* Main Headline with stagger reveal */}
-        <motion.h1
-          initial={{ opacity: 0, y: 24 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.8, delay: 0.15, ease: [0.16, 1, 0.3, 1] }}
-          className="text-3xl sm:text-5xl md:text-6xl lg:text-7xl font-extrabold font-display tracking-tight text-white max-w-4xl leading-[1.08] mb-5 text-balance drop-shadow-md"
-        >
-          Your moments. My vision.{' '}
-          <span className="block mt-1 sm:mt-2 text-gradient-ember drop-shadow-sm">
-            One perfect edit.
-          </span>
-        </motion.h1>
-
-        {/* Supporting Copy */}
-        <motion.p
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.8, delay: 0.3, ease: [0.16, 1, 0.3, 1] }}
-          className="text-sm sm:text-lg md:text-xl text-zinc-100 max-w-2xl mx-auto leading-relaxed mb-8 sm:mb-10 font-medium drop-shadow-sm"
-        >
-          Creating cinematic stories, one frame at a time. Specializing in high-retention Instagram Reels, aesthetic travel montages, beat-sync cuts, and dynamic short-form content.
-        </motion.p>
-
-        {/* Action CTAs with interactive hover movements */}
+        {/* ── MAIN HEADLINE — cinematic serif style ── */}
         <motion.div
-          initial={{ opacity: 0, y: 20 }}
+          initial={{ opacity: 0, y: 40 }}
           animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.8, delay: 0.45, ease: [0.16, 1, 0.3, 1] }}
-          className="flex flex-col sm:flex-row items-center gap-3.5 w-full sm:w-auto"
+          transition={{ duration: 1, delay: 0.1, ease: [0.16, 1, 0.3, 1] }}
         >
-          {/* Primary CTA: Watch Showreel */}
-          <motion.button
-            whileHover={{ scale: 1.03, y: -2 }}
-            whileTap={{ scale: 0.97 }}
-            onClick={onWatchReel}
-            className="w-full sm:w-auto px-7 py-3.5 text-xs sm:text-sm font-bold uppercase tracking-wider text-black bg-gradient-to-r from-orange-500 via-orange-400 to-orange-600 hover:from-orange-400 hover:to-orange-500 transition-all rounded-xl shadow-xl shadow-orange-600/25 flex items-center justify-center gap-2.5 cursor-pointer"
-          >
-            <div className="w-5 h-5 rounded-full bg-black/20 flex items-center justify-center">
-              <Play className="w-2.5 h-2.5 fill-black translate-x-0.5" />
-            </div>
-            <span>Watch My Showreel ({config.showreelDuration})</span>
-          </motion.button>
-
-          {/* Secondary CTA: Explore My Edits */}
-          <motion.button
-            whileHover={{ scale: 1.03, y: -2 }}
-            whileTap={{ scale: 0.97 }}
-            onClick={onExploreWork}
-            className="w-full sm:w-auto px-7 py-3.5 text-xs sm:text-sm font-semibold uppercase tracking-wider text-white bg-white/15 hover:bg-white/25 border border-white/20 rounded-xl transition-all flex items-center justify-center gap-2 backdrop-blur-md cursor-pointer shadow-md"
-          >
-            <span>Explore My Edits</span>
-            <ArrowDown className="w-4 h-4 text-orange-500" />
-          </motion.button>
-
-          {/* Tertiary CTA: Contact */}
-          <motion.button
-            whileHover={{ x: 3 }}
-            onClick={onContact}
-            className="hidden md:inline-flex items-center gap-1.5 px-4 py-3.5 text-xs font-semibold text-zinc-200 hover:text-orange-400 transition-colors cursor-pointer"
-          >
-            <span>Let's Collaborate</span>
-            <ArrowUpRight className="w-4 h-4 text-orange-500" />
-          </motion.button>
+          {lines.map((line, i) => (
+            <h1
+              key={i}
+              className={`block font-display leading-[0.95] tracking-[-0.03em] text-white
+                text-5xl sm:text-6xl md:text-7xl lg:text-8xl xl:text-[6.5rem]
+                ${i === lines.length - 1 ? 'text-gradient-ember' : ''}`}
+            >
+              {line}
+            </h1>
+          ))}
         </motion.div>
 
-        {/* Mobile Editor Key Highlights */}
+        {/* ── SUPPORTING COPY + CTAs ── */}
         <motion.div
           initial={{ opacity: 0, y: 24 }}
           animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.8, delay: 0.6, ease: [0.16, 1, 0.3, 1] }}
-          className="mt-10 sm:mt-12 pt-6 sm:pt-8 border-t border-white/15 grid grid-cols-2 sm:grid-cols-4 gap-4 sm:gap-8 text-center w-full max-w-3xl"
+          transition={{ duration: 0.9, delay: 0.35, ease: [0.16, 1, 0.3, 1] }}
+          className="mt-8 max-w-md"
         >
-          <div className="p-2 sm:p-0">
-            <span className="block text-xl sm:text-2xl md:text-3xl font-bold font-display text-white tabular-nums drop-shadow-sm">
-              50M+
-            </span>
-            <span className="text-[10px] sm:text-xs font-mono text-zinc-200 uppercase tracking-wider font-semibold">
-              Organic Reel Views
-            </span>
-          </div>
-          <div className="p-2 sm:p-0">
-            <span className="block text-xl sm:text-2xl md:text-3xl font-bold font-display text-white tabular-nums drop-shadow-sm">
-              150+
-            </span>
-            <span className="text-[10px] sm:text-xs font-mono text-zinc-200 uppercase tracking-wider font-semibold">
-              Vertical Cuts Delivered
-            </span>
-          </div>
-          <div className="p-2 sm:p-0">
-            <span className="block text-xl sm:text-2xl md:text-3xl font-bold font-display text-orange-400 tabular-nums drop-shadow-sm">
-              9:16 Ultra HD
-            </span>
-            <span className="text-[10px] sm:text-xs font-mono text-zinc-200 uppercase tracking-wider font-semibold">
-              Mobile Safe Framing
-            </span>
-          </div>
-          <div className="p-2 sm:p-0">
-            <span className="block text-xl sm:text-2xl md:text-3xl font-bold font-display text-white drop-shadow-sm">
-              CapCut / Resolve
-            </span>
-            <span className="text-[10px] sm:text-xs font-mono text-zinc-200 uppercase tracking-wider font-semibold">
-              Fast Master Delivery
-            </span>
+          <p className="text-sm sm:text-base text-zinc-300 leading-relaxed mb-8 font-medium">
+            {config.heroSubcopy ?? config.shortBio}
+          </p>
+
+          <div className="flex flex-wrap items-center gap-3">
+            {/* Primary CTA */}
+            <motion.button
+              whileHover={{ scale: 1.04, y: -2 }}
+              whileTap={{ scale: 0.96 }}
+              onClick={onExploreWork}
+              className="flex items-center gap-2.5 px-6 py-3 rounded-full
+                bg-orange-500 hover:bg-orange-400
+                text-black text-sm font-bold uppercase tracking-wider
+                shadow-lg shadow-orange-600/30 transition-all cursor-pointer"
+            >
+              <Play className="w-3.5 h-3.5 fill-black" />
+              View Our Work
+            </motion.button>
+
+            {/* Secondary CTA */}
+            <motion.button
+              whileHover={{ scale: 1.04, y: -2 }}
+              whileTap={{ scale: 0.96 }}
+              onClick={onWatchReel}
+              className="flex items-center gap-2 px-6 py-3 rounded-full
+                bg-white/8 hover:bg-white/14 border border-white/20
+                text-white text-sm font-semibold uppercase tracking-wider
+                backdrop-blur-sm transition-all cursor-pointer"
+            >
+              Watch Showreel
+              <ArrowUpRight className="w-3.5 h-3.5 text-orange-400" />
+            </motion.button>
+
+            {/* Ghost link */}
+            <motion.button
+              whileHover={{ x: 4 }}
+              onClick={onContact}
+              className="hidden sm:flex items-center gap-1.5 px-3 py-3
+                text-xs font-mono text-zinc-400 hover:text-orange-400
+                transition-colors cursor-pointer uppercase tracking-widest"
+            >
+              Let's Collaborate
+              <ArrowUpRight className="w-3 h-3" />
+            </motion.button>
           </div>
         </motion.div>
       </motion.div>
 
-      {/* Subtle Scroll Indicator with continuous gentle movement */}
+      {/* ── LARGE WATERMARK BRAND NAME (bleeds from bottom, like Shadow®) ── */}
+      <motion.div
+        style={{ opacity }}
+        className="absolute bottom-[-0.12em] left-0 right-0 z-20 overflow-hidden pointer-events-none select-none"
+      >
+        <motion.p
+          initial={{ opacity: 0, y: 40 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 1.2, delay: 0.6, ease: [0.16, 1, 0.3, 1] }}
+          className="text-[clamp(5rem,18vw,18rem)] font-display font-extrabold
+            tracking-[-0.04em] leading-[0.85]
+            text-transparent bg-clip-text
+            bg-gradient-to-b from-white/10 via-white/5 to-transparent
+            px-4 sm:px-8 lg:px-12 whitespace-nowrap"
+        >
+          {config.editorName}
+        </motion.p>
+      </motion.div>
+
+      {/* ── STATS ROW — Groshev-style bottom data strip ── */}
+      <motion.div
+        initial={{ opacity: 0 }}
+        animate={{ opacity: 1 }}
+        transition={{ duration: 1, delay: 0.8 }}
+        className="absolute bottom-6 right-6 sm:right-10 z-30
+          flex flex-col gap-3 items-end"
+      >
+        {[
+          { num: '50M+', label: 'Reel Views' },
+          { num: '150+', label: 'Edits Delivered' },
+          { num: '9:16', label: 'Mobile Mastered' },
+        ].map((s) => (
+          <div key={s.label} className="text-right">
+            <span className="block text-lg sm:text-xl font-display font-bold text-white leading-none">
+              {s.num}
+            </span>
+            <span className="block text-[9px] font-mono uppercase tracking-widest text-zinc-500">
+              {s.label}
+            </span>
+          </div>
+        ))}
+      </motion.div>
+
+      {/* ── SCROLL INDICATOR ── */}
       <motion.button
         animate={{ y: [0, 8, 0] }}
         transition={{ repeat: Infinity, duration: 2.2, ease: 'easeInOut' }}
         onClick={onExploreWork}
-        className="absolute bottom-4 sm:bottom-6 left-1/2 -translate-x-1/2 flex flex-col items-center gap-1 text-zinc-500 hover:text-white transition-colors cursor-pointer group"
-        aria-label="Scroll to vertical edits gallery"
+        aria-label="Scroll to work"
+        className="absolute bottom-7 left-1/2 -translate-x-1/2 z-30
+          flex flex-col items-center gap-1 cursor-pointer group"
       >
-        <span className="text-[9px] font-mono tracking-widest uppercase opacity-70">
-          Scroll to Edits
+        <span className="text-[9px] font-mono tracking-widest uppercase text-zinc-500 group-hover:text-zinc-300 transition-colors">
+          Scroll
         </span>
         <ArrowDown className="w-3.5 h-3.5 text-orange-500" />
       </motion.button>
     </section>
   );
 };
-
