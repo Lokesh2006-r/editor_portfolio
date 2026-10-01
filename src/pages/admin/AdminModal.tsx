@@ -14,13 +14,15 @@ import {
   RotateCcw,
   ExternalLink,
   Save,
-  Check
+  Check,
+  Palette
 } from 'lucide-react';
 import { Project, Inquiry, SiteConfig, ProjectCategory } from '../../types';
 import { storage } from '../../lib/storage';
 import { getFirebaseStatus } from '../../lib/firebase';
 import { NavFontPicker } from '../../components/NavFontPicker';
 import { MultiSelectTagInput } from '../../components/admin/MultiSelectTagInput';
+import { BackgroundThemeManager } from '../../components/admin/BackgroundThemeManager';
 
 interface AdminModalProps {
   isOpen: boolean;
@@ -41,7 +43,7 @@ export const AdminModal: React.FC<AdminModalProps> = ({
   onUpdateProjects,
   onUpdateConfig,
 }) => {
-  const [activeTab, setActiveTab] = useState<'overview' | 'projects' | 'inquiries' | 'settings' | 'firebase'>('overview');
+  const [activeTab, setActiveTab] = useState<'overview' | 'projects' | 'inquiries' | 'settings' | 'firebase' | 'theme'>('overview');
   const [editingProject, setEditingProject] = useState<Project | null>(null);
   const [isCreatingProject, setIsCreatingProject] = useState(false);
   const [siteForm, setSiteForm] = useState<SiteConfig>(config);
@@ -181,6 +183,7 @@ export const AdminModal: React.FC<AdminModalProps> = ({
             { id: 'overview', label: 'Overview', icon: LayoutDashboard },
             { id: 'inquiries', label: `Inquiries (${inquiries.length})`, icon: Mail },
             { id: 'projects', label: `Projects (${projects.length})`, icon: Film },
+            { id: 'theme', label: 'Wallpaper & Theme', icon: Palette },
             { id: 'settings', label: 'Site Settings', icon: Sliders },
             { id: 'firebase', label: 'Backend / Cloud', icon: Database },
           ].map((tab) => {
@@ -903,6 +906,18 @@ VITE_FIREBASE_PROJECT_ID="your-project-id"&#10;VITE_FIREBASE_API_KEY="your-api-k
                 </div>
               </div>
             </div>
+          )}
+
+          {/* TAB: WALLPAPER & THEME */}
+          {activeTab === 'theme' && (
+            <BackgroundThemeManager
+              config={config}
+              onUpdateConfig={(updated) => {
+                onUpdateConfig(updated);
+                setSiteForm(updated);
+              }}
+              showNotification={showNotice}
+            />
           )}
         </div>
       </div>

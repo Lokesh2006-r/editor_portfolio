@@ -1,4 +1,4 @@
-/**
+﻿/**
  * Firebase Client & Connection Status
  * 
  * Provides graceful detection and safe fallback when Firebase is not yet provisioned.

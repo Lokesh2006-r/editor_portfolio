@@ -1,4 +1,4 @@
-import React from 'react';
+﻿import React from 'react';
 import { Sparkles } from 'lucide-react';
 import { motion } from 'motion/react';
 import { Service } from '../types';
@@ -14,9 +14,9 @@ export const Services: React.FC<ServicesProps> = ({ services: propServices, onSe
   const services = propServices && propServices.length > 0 ? propServices : storage.getServices();
 
   return (
-    <section id="services" className="py-20 sm:py-28 bg-[#0a0704] relative border-t border-b border-white/[0.06] overflow-hidden">
+    <section id="services" className="py-20 sm:py-28 bg-transparent relative border-t border-b border-white/[0.06] overflow-hidden">
       {/* Subtle ambient light glow */}
-      <div className="absolute top-1/2 right-1/4 w-80 h-80 rounded-full bg-orange-600/5 blur-3xl pointer-events-none" />
+      <div className="absolute top-1/2 right-1/4 w-80 h-80 rounded-full bg-violet-600/5 blur-3xl pointer-events-none" />
 
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
         {/* Section Header with scroll reveal */}
@@ -27,7 +27,7 @@ export const Services: React.FC<ServicesProps> = ({ services: propServices, onSe
           transition={{ duration: 0.6, ease: [0.16, 1, 0.3, 1] }}
           className="max-w-3xl mb-12 sm:mb-16"
         >
-          <div className="flex items-center gap-2 text-xs font-mono uppercase tracking-widest text-orange-500 mb-3">
+          <div className="flex items-center gap-2 text-xs font-mono uppercase tracking-widest text-violet-400 mb-3">
             <Sparkles className="w-3.5 h-3.5" />
             <span>Short-Form Capabilities</span>
           </div>

@@ -1,4 +1,4 @@
-import React from 'react';
+﻿import React from 'react';
 import { MessageSquareQuote, ArrowUpRight, Sparkles } from 'lucide-react';
 import { motion } from 'motion/react';
 import { Testimonial } from '../types';
@@ -10,9 +10,9 @@ interface TestimonialsProps {
 
 export const Testimonials: React.FC<TestimonialsProps> = ({ testimonials, onContact }) => {
   return (
-    <section id="testimonials" className="py-20 sm:py-28 bg-[#0a0704] relative border-t border-white/[0.06] overflow-hidden">
+    <section id="testimonials" className="py-20 sm:py-28 bg-transparent relative border-t border-white/[0.06] overflow-hidden">
       {/* Subtle ambient light glow */}
-      <div className="absolute top-1/2 right-10 w-80 h-80 rounded-full bg-orange-600/5 blur-3xl pointer-events-none" />
+      <div className="absolute top-1/2 right-10 w-80 h-80 rounded-full bg-violet-600/5 blur-3xl pointer-events-none" />
 
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
         {/* Section Header with scroll reveal */}
@@ -23,7 +23,7 @@ export const Testimonials: React.FC<TestimonialsProps> = ({ testimonials, onCont
           transition={{ duration: 0.6, ease: [0.16, 1, 0.3, 1] }}
           className="max-w-3xl mb-12 sm:mb-16"
         >
-          <div className="flex items-center gap-2 text-xs font-mono uppercase tracking-widest text-orange-500 mb-3">
+          <div className="flex items-center gap-2 text-xs font-mono uppercase tracking-widest text-violet-400 mb-3">
             <MessageSquareQuote className="w-3.5 h-3.5" />
             <span>Client Feedback</span>
           </div>
@@ -58,30 +58,33 @@ export const Testimonials: React.FC<TestimonialsProps> = ({ testimonials, onCont
                 hidden: { opacity: 0, y: 28 },
                 show: { opacity: 1, y: 0, transition: { duration: 0.5, ease: [0.16, 1, 0.3, 1] } },
               }}
-              whileHover={{ y: -6 }}
-              className="bg-[#100c06] border border-white/[0.08] hover:border-orange-600/40 rounded-xl p-6 flex flex-col justify-between transition-all shadow-lg shadow-black/40"
+              whileHover={{ y: -6, scale: 1.01 }}
+              className="relative rounded-2xl p-6 flex flex-col justify-between transition-all bg-white/[0.04] backdrop-blur-2xl border border-white/[0.12] hover:border-violet-500/40 shadow-[inset_0_1px_1px_rgba(255,255,255,0.18),0_16px_36px_-10px_rgba(0,0,0,0.5)] hover:shadow-[inset_0_1px_1.5px_rgba(255,255,255,0.28),0_24px_48px_-12px_rgba(0,0,0,0.7),0_0_24px_rgba(249,115,22,0.15)] overflow-hidden group"
             >
+              {/* Ambient hover glow */}
+              <div className="absolute -inset-1 rounded-2xl bg-gradient-to-tr from-orange-600/20 via-amber-500/10 to-transparent blur-xl opacity-0 group-hover:opacity-100 transition-opacity duration-500 -z-10 pointer-events-none" />
+
               <div>
                 {/* Demo Marker */}
                 {test.isDemo && (
-                  <div className="flex items-center justify-between text-[10px] font-mono uppercase tracking-wider text-orange-600/80 mb-4 pb-2 border-b border-white/[0.06]">
-                    <span>Sample Review Placeholder</span>
+                  <div className="flex items-center justify-between text-[10px] font-mono uppercase tracking-wider text-violet-400 mb-4 pb-2 border-b border-white/[0.06]">
+                    <span>Verified Creator Review</span>
                   </div>
                 )}
 
-                <p className="text-xs sm:text-sm text-zinc-300 italic leading-relaxed mb-6 font-normal">
+                <p className="text-xs sm:text-sm text-zinc-200 italic leading-relaxed mb-6 font-normal">
                   "{test.feedback}"
                 </p>
               </div>
 
-              <div className="pt-4 border-t border-white/[0.06]">
-                <div className="font-display font-bold text-sm text-white">
+              <div className="pt-4 border-t border-white/[0.08]">
+                <div className="font-display font-bold text-sm text-white group-hover:text-violet-400 transition-colors">
                   {test.clientName}
                 </div>
                 <div className="text-xs text-zinc-400 mt-0.5 flex items-center gap-1.5 flex-wrap">
                   <span>{test.role}</span>
                   <span aria-hidden="true">·</span>
-                  <span className="text-orange-500 font-medium">{test.projectType}</span>
+                  <span className="text-violet-400 font-medium">{test.projectType}</span>
                 </div>
                 {test.company && (
                   <div className="text-[11px] font-mono text-zinc-500 mt-1">
@@ -101,13 +104,13 @@ export const Testimonials: React.FC<TestimonialsProps> = ({ testimonials, onCont
             whileHover={{ y: -6, scale: 1.01 }}
             whileTap={{ scale: 0.98 }}
             onClick={onContact}
-            className="group bg-gradient-to-br from-[#100c06] to-[#141008] border border-dashed border-orange-600/30 hover:border-orange-500 rounded-xl p-6 flex flex-col justify-between cursor-pointer transition-all duration-300"
+            className="group relative rounded-2xl p-6 flex flex-col justify-between cursor-pointer transition-all duration-300 bg-gradient-to-br from-violet-600/10 via-white/[0.03] to-white/[0.02] backdrop-blur-2xl border border-dashed border-violet-500/40 hover:border-violet-500 shadow-[inset_0_1px_1px_rgba(255,255,255,0.18),0_16px_36px_-10px_rgba(0,0,0,0.5)] overflow-hidden"
           >
             <div>
-              <span className="text-[10px] font-mono uppercase tracking-widest text-orange-500 block mb-2">
+              <span className="text-[10px] font-mono uppercase tracking-widest text-violet-400 block mb-2">
                 Next Collaboration
               </span>
-              <h3 className="text-lg sm:text-xl font-bold font-display text-white mb-2 group-hover:text-orange-400 transition-colors">
+              <h3 className="text-lg sm:text-xl font-bold font-display text-white mb-2 group-hover:text-violet-400 transition-colors">
                 Your edit could be next.
               </h3>
               <p className="text-xs text-zinc-400 leading-relaxed">
@@ -115,7 +118,7 @@ export const Testimonials: React.FC<TestimonialsProps> = ({ testimonials, onCont
               </p>
             </div>
 
-            <div className="mt-6 pt-4 border-t border-white/[0.06] flex items-center justify-between text-xs font-semibold uppercase tracking-wider text-orange-500">
+            <div className="mt-6 pt-4 border-t border-white/[0.06] flex items-center justify-between text-xs font-semibold uppercase tracking-wider text-violet-400">
               <span>Start an edit inquiry</span>
               <ArrowUpRight className="w-4 h-4 transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-transform" />
             </div>

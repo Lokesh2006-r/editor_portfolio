@@ -1,4 +1,4 @@
-import { SiteConfig } from '../types';
+﻿import { SiteConfig } from '../types';
 
 export const initialSiteConfig: SiteConfig = {
   editorName: 'Lokez Edits',
@@ -22,4 +22,10 @@ export const initialSiteConfig: SiteConfig = {
   showreelDuration: '00:48',
   showreelVideoUrl: 'https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/ForBiggerBlazes.mp4',
   showreelCover: '/src/assets/images/reel_cyberpunk_tokyo_1790324913367.jpg',
+  bgTheme: 'logicify-dark',
+  bgBlurIntensity: 'high',
+  bgAnimationSpeed: 'normal',
+  bgCustomWallpaperUrl: '',
+  bgShowParticles: true,
 };
+

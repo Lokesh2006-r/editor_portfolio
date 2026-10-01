@@ -34,7 +34,8 @@ import {
   Send,
   HelpCircle,
   Copy,
-  Info
+  Info,
+  Palette
 } from 'lucide-react';
 import { Project, Inquiry, SiteConfig, ProjectCategory, Service, Testimonial, AdminSession } from '../../types';
 import { storage } from '../../lib/storage';
@@ -44,6 +45,7 @@ import { AdminLogin } from './AdminLogin';
 import { NavFontPicker } from '../../components/NavFontPicker';
 import { MultiSelectTagInput } from '../../components/admin/MultiSelectTagInput';
 import { DashboardHeroBanner } from '../../components/admin/DashboardHeroBanner';
+import { BackgroundThemeManager } from '../../components/admin/BackgroundThemeManager';
 
 interface AdminPageProps {
   onNavigateToHome: () => void;
@@ -64,7 +66,7 @@ const AVAILABLE_ASSET_PRESETS = [
 
 export const AdminPage: React.FC<AdminPageProps> = ({ onNavigateToHome }) => {
   const [session, setSession] = useState<AdminSession | null>(auth.getSession());
-  const [activeTab, setActiveTab] = useState<'overview' | 'projects' | 'inquiries' | 'services' | 'testimonials' | 'settings' | 'security' | 'data'>('overview');
+  const [activeTab, setActiveTab] = useState<'overview' | 'projects' | 'inquiries' | 'services' | 'testimonials' | 'settings' | 'security' | 'data' | 'theme'>('overview');
 
   // State data
   const [projects, setProjects] = useState<Project[]>(storage.getProjects());
@@ -775,6 +777,7 @@ export const AdminPage: React.FC<AdminPageProps> = ({ onNavigateToHome }) => {
               { id: 'inquiries', label: 'Inquiries CRM', icon: Mail, badge: inquiries.filter((i) => i.status === 'new').length, badgeColor: 'bg-orange-500 text-black' },
               { id: 'services', label: 'Services', icon: Layers, badge: services.length },
               { id: 'testimonials', label: 'Testimonials', icon: MessageSquareQuote, badge: testimonials.length },
+              { id: 'theme', label: 'Wallpaper & Theme', icon: Palette, badge: null },
               { id: 'settings', label: 'Site & Brand', icon: Sliders, badge: null },
               { id: 'security', label: 'Login & Password', icon: KeyRound, badge: null },
               { id: 'data', label: 'Data & Backup', icon: Database, badge: null },
@@ -859,7 +862,7 @@ export const AdminPage: React.FC<AdminPageProps> = ({ onNavigateToHome }) => {
 
               {/* 4 Stat Cards */}
               <div className="grid grid-cols-2 lg:grid-cols-4 gap-4">
-                <div className="p-5 rounded-2xl bg-[#100c06] border border-white/[0.08] relative overflow-hidden">
+                <div className="p-5 rounded-2xl bg-white/[0.04] backdrop-blur-xl border border-white/[0.08] relative overflow-hidden">
                   <span className="text-xs font-mono text-zinc-400 uppercase tracking-wider block mb-1">
                     Showcase Edits
                   </span>
@@ -877,7 +880,7 @@ export const AdminPage: React.FC<AdminPageProps> = ({ onNavigateToHome }) => {
                   </div>
                 </div>
 
-                <div className="p-5 rounded-2xl bg-[#100c06] border border-white/[0.08] relative overflow-hidden">
+                <div className="p-5 rounded-2xl bg-white/[0.04] backdrop-blur-xl border border-white/[0.08] relative overflow-hidden">
                   <span className="text-xs font-mono text-zinc-400 uppercase tracking-wider block mb-1">
                     New Inquiries
                   </span>
@@ -895,7 +898,7 @@ export const AdminPage: React.FC<AdminPageProps> = ({ onNavigateToHome }) => {
                   </div>
                 </div>
 
-                <div className="p-5 rounded-2xl bg-[#100c06] border border-white/[0.08] relative overflow-hidden">
+                <div className="p-5 rounded-2xl bg-white/[0.04] backdrop-blur-xl border border-white/[0.08] relative overflow-hidden">
                   <span className="text-xs font-mono text-zinc-400 uppercase tracking-wider block mb-1">
                     Active Services
                   </span>
@@ -908,7 +911,7 @@ export const AdminPage: React.FC<AdminPageProps> = ({ onNavigateToHome }) => {
                   </div>
                 </div>
 
-                <div className="p-5 rounded-2xl bg-[#100c06] border border-white/[0.08] relative overflow-hidden">
+                <div className="p-5 rounded-2xl bg-white/[0.04] backdrop-blur-xl border border-white/[0.08] relative overflow-hidden">
                   <span className="text-xs font-mono text-zinc-400 uppercase tracking-wider block mb-1">
                     Testimonials
                   </span>
@@ -923,7 +926,7 @@ export const AdminPage: React.FC<AdminPageProps> = ({ onNavigateToHome }) => {
               </div>
 
               {/* Quick Actions Card */}
-              <div className="p-6 rounded-2xl bg-[#100c06] border border-white/[0.08] flex flex-wrap items-center justify-between gap-4">
+              <div className="p-6 rounded-2xl bg-white/[0.04] backdrop-blur-xl border border-white/[0.08] flex flex-wrap items-center justify-between gap-4">
                 <div>
                   <h3 className="text-base font-bold text-white font-display">
                     Quick Management Actions
@@ -985,7 +988,7 @@ export const AdminPage: React.FC<AdminPageProps> = ({ onNavigateToHome }) => {
                 </div>
 
                 {inquiries.length === 0 ? (
-                  <div className="p-8 text-center bg-[#100c06] rounded-xl border border-white/[0.08] text-xs text-zinc-400">
+                  <div className="p-8 text-center bg-white/[0.04] backdrop-blur-xl rounded-xl border border-white/[0.08] text-xs text-zinc-400">
                     No client inquiries received yet. Submissions from the public contact form appear here.
                   </div>
                 ) : (
@@ -993,7 +996,7 @@ export const AdminPage: React.FC<AdminPageProps> = ({ onNavigateToHome }) => {
                     {inquiries.slice(0, 4).map((inq) => (
                       <div
                         key={inq.id}
-                        className="p-4 rounded-xl bg-[#100c06] border border-white/[0.06] flex flex-col sm:flex-row sm:items-center justify-between gap-3 text-xs"
+                        className="p-4 rounded-xl bg-white/[0.04] backdrop-blur-xl border border-white/[0.06] flex flex-col sm:flex-row sm:items-center justify-between gap-3 text-xs"
                       >
                         <div>
                           <div className="font-semibold text-white text-sm">{inq.fullName}</div>
@@ -1061,7 +1064,7 @@ export const AdminPage: React.FC<AdminPageProps> = ({ onNavigateToHome }) => {
                           value={projectSearch}
                           onChange={(e) => setProjectSearch(e.target.value)}
                           placeholder="Search edits..."
-                          className="bg-[#100c06] border border-white/10 rounded-xl pl-9 pr-3 py-1.5 text-xs text-white placeholder-zinc-500 focus:outline-none focus:border-orange-500"
+                          className="bg-white/[0.04] backdrop-blur-xl border border-white/10 rounded-xl pl-9 pr-3 py-1.5 text-xs text-white placeholder-zinc-500 focus:outline-none focus:border-orange-500"
                         />
                       </div>
 
@@ -1079,7 +1082,7 @@ export const AdminPage: React.FC<AdminPageProps> = ({ onNavigateToHome }) => {
                     {filteredProjects.map((proj, idx) => (
                       <div
                         key={proj.id}
-                        className="p-4 rounded-xl bg-[#100c06] border border-white/[0.08] hover:border-white/20 transition-colors flex gap-4 items-start justify-between group"
+                        className="p-4 rounded-xl bg-white/[0.04] backdrop-blur-xl border border-white/[0.08] hover:border-white/20 transition-colors flex gap-4 items-start justify-between group"
                       >
                         <div className="flex gap-3.5 min-w-0">
                           <div className="relative w-20 h-28 bg-black rounded-lg overflow-hidden shrink-0 border border-white/10">
@@ -1172,7 +1175,7 @@ export const AdminPage: React.FC<AdminPageProps> = ({ onNavigateToHome }) => {
                 </>
               ) : (
                 /* Edit / Create Form */
-                <form onSubmit={handleSaveProject} className="space-y-5 bg-[#100c06] p-6 rounded-2xl border border-white/[0.08]">
+                <form onSubmit={handleSaveProject} className="space-y-5 bg-white/[0.04] backdrop-blur-xl p-6 rounded-2xl border border-white/[0.08]">
                   <div className="flex items-center justify-between border-b border-white/[0.08] pb-4">
                     <h3 className="text-base font-bold text-white font-display">
                       {editingProject ? `Edit Edit: ${editingProject.title}` : 'Add New Video Project'}
@@ -1585,14 +1588,14 @@ export const AdminPage: React.FC<AdminPageProps> = ({ onNavigateToHome }) => {
                       value={inquirySearch}
                       onChange={(e) => setInquirySearch(e.target.value)}
                       placeholder="Search briefs..."
-                      className="bg-[#100c06] border border-white/10 rounded-xl pl-9 pr-3 py-1.5 text-xs text-white placeholder-zinc-500 focus:outline-none focus:border-orange-500"
+                      className="bg-white/[0.04] backdrop-blur-xl border border-white/10 rounded-xl pl-9 pr-3 py-1.5 text-xs text-white placeholder-zinc-500 focus:outline-none focus:border-orange-500"
                     />
                   </div>
 
                   <select
                     value={inquiryStatusFilter}
                     onChange={(e) => setInquiryStatusFilter(e.target.value)}
-                    className="bg-[#100c06] border border-white/10 rounded-xl px-3 py-1.5 text-xs text-zinc-300 cursor-pointer"
+                    className="bg-white/[0.04] backdrop-blur-xl border border-white/10 rounded-xl px-3 py-1.5 text-xs text-zinc-300 cursor-pointer"
                   >
                     <option value="all">All Statuses ({inquiries.length})</option>
                     <option value="new">New ({inquiries.filter((i) => i.status === 'new').length})</option>
@@ -1613,7 +1616,7 @@ export const AdminPage: React.FC<AdminPageProps> = ({ onNavigateToHome }) => {
               </div>
 
               {filteredInquiries.length === 0 ? (
-                <div className="p-12 text-center bg-[#100c06] rounded-2xl border border-white/[0.08] text-sm text-zinc-400">
+                <div className="p-12 text-center bg-white/[0.04] backdrop-blur-xl rounded-2xl border border-white/[0.08] text-sm text-zinc-400">
                   No inquiries match the current filter.
                 </div>
               ) : (
@@ -1621,7 +1624,7 @@ export const AdminPage: React.FC<AdminPageProps> = ({ onNavigateToHome }) => {
                   {filteredInquiries.map((inq) => (
                     <div
                       key={inq.id}
-                      className="p-5 rounded-2xl bg-[#100c06] border border-white/[0.08] space-y-4"
+                      className="p-5 rounded-2xl bg-white/[0.04] backdrop-blur-xl border border-white/[0.08] space-y-4"
                     >
                       <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-2 border-b border-white/[0.06] pb-3">
                         <div>
@@ -1773,7 +1776,7 @@ export const AdminPage: React.FC<AdminPageProps> = ({ onNavigateToHome }) => {
                     {services.map((srv) => (
                       <div
                         key={srv.id}
-                        className="p-5 rounded-2xl bg-[#100c06] border border-white/[0.08] space-y-3"
+                        className="p-5 rounded-2xl bg-white/[0.04] backdrop-blur-xl border border-white/[0.08] space-y-3"
                       >
                         <div className="flex items-start justify-between">
                           <div>
@@ -1825,7 +1828,7 @@ export const AdminPage: React.FC<AdminPageProps> = ({ onNavigateToHome }) => {
                 </>
               ) : (
                 /* Edit Service Form */
-                <form onSubmit={handleSaveService} className="space-y-4 bg-[#100c06] p-6 rounded-2xl border border-white/[0.08]">
+                <form onSubmit={handleSaveService} className="space-y-4 bg-white/[0.04] backdrop-blur-xl p-6 rounded-2xl border border-white/[0.08]">
                   <div className="flex items-center justify-between border-b border-white/[0.08] pb-3">
                     <h3 className="text-base font-bold text-white font-display">
                       {editingService ? `Edit Service: ${editingService.title}` : 'Add New Service'}
@@ -1970,7 +1973,7 @@ export const AdminPage: React.FC<AdminPageProps> = ({ onNavigateToHome }) => {
                     {testimonials.map((test) => (
                       <div
                         key={test.id}
-                        className="p-5 rounded-2xl bg-[#100c06] border border-white/[0.08] flex flex-col justify-between space-y-3"
+                        className="p-5 rounded-2xl bg-white/[0.04] backdrop-blur-xl border border-white/[0.08] flex flex-col justify-between space-y-3"
                       >
                         <div>
                           <div className="flex items-center justify-between">
@@ -2016,7 +2019,7 @@ export const AdminPage: React.FC<AdminPageProps> = ({ onNavigateToHome }) => {
                 </>
               ) : (
                 /* Edit Testimonial Form */
-                <form onSubmit={handleSaveTestimonial} className="space-y-4 bg-[#100c06] p-6 rounded-2xl border border-white/[0.08]">
+                <form onSubmit={handleSaveTestimonial} className="space-y-4 bg-white/[0.04] backdrop-blur-xl p-6 rounded-2xl border border-white/[0.08]">
                   <div className="flex items-center justify-between border-b border-white/[0.08] pb-3">
                     <h3 className="text-base font-bold text-white font-display">
                       {editingTestimonial ? `Edit Testimonial: ${editingTestimonial.clientName}` : 'Add Testimonial'}
@@ -2133,7 +2136,7 @@ export const AdminPage: React.FC<AdminPageProps> = ({ onNavigateToHome }) => {
 
           {/* TAB 6: SITE & BRAND SETTINGS */}
           {activeTab === 'settings' && (
-            <form onSubmit={handleSaveConfig} className="space-y-6 max-w-4xl bg-[#100c06] p-6 sm:p-8 rounded-2xl border border-white/[0.08]">
+            <form onSubmit={handleSaveConfig} className="space-y-6 max-w-4xl bg-white/[0.04] backdrop-blur-xl p-6 sm:p-8 rounded-2xl border border-white/[0.08]">
               <div>
                 <h2 className="text-xl font-bold font-display text-white">
                   Brand, Showreel & Contact Settings
@@ -2523,7 +2526,7 @@ export const AdminPage: React.FC<AdminPageProps> = ({ onNavigateToHome }) => {
               </div>
 
               {/* Current Credentials Overview */}
-              <div className="p-5 rounded-2xl bg-[#100c06] border border-white/[0.08] space-y-3">
+              <div className="p-5 rounded-2xl bg-white/[0.04] backdrop-blur-xl border border-white/[0.08] space-y-3">
                 <div className="flex items-center justify-between">
                   <span className="text-xs font-mono uppercase text-zinc-400">Current Login Session</span>
                   <span className="text-xs font-mono text-emerald-400 flex items-center gap-1.5">
@@ -2544,7 +2547,7 @@ export const AdminPage: React.FC<AdminPageProps> = ({ onNavigateToHome }) => {
               </div>
 
               {/* Change Password Form */}
-              <form onSubmit={handleUpdateCredentials} className="p-6 rounded-2xl bg-[#100c06] border border-white/[0.08] space-y-4">
+              <form onSubmit={handleUpdateCredentials} className="p-6 rounded-2xl bg-white/[0.04] backdrop-blur-xl border border-white/[0.08] space-y-4">
                 <h3 className="text-sm font-bold text-white font-display">
                   Update Login Email & Password
                 </h3>
@@ -2755,7 +2758,7 @@ export const AdminPage: React.FC<AdminPageProps> = ({ onNavigateToHome }) => {
               </div>
 
               {/* Backup Card */}
-              <div className="p-6 rounded-2xl bg-[#100c06] border border-white/[0.08] space-y-4">
+              <div className="p-6 rounded-2xl bg-white/[0.04] backdrop-blur-xl border border-white/[0.08] space-y-4">
                 <div className="flex items-center justify-between">
                   <div>
                     <h3 className="text-base font-bold text-white font-display">Export Portfolio Data</h3>
@@ -2774,7 +2777,7 @@ export const AdminPage: React.FC<AdminPageProps> = ({ onNavigateToHome }) => {
               </div>
 
               {/* Restore Card */}
-              <div className="p-6 rounded-2xl bg-[#100c06] border border-white/[0.08] space-y-3">
+              <div className="p-6 rounded-2xl bg-white/[0.04] backdrop-blur-xl border border-white/[0.08] space-y-3">
                 <h3 className="text-base font-bold text-white font-display">Restore from JSON</h3>
                 <p className="text-xs text-zinc-400">
                   Paste a previously exported portfolio JSON payload to restore all data:
@@ -2814,6 +2817,18 @@ export const AdminPage: React.FC<AdminPageProps> = ({ onNavigateToHome }) => {
                 </div>
               </div>
             </div>
+          )}
+
+          {/* TAB 9: WALLPAPER & BACKGROUND THEME */}
+          {activeTab === 'theme' && (
+            <BackgroundThemeManager
+              config={config}
+              onUpdateConfig={(updated) => {
+                setConfig(updated);
+                setSiteForm(updated);
+              }}
+              showNotification={showNotification}
+            />
           )}
 
         </main>

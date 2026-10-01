@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+﻿import React, { useState, useEffect } from 'react';
 import { Navbar } from '../components/Navbar';
 import { Footer } from '../components/Footer';
 import { VideoLightbox } from '../components/VideoLightbox';
@@ -152,9 +152,9 @@ export const Home: React.FC<HomeProps> = ({ onNavigateToAdmin }) => {
   };
 
   return (
-    <div className="relative min-h-screen text-[#f4f4f5] flex flex-col font-sans film-grain selection:bg-orange-500 selection:text-black">
+    <div className="relative min-h-screen text-[#f4f4f5] flex flex-col font-sans film-grain selection:bg-violet-600 selection:text-black">
       {/* Aesthetic Floating Glowing Background Canvas */}
-      <AestheticBackground />
+      <AestheticBackground config={config} />
 
       {/* Scroll Progress Bar at very top */}
       <ScrollProgress />

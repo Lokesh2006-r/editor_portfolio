@@ -6,7 +6,7 @@ import { servicesList } from '../data/services';
 
 const PROJECTS_KEY = 'kaien_portfolio_projects_v1';
 const INQUIRIES_KEY = 'kaien_portfolio_inquiries_v1';
-const CONFIG_KEY = 'lokez_portfolio_config_v3';
+const CONFIG_KEY = 'lokez_portfolio_config_v5';
 const TESTIMONIALS_KEY = 'kaien_portfolio_testimonials_v1';
 const SERVICES_KEY = 'kaien_portfolio_services_v1';
 

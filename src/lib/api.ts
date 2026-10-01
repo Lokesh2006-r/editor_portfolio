@@ -1,4 +1,4 @@
-/**
+﻿/**
  * MongoDB Atlas API Client
  *
  * Communicates with the Express API server (server/index.js).

@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+﻿import React, { useState, useEffect } from 'react';
 import { Menu, X, ArrowUpRight, ShieldCheck, Film, ChevronRight, Home as HomeIcon, Video, Sparkles, Layers, User, Mail } from 'lucide-react';
 import { navFontManager, NAV_FONT_OPTIONS, NavFontKey, NavCasingKey } from '../lib/navFont';
 
@@ -75,21 +75,21 @@ export const Navbar: React.FC<NavbarProps> = ({
       <div
         className={`hidden lg:flex items-center justify-between px-6 xl:px-10 py-3.5 transition-all duration-300 ${
           scrolled
-            ? 'bg-[#080604]/92 backdrop-blur-2xl border-b border-orange-950/20 shadow-2xl shadow-black/90'
-            : 'bg-[#080604]/75 backdrop-blur-xl border-b border-orange-950/10'
+            ? 'bg-black/50 backdrop-blur-2xl border-b border-white/[0.10] shadow-2xl shadow-black/80'
+            : 'bg-black/25 backdrop-blur-xl border-b border-white/[0.06]'
         }`}
       >
         {/* PC Left: Brand Logo & Status */}
         <button
           onClick={() => handleLinkClick('hero')}
-          className="group flex items-center gap-3 cursor-pointer focus-visible:outline-orange-600 rounded-lg py-1 text-left"
+          className="group flex items-center gap-3 cursor-pointer focus-visible:outline-violet-600 rounded-lg py-1 text-left"
           aria-label={`${brandName} Home`}
         >
-          <div className="w-8 h-8 rounded-lg bg-orange-500 flex items-center justify-center text-black font-extrabold shadow-md shadow-orange-600/25 group-hover:scale-105 transition-transform">
-            <Film className="w-4.5 h-4.5 text-black" />
+          <div className="w-8 h-8 rounded-lg bg-violet-600 flex items-center justify-center text-white font-extrabold shadow-md shadow-violet-700/35 group-hover:scale-105 transition-transform">
+            <Film className="w-4.5 h-4.5 text-white" />
           </div>
 
-          <span className="font-display text-base xl:text-lg font-extrabold tracking-tight text-white uppercase group-hover:text-orange-400 transition-colors whitespace-nowrap drop-shadow-sm">
+          <span className="font-display text-base xl:text-lg font-extrabold tracking-tight text-white uppercase group-hover:text-violet-400 transition-colors whitespace-nowrap drop-shadow-sm">
             {brandName}
           </span>
 
@@ -114,13 +114,13 @@ export const Navbar: React.FC<NavbarProps> = ({
                 onClick={() => handleLinkClick(link.id)}
                 className={`relative py-1 transition-colors cursor-pointer whitespace-nowrap ${navCasingClass} ${
                   isActive
-                    ? 'text-orange-500 font-extrabold drop-shadow-sm'
+                    ? 'text-violet-400 font-extrabold drop-shadow-sm'
                     : 'text-zinc-300 hover:text-white font-semibold'
                 }`}
               >
                 <span>{link.label}</span>
                 {isActive && (
-                  <span className="absolute -bottom-1 left-1/2 -translate-x-1/2 w-1.5 h-1.5 rounded-full bg-orange-500 shadow-[0_0_8px_rgba(245,158,11,0.9)]" />
+                  <span className="absolute -bottom-1 left-1/2 -translate-x-1/2 w-1.5 h-1.5 rounded-full bg-violet-500 shadow-[0_0_8px_rgba(124,58,237,0.9)]" />
                 )}
               </button>
             );
@@ -131,17 +131,17 @@ export const Navbar: React.FC<NavbarProps> = ({
         <div className="flex items-center gap-3">
           <button
             onClick={onOpenAdmin}
-            className={`flex items-center gap-1.5 px-3 py-1.5 text-xs ${navFontClass} text-zinc-300 hover:text-orange-400 hover:bg-white/10 rounded-xl border border-white/10 transition-colors cursor-pointer font-medium`}
+            className={`flex items-center gap-1.5 px-3 py-1.5 text-xs ${navFontClass} text-zinc-300 hover:text-violet-400 hover:bg-white/10 rounded-xl border border-white/10 transition-colors cursor-pointer font-medium`}
             title="Studio Admin Portal"
             aria-label="Studio Admin Portal"
           >
-            <ShieldCheck className="w-4 h-4 text-orange-500" />
+            <ShieldCheck className="w-4 h-4 text-violet-500" />
             <span className="text-[11px] uppercase tracking-wider font-semibold">Admin</span>
           </button>
 
           <button
             onClick={() => handleLinkClick('contact')}
-            className={`flex items-center gap-1.5 px-4 py-2 text-xs ${navFontClass} font-bold uppercase tracking-wider text-black bg-orange-500 hover:bg-orange-400 transition-colors rounded-xl shadow-lg shadow-orange-600/20 whitespace-nowrap cursor-pointer transform hover:scale-[1.02] active:scale-95`}
+            className={`flex items-center gap-1.5 px-4 py-2 text-xs ${navFontClass} font-bold uppercase tracking-wider text-white bg-violet-600 hover:bg-violet-500 transition-colors rounded-xl shadow-lg shadow-violet-700/30 whitespace-nowrap cursor-pointer transform hover:scale-[1.02] active:scale-95`}
           >
             <span>Collaborate</span>
             <ArrowUpRight className="w-3.5 h-3.5" />
@@ -152,15 +152,15 @@ export const Navbar: React.FC<NavbarProps> = ({
       {/* =========================================================================
          MOBILE TOP HEADER & SIDEBAR MENU (Visible on Mobile / < lg screens)
          ========================================================================= */}
-      <div className="lg:hidden flex items-center justify-between px-4 py-3 bg-[#080604]/92 backdrop-blur-xl border-b border-orange-950/15">
+      <div className="lg:hidden flex items-center justify-between px-4 py-3 bg-black/50 backdrop-blur-2xl border-b border-white/[0.08]">
         {/* Mobile Brand Logo */}
         <button
           onClick={() => handleLinkClick('hero')}
           className="flex items-center gap-2.5 cursor-pointer text-left"
           aria-label={`${brandName} Home`}
         >
-          <div className="w-7 h-7 rounded-lg bg-orange-500 flex items-center justify-center text-black font-extrabold">
-            <Film className="w-4 h-4 text-black" />
+          <div className="w-7 h-7 rounded-lg bg-violet-600 flex items-center justify-center text-white font-extrabold">
+            <Film className="w-4 h-4 text-white" />
           </div>
           <span className="font-display text-base font-extrabold tracking-tight text-white uppercase">
             {brandName}
@@ -171,7 +171,7 @@ export const Navbar: React.FC<NavbarProps> = ({
         <button
           type="button"
           onClick={() => setMobileMenuOpen(true)}
-          className="flex items-center gap-1.5 px-3 py-1.5 text-xs font-mono font-semibold uppercase tracking-wider text-orange-500 bg-white/5 border border-white/10 rounded-xl active:scale-90 transition-transform cursor-pointer"
+          className="flex items-center gap-1.5 px-3 py-1.5 text-xs font-mono font-semibold uppercase tracking-wider text-violet-400 bg-white/5 border border-white/10 rounded-xl active:scale-90 transition-transform cursor-pointer"
           aria-label="Open Side Navigation Bar"
         >
           <Menu className="w-4 h-4" />
@@ -197,8 +197,8 @@ export const Navbar: React.FC<NavbarProps> = ({
         <div className="space-y-6">
           <div className="flex items-center justify-between pb-4 border-b border-white/10">
             <div className="flex items-center gap-2.5">
-              <div className="w-8 h-8 rounded-lg bg-orange-500 flex items-center justify-center text-black font-extrabold">
-                <Film className="w-4 h-4 text-black" />
+              <div className="w-8 h-8 rounded-lg bg-violet-600 flex items-center justify-center text-white font-extrabold">
+                <Film className="w-4 h-4 text-white" />
               </div>
               <div>
                 <span className="font-display text-sm font-extrabold tracking-tight text-white uppercase block">
@@ -218,7 +218,7 @@ export const Navbar: React.FC<NavbarProps> = ({
               className="p-1.5 rounded-lg text-zinc-400 hover:text-white transition-colors cursor-pointer"
               aria-label="Close Side Navigation Bar"
             >
-              <X className="w-5 h-5 text-orange-500" />
+              <X className="w-5 h-5 text-violet-500" />
             </button>
           </div>
 
@@ -238,14 +238,14 @@ export const Navbar: React.FC<NavbarProps> = ({
                   className={`w-full text-left py-2.5 px-1 transition-colors cursor-pointer flex items-center justify-between group ${navFontClass} ${navCasingClass}`}
                 >
                   <div className="flex items-center gap-3">
-                    <Icon className={`w-4 h-4 transition-colors ${isActive ? 'text-orange-500' : 'text-zinc-500 group-hover:text-orange-500'}`} />
-                    <span className={`transition-colors ${isActive ? 'text-orange-500 font-extrabold' : 'text-zinc-300 font-medium hover:text-white'}`}>
+                    <Icon className={`w-4 h-4 transition-colors ${isActive ? 'text-violet-400' : 'text-zinc-500 group-hover:text-violet-400'}`} />
+                    <span className={`transition-colors ${isActive ? 'text-violet-400 font-extrabold' : 'text-zinc-300 font-medium hover:text-white'}`}>
                       {link.label}
                     </span>
                   </div>
 
                   {isActive ? (
-                    <span className="w-2 h-2 rounded-full bg-orange-500 shadow-[0_0_8px_rgba(245,158,11,0.8)]" />
+                    <span className="w-2 h-2 rounded-full bg-violet-500 shadow-[0_0_8px_rgba(124,58,237,0.8)]" />
                   ) : (
                     <ChevronRight className="w-4 h-4 text-zinc-600 group-hover:text-zinc-300 group-hover:translate-x-1 transition-all" />
                   )}
@@ -262,18 +262,18 @@ export const Navbar: React.FC<NavbarProps> = ({
               setMobileMenuOpen(false);
               onOpenAdmin();
             }}
-            className={`w-full flex items-center justify-between py-2 px-1 text-xs ${navFontClass} text-zinc-400 hover:text-orange-500 cursor-pointer font-medium transition-colors`}
+            className={`w-full flex items-center justify-between py-2 px-1 text-xs ${navFontClass} text-zinc-400 hover:text-violet-400 cursor-pointer font-medium transition-colors`}
           >
             <div className="flex items-center gap-2">
-              <ShieldCheck className="w-4 h-4 text-orange-500" />
+              <ShieldCheck className="w-4 h-4 text-violet-500" />
               <span>Studio Admin Portal</span>
             </div>
-            <span className="text-[10px] font-mono uppercase text-orange-500 font-bold">CMS</span>
+            <span className="text-[10px] font-mono uppercase text-violet-400 font-bold">CMS</span>
           </button>
 
           <button
             onClick={() => handleLinkClick('contact')}
-            className={`w-full flex items-center justify-center gap-2 px-4 py-3 text-xs ${navFontClass} font-bold uppercase tracking-wider text-black bg-orange-500 hover:bg-orange-400 rounded-xl cursor-pointer transition-colors active:scale-95`}
+            className={`w-full flex items-center justify-center gap-2 px-4 py-3 text-xs ${navFontClass} font-bold uppercase tracking-wider text-white bg-violet-600 hover:bg-violet-500 rounded-xl cursor-pointer transition-colors active:scale-95`}
           >
             <span>Collaborate</span>
             <ArrowUpRight className="w-4 h-4" />

@@ -1,4 +1,4 @@
-import React from 'react';
+﻿import React from 'react';
 import { ArrowUp, Instagram, Video, Youtube, Mail, MessageSquare } from 'lucide-react';
 import { SiteConfig } from '../types';
 
@@ -26,7 +26,7 @@ export const Footer: React.FC<FooterProps> = ({ config, onNavigate, onOpenAdmin 
   ];
 
   return (
-    <footer className="bg-[#050507] border-t border-white/[0.08] text-zinc-400 pt-14 pb-10">
+    <footer className="bg-black/25 backdrop-blur-xl border-t border-white/[0.08] text-zinc-400 pt-14 pb-10">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="grid grid-cols-1 md:grid-cols-12 gap-8 sm:gap-10 pb-10 border-b border-white/[0.06]">
           {/* Brand & Creator Bio */}
@@ -54,7 +54,7 @@ export const Footer: React.FC<FooterProps> = ({ config, onNavigate, onOpenAdmin 
                 <li key={item.id}>
                   <button
                     onClick={() => onNavigate(item.id)}
-                    className="hover:text-orange-500 transition-colors cursor-pointer text-left"
+                    className="hover:text-violet-400 transition-colors cursor-pointer text-left"
                   >
                     {item.label}
                   </button>
@@ -71,9 +71,9 @@ export const Footer: React.FC<FooterProps> = ({ config, onNavigate, onOpenAdmin 
             <div className="space-y-2">
               <a
                 href={`mailto:${config.contactEmail}`}
-                className="flex items-center gap-2 text-xs sm:text-sm text-zinc-200 hover:text-orange-500 transition-colors"
+                className="flex items-center gap-2 text-xs sm:text-sm text-zinc-200 hover:text-violet-400 transition-colors"
               >
-                <Mail className="w-4 h-4 text-orange-500" />
+                <Mail className="w-4 h-4 text-violet-400" />
                 <span>{config.contactEmail}</span>
               </a>
               <p className="text-[11px] text-zinc-500 leading-normal">
@@ -122,7 +122,7 @@ export const Footer: React.FC<FooterProps> = ({ config, onNavigate, onOpenAdmin 
             <span aria-hidden="true">·</span>
             <button
               onClick={onOpenAdmin}
-              className="text-zinc-500 hover:text-orange-500 transition-colors underline cursor-pointer"
+              className="text-zinc-500 hover:text-violet-400 transition-colors underline cursor-pointer"
             >
               Admin Portal
             </button>
@@ -134,7 +134,7 @@ export const Footer: React.FC<FooterProps> = ({ config, onNavigate, onOpenAdmin 
             aria-label="Back to top"
           >
             <span>Back to top</span>
-            <ArrowUp className="w-3.5 h-3.5 text-zinc-400 group-hover:text-orange-500 transition-colors" />
+            <ArrowUp className="w-3.5 h-3.5 text-zinc-400 group-hover:text-violet-400 transition-colors" />
           </button>
         </div>
       </div>

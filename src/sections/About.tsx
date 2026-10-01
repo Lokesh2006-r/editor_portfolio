@@ -1,4 +1,4 @@
-import React from 'react';
+﻿import React from 'react';
 import { User, ArrowUpRight, Cpu, Compass, Film, Instagram, Youtube, Video, Sparkles, Music } from 'lucide-react';
 import { motion } from 'motion/react';
 import { SiteConfig } from '../types';
@@ -26,9 +26,9 @@ export const About: React.FC<AboutProps> = ({ config, onContact }) => {
   ];
 
   return (
-    <section id="about" className="py-20 sm:py-28 bg-[#080604] relative overflow-hidden">
+    <section id="about" className="py-20 sm:py-28 bg-transparent relative overflow-hidden">
       {/* Subtle ambient light glow */}
-      <div className="absolute top-1/3 left-10 w-96 h-96 rounded-full bg-orange-600/5 blur-3xl pointer-events-none" />
+      <div className="absolute top-1/3 left-10 w-96 h-96 rounded-full bg-violet-600/5 blur-3xl pointer-events-none" />
 
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
         {/* Split Layout: Portrait on Left, Story on Right */}
@@ -41,7 +41,7 @@ export const About: React.FC<AboutProps> = ({ config, onContact }) => {
             transition={{ duration: 0.7, ease: [0.16, 1, 0.3, 1] }}
             className="lg:col-span-5 space-y-5"
           >
-            <div className="relative rounded-2xl overflow-hidden aspect-[4/5] bg-black border border-white/10 shadow-2xl group">
+            <div className="relative rounded-3xl overflow-hidden aspect-[4/5] bg-white/[0.04] backdrop-blur-2xl border border-white/[0.14] shadow-[inset_0_1px_1.5px_rgba(255,255,255,0.2),0_25px_60px_-15px_rgba(0,0,0,0.7)] group">
               <img
                 src={config.heroPhoto || '/src/assets/images/hero_cinematic_director_1790323945101.jpg'}
                 alt={`${config.editorName} - Mobile Video Editor`}
@@ -50,10 +50,10 @@ export const About: React.FC<AboutProps> = ({ config, onContact }) => {
               />
               <div className="absolute inset-0 bg-gradient-to-t from-black/85 via-transparent to-black/20" />
 
-              <div className="absolute bottom-4 left-4 right-4 p-4 rounded-xl bg-black/75 backdrop-blur-md border border-white/10 text-xs">
+              <div className="absolute bottom-4 left-4 right-4 p-4 rounded-2xl bg-black/50 backdrop-blur-2xl border border-white/20 text-xs shadow-[inset_0_1px_1px_rgba(255,255,255,0.2),0_12px_32px_rgba(0,0,0,0.6)]">
                 <div className="flex items-center justify-between text-zinc-200 font-mono">
                   <span className="font-bold">{config.editorName}</span>
-                  <span className="text-orange-500">Mobile Video Creator</span>
+                  <span className="text-violet-400">Mobile Video Creator</span>
                 </div>
                 <div className="text-[11px] text-zinc-400 mt-1 flex items-center justify-between">
                   <span>{config.location}</span>
@@ -63,14 +63,14 @@ export const About: React.FC<AboutProps> = ({ config, onContact }) => {
             </div>
 
             {/* Social Profile Links */}
-            <div className="p-4 rounded-xl bg-[#100c06] border border-white/[0.08] flex items-center justify-between">
-              <span className="text-xs font-mono text-zinc-400">Find me on social:</span>
-              <div className="flex items-center gap-3">
+            <div className="p-4 rounded-2xl bg-white/[0.04] backdrop-blur-2xl border border-white/[0.12] shadow-[inset_0_1px_1px_rgba(255,255,255,0.18)] flex items-center justify-between">
+              <span className="text-xs font-mono text-zinc-300">Find me on social:</span>
+              <div className="flex items-center gap-2.5">
                 <a
                   href="https://instagram.com"
                   target="_blank"
                   rel="noreferrer"
-                  className="p-2 rounded-lg bg-white/5 hover:bg-white/15 text-zinc-300 hover:text-orange-500 transition-colors"
+                  className="p-2 rounded-lg bg-white/5 hover:bg-white/15 text-zinc-300 hover:text-violet-400 transition-colors"
                   aria-label="Instagram Profile"
                 >
                   <Instagram className="w-4 h-4" />
@@ -79,7 +79,7 @@ export const About: React.FC<AboutProps> = ({ config, onContact }) => {
                   href="https://youtube.com"
                   target="_blank"
                   rel="noreferrer"
-                  className="p-2 rounded-lg bg-white/5 hover:bg-white/15 text-zinc-300 hover:text-orange-500 transition-colors"
+                  className="p-2 rounded-lg bg-white/5 hover:bg-white/15 text-zinc-300 hover:text-violet-400 transition-colors"
                   aria-label="YouTube Shorts"
                 >
                   <Youtube className="w-4 h-4" />
@@ -88,7 +88,7 @@ export const About: React.FC<AboutProps> = ({ config, onContact }) => {
                   href="https://vimeo.com"
                   target="_blank"
                   rel="noreferrer"
-                  className="p-2 rounded-lg bg-white/5 hover:bg-white/15 text-zinc-300 hover:text-orange-500 transition-colors"
+                  className="p-2 rounded-lg bg-white/5 hover:bg-white/15 text-zinc-300 hover:text-violet-400 transition-colors"
                   aria-label="Vimeo Portfolio"
                 >
                   <Video className="w-4 h-4" />
@@ -106,7 +106,7 @@ export const About: React.FC<AboutProps> = ({ config, onContact }) => {
             className="lg:col-span-7 space-y-8"
           >
             <div>
-              <div className="flex items-center gap-2 text-xs font-mono uppercase tracking-widest text-orange-500 mb-2 sm:mb-3">
+              <div className="flex items-center gap-2 text-xs font-mono uppercase tracking-widest text-violet-400 mb-2 sm:mb-3">
                 <User className="w-3.5 h-3.5" />
                 <span>Behind The Edits</span>
               </div>
@@ -120,24 +120,24 @@ export const About: React.FC<AboutProps> = ({ config, onContact }) => {
               </p>
             </div>
 
-            {/* Philosophy & Approach */}
-            <div className="grid grid-cols-1 sm:grid-cols-2 gap-5 pt-3 border-t border-white/[0.08]">
-              <div className="space-y-2">
-                <h4 className="flex items-center gap-2 text-xs font-mono uppercase tracking-wider text-orange-500">
+            {/* Philosophy & Approach Glass Cards */}
+            <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 pt-3 border-t border-white/[0.08]">
+              <div className="p-4 sm:p-5 rounded-2xl bg-white/[0.04] backdrop-blur-2xl border border-white/[0.12] shadow-[inset_0_1px_1px_rgba(255,255,255,0.18)] hover:border-white/25 transition-all space-y-2">
+                <h4 className="flex items-center gap-2 text-xs font-mono uppercase tracking-wider text-violet-400">
                   <Film className="w-3.5 h-3.5" />
                   <span>Editing Philosophy</span>
                 </h4>
-                <p className="text-xs sm:text-sm text-zinc-300 leading-relaxed">
+                <p className="text-xs sm:text-sm text-zinc-300 leading-relaxed font-normal">
                   {config.aboutPhilosophy}
                 </p>
               </div>
 
-              <div className="space-y-2">
-                <h4 className="flex items-center gap-2 text-xs font-mono uppercase tracking-wider text-orange-500">
+              <div className="p-4 sm:p-5 rounded-2xl bg-white/[0.04] backdrop-blur-2xl border border-white/[0.12] shadow-[inset_0_1px_1px_rgba(255,255,255,0.18)] hover:border-white/25 transition-all space-y-2">
+                <h4 className="flex items-center gap-2 text-xs font-mono uppercase tracking-wider text-violet-400">
                   <Compass className="w-3.5 h-3.5" />
                   <span>Mobile Pacing Approach</span>
                 </h4>
-                <p className="text-xs sm:text-sm text-zinc-300 leading-relaxed">
+                <p className="text-xs sm:text-sm text-zinc-300 leading-relaxed font-normal">
                   {config.aboutApproach}
                 </p>
               </div>
@@ -146,7 +146,7 @@ export const About: React.FC<AboutProps> = ({ config, onContact }) => {
             {/* Creative Interests */}
             <div className="space-y-3 pt-3 border-t border-white/[0.08]">
               <h4 className="flex items-center gap-2 text-xs font-mono uppercase tracking-wider text-zinc-400">
-                <Sparkles className="w-3.5 h-3.5 text-orange-500" />
+                <Sparkles className="w-3.5 h-3.5 text-violet-400" />
                 <span>Creative Passions & Visual Obsessions</span>
               </h4>
 
@@ -155,7 +155,7 @@ export const About: React.FC<AboutProps> = ({ config, onContact }) => {
                   <motion.div
                     key={idx}
                     whileHover={{ scale: 1.02 }}
-                    className="p-3 rounded-lg bg-[#100c06] border border-white/[0.06] hover:border-orange-600/20 text-xs transition-colors"
+                    className="p-3.5 rounded-2xl bg-white/[0.04] backdrop-blur-xl border border-white/[0.10] shadow-[inset_0_1px_1px_rgba(255,255,255,0.12)] hover:border-violet-500/30 text-xs transition-colors"
                   >
                     <span className="font-semibold text-white block mb-0.5">{item.label}</span>
                     <span className="text-zinc-400 text-[11px] leading-relaxed">{item.desc}</span>
@@ -167,7 +167,7 @@ export const About: React.FC<AboutProps> = ({ config, onContact }) => {
             {/* Post-Production Editing Suite */}
             <div className="space-y-3 pt-3 border-t border-white/[0.08]">
               <h4 className="flex items-center gap-2 text-xs font-mono uppercase tracking-wider text-zinc-400">
-                <Cpu className="w-3.5 h-3.5 text-orange-500" />
+                <Cpu className="w-3.5 h-3.5 text-violet-400" />
                 <span>Post-Production Suite & Mobile Workflow</span>
               </h4>
 
@@ -176,7 +176,7 @@ export const About: React.FC<AboutProps> = ({ config, onContact }) => {
                   <motion.div
                     key={idx}
                     whileHover={{ scale: 1.02 }}
-                    className="p-3 rounded-lg bg-[#100c06] border border-white/[0.06] hover:border-orange-600/20 flex flex-col justify-between transition-colors"
+                    className="p-3.5 rounded-2xl bg-white/[0.04] backdrop-blur-xl border border-white/[0.10] shadow-[inset_0_1px_1px_rgba(255,255,255,0.12)] hover:border-violet-500/30 flex flex-col justify-between transition-colors"
                   >
                     <span className="text-xs font-semibold text-white">{t.name}</span>
                     <span className="text-[11px] text-zinc-400 mt-1">{t.role}</span>
@@ -191,7 +191,7 @@ export const About: React.FC<AboutProps> = ({ config, onContact }) => {
                 whileHover={{ scale: 1.03 }}
                 whileTap={{ scale: 0.97 }}
                 onClick={onContact}
-                className="inline-flex items-center gap-2 px-6 py-3 text-xs font-semibold uppercase tracking-wider text-black bg-orange-500 hover:bg-orange-400 rounded-lg transition-colors cursor-pointer active:scale-95"
+                className="inline-flex items-center gap-2 px-6 py-3 text-xs font-semibold uppercase tracking-wider text-black bg-violet-600 hover:bg-violet-500 rounded-lg transition-colors cursor-pointer active:scale-95"
               >
                 <span>Let's Create Together</span>
                 <ArrowUpRight className="w-4 h-4" />

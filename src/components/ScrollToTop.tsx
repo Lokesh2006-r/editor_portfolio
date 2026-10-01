@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+﻿import React, { useState, useEffect } from 'react';
 import { motion, AnimatePresence, useScroll } from 'motion/react';
 import { ArrowUp } from 'lucide-react';
 
@@ -36,7 +36,7 @@ export const ScrollToTop: React.FC = () => {
             onClick={scrollToTop}
             whileHover={{ scale: 1.08, y: -2 }}
             whileTap={{ scale: 0.94 }}
-            className="group relative w-12 h-12 rounded-full bg-[#100c06]/90 backdrop-blur-md border border-white/10 hover:border-orange-500/50 shadow-xl shadow-black/80 flex items-center justify-center text-zinc-300 hover:text-orange-500 transition-colors cursor-pointer"
+            className="group relative w-12 h-12 rounded-full bg-white/[0.08] backdrop-blur-2xl border border-white/[0.18] hover:border-violet-500/60 shadow-[inset_0_1px_1.5px_rgba(255,255,255,0.25),0_12px_32px_rgba(0,0,0,0.5)] flex items-center justify-center text-zinc-200 hover:text-violet-400 transition-all cursor-pointer"
             aria-label="Scroll to top"
           >
             {/* SVG Circular Progress Track */}
@@ -57,7 +57,7 @@ export const ScrollToTop: React.FC = () => {
                 cx="20"
                 cy="20"
                 r="18"
-                className="text-orange-500"
+                className="text-violet-400"
                 strokeWidth="2"
                 stroke="currentColor"
                 fill="transparent"

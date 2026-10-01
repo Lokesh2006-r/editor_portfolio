@@ -1,4 +1,4 @@
-export type NavFontKey = 'grotesk' | 'sans' | 'outfit' | 'display' | 'mono';
+﻿export type NavFontKey = 'grotesk' | 'sans' | 'outfit' | 'display' | 'mono';
 export type NavCasingKey = 'normal' | 'uppercase';
 
 export interface NavFontOption {

@@ -1,4 +1,4 @@
-import { z } from 'zod';
+﻿import { z } from 'zod';
 
 export const inquiryFormSchema = z.object({
   fullName: z.string().min(2, { message: 'Full name must be at least 2 characters.' }).max(80),

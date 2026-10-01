@@ -67,7 +67,7 @@ export const AdminLogin: React.FC<AdminLoginProps> = ({ onLoginSuccess, onBackTo
 
       {/* Login Card */}
       <main className="flex-1 flex items-center justify-center p-4 relative z-10">
-        <div className="w-full max-w-md bg-[#111116]/95 border border-white/10 rounded-2xl shadow-2xl shadow-black/80 p-8 backdrop-blur-xl space-y-6">
+        <div className="w-full max-w-md bg-white/[0.04] backdrop-blur-3xl border border-white/[0.14] rounded-3xl shadow-[inset_0_1px_1.5px_rgba(255,255,255,0.2),0_25px_60px_-15px_rgba(0,0,0,0.8)] p-8 space-y-6">
           {/* Header */}
           <div className="text-center space-y-2">
             <div className="inline-flex p-3 rounded-xl bg-orange-500/10 border border-orange-600/20 text-orange-500 mb-1">

@@ -1,4 +1,4 @@
-export type VideoProvider = 'youtube' | 'vimeo' | 'direct' | 'instagram' | 'unknown';
+﻿export type VideoProvider = 'youtube' | 'vimeo' | 'direct' | 'instagram' | 'unknown';
 
 export interface ParsedVideo {
   provider: VideoProvider;

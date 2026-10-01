@@ -1,33 +1,54 @@
+/* Google Fonts — DM Sans (the same font used by LearnLogicify) */
+@import url('https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;0,9..40,600;0,9..40,700;0,9..40,900;1,9..40,400;1,9..40,700&family=Inter:wght@300;400;500;600;700&display=swap');
+
 @import "tailwindcss";
 
 @theme {
-  --font-display: 'Syne', sans-serif;
-  --font-cinematic: 'Cinzel', serif;
-  --font-editorial: 'Cormorant Garamond', serif;
-  --font-sans: 'Plus Jakarta Sans', sans-serif;
-  --font-mono: 'JetBrains Mono', monospace;
-  --font-grotesk: 'Space Grotesk', sans-serif;
-  --font-outfit: 'Outfit', sans-serif;
-  --color-cinema-bg: #080604;
-  --color-cinema-surface: #100c06;
-  --color-cinema-border: rgba(251, 146, 60, 0.10);
-  --color-cinema-accent: #f97316;
+  --font-display:    'DM Sans', sans-serif;
+  --font-cinematic:  'Cinzel', serif;
+  --font-editorial:  'Cormorant Garamond', serif;
+  --font-sans:       'DM Sans', 'Inter', sans-serif;
+  --font-mono:       'JetBrains Mono', monospace;
+  --font-grotesk:    'DM Sans', sans-serif;
+  --font-outfit:     'DM Sans', sans-serif;
+
+  --color-cinema-bg:      #000000;
+  --color-cinema-surface: #0a0a0a;
+  --color-cinema-border:  rgba(79, 26, 214, 0.18);
+  --color-cinema-accent:  #4f1ad6;
 }
 
 .font-cinematic { font-family: 'Cinzel', serif; }
 .font-editorial { font-family: 'Cormorant Garamond', Georgia, serif; }
-.font-grotesk   { font-family: 'Space Grotesk', 'Plus Jakarta Sans', sans-serif; }
-.font-outfit    { font-family: 'Outfit', 'Plus Jakarta Sans', sans-serif; }
-.font-display   { font-family: 'Syne', sans-serif; }
-.font-sans      { font-family: 'Plus Jakarta Sans', sans-serif; }
+.font-grotesk   { font-family: 'DM Sans', sans-serif; }
+.font-outfit    { font-family: 'DM Sans', sans-serif; }
+.font-display   { font-family: 'DM Sans', sans-serif; }
+.font-sans      { font-family: 'DM Sans', 'Inter', sans-serif; }
 .font-mono      { font-family: 'JetBrains Mono', monospace; }
 
 :root {
   color-scheme: dark;
-  --bg-cinema: #080604;
-  --bg-surface: #100c06;
-  --text-main: #faf5ee;
-  --accent-ember: #f97316;
+  /* Pitch Black & Cinematic Amber-Violet Glow palette */
+  --ll-primary:      #f59e0b;
+  --ll-primary-33:   rgba(245, 158, 11, 0.20);
+  --ll-primary-26:   rgba(245, 158, 11, 0.15);
+  --ll-primary-14:   rgba(245, 158, 11, 0.08);
+  --ll-violet:       #7c3aed;
+  --ll-indigo:       #f59e0b;
+  --ll-white:        #ffffff;
+  --ll-white-60:     rgba(255,255,255,0.60);
+  --ll-white-30:     rgba(255,255,255,0.30);
+  --ll-white-12:     rgba(255,255,255,0.12);
+  --ll-white-07:     rgba(255,255,255,0.07);
+  --ll-white-04:     rgba(255,255,255,0.04);
+  --ll-base-bg:      #000000;
+  --ll-surface:      #050505;
+
+  /* Legacy compat aliases */
+  --bg-cinema:    #000000;
+  --bg-surface:   #050505;
+  --text-main:    #ffffff;
+  --accent-ember: #f59e0b;
   --accent-amber: #f59e0b;
   --accent-gold:  #fbbf24;
 }
@@ -38,70 +59,70 @@ html {
 }
 
 body {
-  font-family: var(--font-sans);
-  background-color: #080604;
-  color: #faf5ee;
+  font-family: 'DM Sans', 'Inter', sans-serif;
+  background-color: #000000;
+  color: #ffffff;
   overflow-x: hidden;
-  transition: background-color 0.25s cubic-bezier(0.4, 0, 0.2, 1),
-              color 0.25s cubic-bezier(0.4, 0, 0.2, 1);
+  transition: color 0.25s cubic-bezier(0.4, 0, 0.2, 1);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
 }
 
 /* ==========================================================================
-   EMBER NOIR — Cinematic Black + Molten Orange-Amber Glow System
+   CINEMATIC BLACK AMBIENT SWEEP — Pitch black background mesh
    ========================================================================== */
 
-/* Page-wide ambient sweep — baked into every section base */
 .theme-bg-sweep {
   background:
-    radial-gradient(ellipse 55% 50% at 15% 25%,  rgba(234, 88,  12,  0.13) 0%, transparent 60%),
-    radial-gradient(ellipse 45% 60% at 88% 80%,  rgba(245, 158, 11,  0.11) 0%, transparent 55%),
-    radial-gradient(ellipse 35% 30% at 55% 5%,   rgba(251, 146, 60,  0.06) 0%, transparent 50%),
-    #080604;
+    radial-gradient(ellipse 55% 50% at 15% 25%,  rgba(124, 58, 237, 0.22) 0%, transparent 60%),
+    radial-gradient(ellipse 45% 60% at 88% 80%,  rgba(245, 158, 11, 0.20) 0%, transparent 55%),
+    radial-gradient(ellipse 35% 30% at 55% 5%,   rgba(251, 191, 36, 0.14) 0%, transparent 50%),
+    #000000;
 }
 
 /* Floating glow orbs */
 .glow-orb-ember {
   background: radial-gradient(circle,
-    rgba(249, 115, 22,  0.30) 0%,
-    rgba(234, 88,  12,  0.12) 40%,
+    rgba(245, 158, 11, 0.35) 0%,
+    rgba(217, 119, 6, 0.15) 40%,
     transparent 70%);
   filter: blur(55px);
 }
 
 .glow-orb-amber {
   background: radial-gradient(circle,
-    rgba(245, 158, 11,  0.28) 0%,
-    rgba(180, 83,  9,   0.12) 40%,
+    rgba(124, 58, 237, 0.32) 0%,
+    rgba(109, 40, 217, 0.14) 40%,
     transparent 70%);
   filter: blur(65px);
 }
 
 .glow-orb-gold {
   background: radial-gradient(circle,
-    rgba(251, 191, 36,  0.20) 0%,
-    rgba(217, 119, 6,   0.08) 50%,
+    rgba(251, 191, 36, 0.25) 0%,
+    rgba(245, 158, 11, 0.10) 50%,
     transparent 70%);
   filter: blur(80px);
 }
 
 /* ==========================================================================
-   FLOATING ANIMATIONS
+   FLOATING ORB ANIMATIONS  (smooth, slow, hypnotic)
    ========================================================================== */
 @keyframes floatOrb1 {
-  0%, 100% { transform: translate(0px,  0px) scale(1); }
-  33%       { transform: translate(65px, -55px) scale(1.16); }
-  66%       { transform: translate(-45px, 38px) scale(0.93); }
+  0%,  100% { transform: translate(0px,   0px)  scale(1); }
+  33%        { transform: translate(70px, -60px) scale(1.18); }
+  66%        { transform: translate(-50px, 45px) scale(0.92); }
 }
 
 @keyframes floatOrb2 {
-  0%, 100% { transform: translate(0px,   0px) scale(1); }
-  33%       { transform: translate(-75px, 48px) scale(1.11); }
-  66%       { transform: translate(55px, -45px) scale(0.96); }
+  0%,  100% { transform: translate(0px,   0px)  scale(1); }
+  33%        { transform: translate(-80px, 55px) scale(1.13); }
+  66%        { transform: translate(60px, -50px) scale(0.95); }
 }
 
 @keyframes floatOrb3 {
-  0%, 100% { transform: translate(0px, 0px) scale(1); }
-  50%       { transform: translate(85px, 45px) scale(1.20); }
+  0%,  100% { transform: translate(0px, 0px)  scale(1); }
+  50%        { transform: translate(90px, 50px) scale(1.22); }
 }
 
 @keyframes shimmer {
@@ -110,8 +131,8 @@ body {
 }
 
 @keyframes pulseGlow {
-  0%, 100% { opacity: 0.45; }
-  50%       { opacity: 1; }
+  0%, 100% { opacity: 0.40; }
+  50%       { opacity: 0.90; }
 }
 
 @keyframes flicker {
@@ -123,93 +144,259 @@ body {
   98%      { opacity: 1; }
 }
 
-.animate-float-orb1  { animation: floatOrb1 18s ease-in-out infinite; }
-.animate-float-orb2  { animation: floatOrb2 22s ease-in-out infinite; }
-.animate-float-orb3  { animation: floatOrb3 25s ease-in-out infinite; }
-.animate-pulse-glow  { animation: pulseGlow 4s ease-in-out infinite; }
-.animate-flicker     { animation: flicker   8s ease-in-out infinite; }
+@keyframes rotateMesh {
+  0%   { transform: rotate(0deg)   scale(1); }
+  50%  { transform: rotate(180deg) scale(1.20); }
+  100% { transform: rotate(360deg) scale(1); }
+}
+
+@keyframes pulseBreathe {
+  0%, 100% { opacity: 0.55; transform: scale(1); }
+  50%       { opacity: 0.92; transform: scale(1.14); }
+}
+
+/* Grid line animated pulse */
+@keyframes gridPulse {
+  0%, 100% { opacity: 0.08; }
+  50%       { opacity: 0.18; }
+}
+
+/* Gradient text shimmer (purple version) */
+@keyframes purpleShimmer {
+  0%   { background-position: -200% center; }
+  100% { background-position:  200% center; }
+}
+
+/* Fade-in slide up (used for section entries) */
+@keyframes fadeInUp {
+  from { opacity: 0; transform: translateY(32px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+/* Blob morph */
+@keyframes blobMorph {
+  0%, 100% { border-radius: 60% 40% 30% 70% / 60% 30% 70% 40%; }
+  25%       { border-radius: 30% 60% 70% 40% / 50% 60% 30% 60%; }
+  50%       { border-radius: 50% 60% 30% 60% / 30% 50% 70% 40%; }
+  75%       { border-radius: 70% 30% 60% 40% / 40% 70% 30% 60%; }
+}
+
+.animate-float-orb1    { animation: floatOrb1    18s ease-in-out infinite; }
+.animate-float-orb2    { animation: floatOrb2    22s ease-in-out infinite; }
+.animate-float-orb3    { animation: floatOrb3    25s ease-in-out infinite; }
+.animate-rotate-mesh   { animation: rotateMesh   40s linear infinite; }
+.animate-pulse-breathe { animation: pulseBreathe 12s ease-in-out infinite; }
+.animate-pulse-glow    { animation: pulseGlow     4s ease-in-out infinite; }
+.animate-flicker       { animation: flicker       8s ease-in-out infinite; }
+.animate-blob-morph    { animation: blobMorph    18s ease-in-out infinite; }
+.animate-fade-in-up    { animation: fadeInUp   0.75s cubic-bezier(0.16,1,0.3,1) both; }
+
+/* Speed modifiers */
+.anim-speed-slow   { animation-duration: 45s !important; }
+.anim-speed-fast   { animation-duration: 12s !important; }
+.anim-speed-static { animation-play-state: paused !important; }
+
 
 /* ==========================================================================
-   AESTHETIC TYPOGRAPHY EFFECTS
+   TYPOGRAPHY EFFECTS
    ========================================================================== */
 
-/* Molten shimmer gradient text */
+/* Electric periwinkle-indigo shimmer gradient text */
 .text-gradient-ember {
   background: linear-gradient(
     120deg,
-    #f97316 0%,
-    #fbbf24 30%,
-    #fb923c 55%,
-    #fde68a 80%,
-    #f97316 100%
+    #5865f2 0%,
+    #7289da 25%,
+    #c3cbf5 50%,
+    #8a99e6 75%,
+    #5865f2 100%
   );
   background-size: 200% auto;
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   background-clip: text;
-  animation: shimmer 5s linear infinite;
+  animation: purpleShimmer 6s linear infinite;
 }
 
-/* Static gold-to-amber text */
+/* Static periwinkle-to-slate text */
 .text-gradient-gold {
-  background: linear-gradient(135deg, #f59e0b 0%, #fbbf24 50%, #fde68a 100%);
+  background: linear-gradient(135deg, #5865f2 0%, #7289da 50%, #c3cbf5 100%);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   background-clip: text;
 }
 
-/* Warm ember glow on large headings */
+/* Soft ambient glow on large headings */
 .text-glow-ember {
   text-shadow:
-    0 0 20px  rgba(249, 115, 22, 0.55),
-    0 0 60px  rgba(245, 158, 11, 0.25),
-    0 0 100px rgba(180, 83,  9,  0.15);
+    0 0 20px  rgba(88,  101, 242, 0.65),
+    0 0 60px  rgba(114, 137, 218, 0.30),
+    0 0 100px rgba(138, 153, 230, 0.18);
 }
 
 .tracking-cinematic    { letter-spacing: -0.03em; }
 .tracking-wide-display { letter-spacing:  0.08em; }
 
 /* ==========================================================================
-   GRID & TEXTURE PATTERNS
+   GRID & TEXTURE PATTERNS — Indigo grid overlay
    ========================================================================== */
 .bg-grid-pattern {
-  background-size: 40px 40px;
+  background-size: 48px 48px;
   background-image:
-    linear-gradient(to right,  rgba(249, 115, 22, 0.04) 1px, transparent 1px),
-    linear-gradient(to bottom, rgba(245, 158, 11, 0.04) 1px, transparent 1px);
+    linear-gradient(to right,  rgba(88,  101, 242, 0.08) 1px, transparent 1px),
+    linear-gradient(to bottom, rgba(88,  101, 242, 0.08) 1px, transparent 1px);
+  animation: gridPulse 6s ease-in-out infinite;
 }
 
 .bg-dots-pattern {
-  background-size: 24px 24px;
+  background-size: 28px 28px;
   background-image: radial-gradient(circle,
-    rgba(249, 115, 22, 0.11) 1.2px, transparent 1.2px);
+    rgba(138, 153, 230, 0.14) 1.4px, transparent 1.4px);
 }
 
 .bg-radial-vignette {
   background: radial-gradient(circle at 50% 50%,
-    transparent 20%, rgba(8, 6, 4, 0.80) 100%);
+    transparent 20%, rgba(0, 0, 0, 0.85) 100%);
 }
 
-/* Warm cinematic film grain */
+/* Subtle noise grain overlay */
 .film-grain {
-  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.72' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.038'/%3E%3C/svg%3E");
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.72' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.032'/%3E%3C/svg%3E");
 }
 
 /* ==========================================================================
    SURFACE & CARD SYSTEM
    ========================================================================== */
 .surface-card {
-  background: rgba(16, 12, 6, 0.82);
-  border: 1px solid rgba(249, 115, 22, 0.09);
+  background: rgba(12, 14, 30, 0.82);
+  border: 1px solid rgba(88, 101, 242, 0.15);
   backdrop-filter: blur(14px);
 }
 
+/* ==========================================================================
+   iOS FROSTED GLASS SYSTEM — Periwinkle & Slate variant
+   ========================================================================== */
+.ios-glass-card {
+  background: rgba(12, 14, 30, 0.65);
+  backdrop-filter: blur(28px) saturate(180%);
+  -webkit-backdrop-filter: blur(28px) saturate(180%);
+  border: 1px solid rgba(255, 255, 255, 0.10);
+  box-shadow:
+    inset 0 1px 1px 0 rgba(255, 255, 255, 0.15),
+    0 16px 36px -12px rgba(0, 0, 0, 0.80),
+    0 0 0 0.5px rgba(88, 101, 242, 0.10);
+  transition:
+    transform   0.4s cubic-bezier(0.16, 1, 0.3, 1),
+    box-shadow  0.4s cubic-bezier(0.16, 1, 0.3, 1),
+    border-color 0.3s ease;
+}
+
+.ios-glass-card:hover {
+  border-color: rgba(114, 137, 218, 0.40);
+  box-shadow:
+    inset 0 1px 1.5px 0 rgba(255, 255, 255, 0.22),
+    0 24px 48px -12px rgba(0, 0, 0, 0.88),
+    0 0 45px -5px rgba(88, 101, 242, 0.25);
+}
+
+.ios-glass-pill {
+  background: rgba(0, 0, 0, 0.50);
+  backdrop-filter: blur(18px) saturate(160%);
+  -webkit-backdrop-filter: blur(18px) saturate(160%);
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  box-shadow: inset 0 0.5px 0.5px rgba(255, 255, 255, 0.18);
+}
+
+.ios-play-glass {
+  background: rgba(255, 255, 255, 0.15);
+  backdrop-filter: blur(20px) saturate(180%);
+  -webkit-backdrop-filter: blur(20px) saturate(180%);
+  border: 1px solid rgba(255, 255, 255, 0.30);
+  box-shadow:
+    inset 0 1px 1px rgba(255, 255, 255, 0.35),
+    0 12px 30px rgba(0, 0, 0, 0.55);
+}
+
+.ios-play-glass:hover {
+  background: #5865f2;
+  border-color: #7289da;
+  box-shadow:
+    inset 0 1px 1px rgba(255, 255, 255, 0.45),
+    0 0 35px rgba(88, 101, 242, 0.75),
+    0 12px 30px rgba(0, 0, 0, 0.65);
+}
+
 .border-theme {
-  border-color: rgba(249, 115, 22, 0.11);
+  border-color: rgba(88, 101, 242, 0.15);
 }
 
 /* ==========================================================================
-   THEME: NIGHT MODE (keep base near-OLED black)
+   BADGE / PILL STYLES
+   ========================================================================== */
+.ll-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.375rem;
+  padding: 0.3rem 0.85rem;
+  border-radius: 9999px;
+  background: rgba(88, 101, 242, 0.15);
+  border: 1px solid rgba(88, 101, 242, 0.35);
+  color: #c3cbf5;
+  font-size: 0.72rem;
+  font-weight: 600;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  backdrop-filter: blur(8px);
+}
+
+/* Primary CTA button */
+.btn-ll-primary {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.7rem 1.5rem;
+  border-radius: 9999px;
+  background: #5865f2;
+  color: #ffffff;
+  font-size: 0.875rem;
+  font-weight: 600;
+  letter-spacing: 0.04em;
+  transition: background 0.25s, box-shadow 0.25s, transform 0.2s;
+  box-shadow: 0 0 28px rgba(88, 101, 242, 0.45);
+  cursor: pointer;
+  border: none;
+}
+.btn-ll-primary:hover {
+  background: #7289da;
+  box-shadow: 0 0 44px rgba(88, 101, 242, 0.65);
+  transform: translateY(-2px);
+}
+
+/* Ghost button */
+.btn-ll-ghost {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.65rem 1.4rem;
+  border-radius: 9999px;
+  background: rgba(255,255,255,0.06);
+  border: 1px solid rgba(255,255,255,0.18);
+  color: rgba(255,255,255,0.85);
+  font-size: 0.875rem;
+  font-weight: 500;
+  letter-spacing: 0.02em;
+  backdrop-filter: blur(12px);
+  transition: background 0.25s, border-color 0.25s, transform 0.2s;
+  cursor: pointer;
+}
+.btn-ll-ghost:hover {
+  background: rgba(79, 26, 214, 0.18);
+  border-color: rgba(124, 58, 237, 0.45);
+  transform: translateY(-2px);
+}
+
+/* ==========================================================================
+   THEME: NIGHT MODE
    ========================================================================== */
 html[data-theme="night"],
 html.theme-night {
@@ -218,8 +405,8 @@ html.theme-night {
 
 html[data-theme="night"] body,
 html.theme-night body {
-  background-color: #030201 !important;
-  color: #faf5ee !important;
+  background-color: #000000 !important;
+  color: #ffffff !important;
 }
 
 /* ==========================================================================
@@ -232,25 +419,42 @@ html.theme-night body {
 }
 
 h1, h2, h3, .font-display {
-  font-family: var(--font-display);
+  font-family: 'DM Sans', sans-serif;
 }
 
 /* ==========================================================================
-   SCROLLBAR — molten amber accent
+   SCROLLBAR — Periwinkle accent
    ========================================================================== */
 ::-webkit-scrollbar        { width: 5px; height: 5px; }
-::-webkit-scrollbar-track  { background: #080604; }
+::-webkit-scrollbar-track  { background: #060713; }
 ::-webkit-scrollbar-thumb  {
-  background: rgba(180, 83, 9, 0.45);
+  background: rgba(88, 101, 242, 0.55);
   border-radius: 9999px;
   transition: background 0.2s;
 }
 ::-webkit-scrollbar-thumb:hover {
-  background: rgba(249, 115, 22, 0.75);
+  background: rgba(114, 137, 218, 0.85);
 }
 
-/* Focus ring — ember orange */
+/* Focus ring — periwinkle */
 :focus-visible {
-  outline: 2px solid #f97316;
+  outline: 2px solid #5865f2;
   outline-offset: 2px;
+}
+
+/* ==========================================================================
+   SECTION DIVIDERS
+   ========================================================================== */
+.section-divider {
+  height: 1px;
+  background: linear-gradient(
+    90deg,
+    transparent 0%,
+    rgba(88, 101, 242, 0.35) 30%,
+    rgba(114, 137, 218, 0.55) 50%,
+    rgba(88, 101, 242, 0.35) 70%,
+    transparent 100%
+  );
+  margin: 0 auto;
+  max-width: 800px;
 }

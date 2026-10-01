@@ -1,4 +1,4 @@
-import React, { useState, useRef, useEffect, useMemo } from 'react';
+﻿import React, { useState, useRef, useEffect, useMemo } from 'react';
 import { Play, Pause, Volume2, VolumeX, Maximize, AlertCircle } from 'lucide-react';
 import { parseVideoUrl } from '../lib/videoUtils';
 
@@ -9,6 +9,7 @@ interface VideoPlayerProps {
   aspectRatio?: '16:9' | '9:16' | '4:3';
   autoPlay?: boolean;
   onFullscreenToggle?: () => void;
+  hideErrorBanner?: boolean;
 }
 
 export const VideoPlayer: React.FC<VideoPlayerProps> = ({
@@ -18,6 +19,7 @@ export const VideoPlayer: React.FC<VideoPlayerProps> = ({
   aspectRatio = '16:9',
   autoPlay = false,
   onFullscreenToggle,
+  hideErrorBanner = false,
 }) => {
   const videoRef = useRef<HTMLVideoElement>(null);
   const containerRef = useRef<HTMLDivElement>(null);
@@ -173,7 +175,7 @@ export const VideoPlayer: React.FC<VideoPlayerProps> = ({
             }}
           />
           <div className="absolute inset-0 bg-black/35 flex items-center justify-center transition-opacity hover:bg-black/25">
-            <div className="w-16 h-16 sm:w-20 sm:h-20 rounded-full bg-white/10 backdrop-blur-md border border-white/20 flex items-center justify-center text-white shadow-2xl transition-all duration-300 hover:scale-105 hover:bg-orange-600 hover:text-black">
+            <div className="w-16 h-16 sm:w-20 sm:h-20 rounded-full bg-white/10 backdrop-blur-md border border-white/20 flex items-center justify-center text-white shadow-2xl transition-all duration-300 hover:scale-105 hover:bg-violet-600 hover:text-black">
               <Play className="w-7 h-7 sm:w-8 sm:h-8 fill-current translate-x-0.5" />
             </div>
           </div>
@@ -221,9 +223,9 @@ export const VideoPlayer: React.FC<VideoPlayerProps> = ({
             }}
           />
           {/* Only show error badge for real stream failures (not blob or missing URL) */}
-          {hasError && !isStaleBlobUrl && (
+          {hasError && !isStaleBlobUrl && !hideErrorBanner && (
             <div className="absolute inset-0 bg-black/60 flex items-center justify-center p-4">
-              <div className="flex items-center gap-2 text-xs text-orange-500 bg-black/80 px-3 py-2 rounded border border-orange-600/20">
+              <div className="flex items-center gap-2 text-xs text-violet-400 bg-black/80 px-3 py-2 rounded border border-orange-600/20">
                 <AlertCircle className="w-4 h-4" />
                 <span>Stream unavailable · Displaying thumbnail</span>
               </div>
@@ -235,7 +237,7 @@ export const VideoPlayer: React.FC<VideoPlayerProps> = ({
       {/* Loading Spinner */}
       {isLoading && !showPoster && (
         <div className="absolute inset-0 bg-black/40 flex items-center justify-center pointer-events-none z-10">
-          <div className="w-10 h-10 border-2 border-orange-500 border-t-transparent rounded-full animate-spin" />
+          <div className="w-10 h-10 border-2 border-violet-500 border-t-transparent rounded-full animate-spin" />
         </div>
       )}
 
@@ -265,7 +267,7 @@ export const VideoPlayer: React.FC<VideoPlayerProps> = ({
             <div className="flex items-center gap-3">
               <button
                 onClick={togglePlay}
-                className="p-1 hover:text-orange-500 transition-colors focus-visible:outline-orange-600"
+                className="p-1 hover:text-violet-400 transition-colors focus-visible:outline-orange-600"
                 aria-label={isPlaying ? 'Pause' : 'Play'}
               >
                 {isPlaying ? <Pause className="w-4 h-4" /> : <Play className="w-4 h-4" />}
@@ -273,7 +275,7 @@ export const VideoPlayer: React.FC<VideoPlayerProps> = ({
 
               <button
                 onClick={toggleMute}
-                className="p-1 hover:text-orange-500 transition-colors focus-visible:outline-orange-600"
+                className="p-1 hover:text-violet-400 transition-colors focus-visible:outline-orange-600"
                 aria-label={isMuted ? 'Unmute' : 'Mute'}
               >
                 {isMuted ? <VolumeX className="w-4 h-4" /> : <Volume2 className="w-4 h-4" />}
@@ -290,7 +292,7 @@ export const VideoPlayer: React.FC<VideoPlayerProps> = ({
               </span>
               <button
                 onClick={handleFullscreen}
-                className="p-1 hover:text-orange-500 transition-colors focus-visible:outline-orange-600"
+                className="p-1 hover:text-violet-400 transition-colors focus-visible:outline-orange-600"
                 aria-label="Toggle Fullscreen"
               >
                 <Maximize className="w-4 h-4" />

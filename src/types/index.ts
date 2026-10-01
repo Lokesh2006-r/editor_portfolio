@@ -1,4 +1,4 @@
-export type ProjectCategory = 
+﻿export type ProjectCategory = 
   | 'cinematic'
   | 'travel'
   | 'reels'
@@ -107,4 +107,20 @@ export interface SiteConfig {
   showreelDuration: string;
   showreelVideoUrl: string;
   showreelCover: string;
+  // Background & Animated Blurred Wallpaper Theme
+  bgTheme?: BackgroundThemeId;
+  bgBlurIntensity?: 'low' | 'medium' | 'high' | 'ultra';
+  bgAnimationSpeed?: 'slow' | 'normal' | 'fast' | 'static';
+  bgCustomWallpaperUrl?: string;
+  bgShowParticles?: boolean;
 }
+
+export type BackgroundThemeId =
+  | 'ember-noir'
+  | 'midnight-aurora'
+  | 'cosmic-violet'
+  | 'apple-liquid'
+  | 'solar-flare'
+  | 'matrix-mono'
+  | 'logicify-dark';
+

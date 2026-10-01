@@ -1,4 +1,4 @@
-import React, { useEffect, useRef } from 'react';
+﻿import React, { useEffect, useRef } from 'react';
 import { X, Film } from 'lucide-react';
 import { VideoPlayer } from './VideoPlayer';
 
@@ -79,12 +79,12 @@ export const VideoLightbox: React.FC<VideoLightboxProps> = ({
         aria-hidden="true"
       />
 
-      {/* Lightbox Container: Sleek for vertical videos */}
-      <div className={`relative z-10 w-full ${isVertical ? 'max-w-[380px] sm:max-w-[420px]' : 'max-w-4xl'} flex flex-col gap-3 my-auto`}>
+      {/* Lightbox Container: iOS Frosted Glass Card Frame */}
+      <div className={`relative z-10 w-full ${isVertical ? 'max-w-[390px] sm:max-w-[430px]' : 'max-w-4xl'} p-3.5 sm:p-5 rounded-3xl bg-zinc-950/70 backdrop-blur-3xl border border-white/[0.14] shadow-[inset_0_1px_1.5px_rgba(255,255,255,0.2),0_25px_60px_-15px_rgba(0,0,0,0.85)] flex flex-col gap-3 my-auto`}>
         {/* Header Bar */}
-        <div className="flex items-center justify-between text-white border-b border-white/10 pb-2.5">
+        <div className="flex items-center justify-between text-white border-b border-white/[0.08] pb-2.5">
           <div className="flex items-center gap-2.5">
-            <div className="w-7 h-7 rounded bg-orange-600/10 border border-orange-600/20 flex items-center justify-center text-orange-500">
+            <div className="w-7 h-7 rounded bg-violet-600/10 border border-orange-600/20 flex items-center justify-center text-violet-400">
               <Film className="w-3.5 h-3.5" />
             </div>
             <div>
